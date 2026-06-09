@@ -522,13 +522,28 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       return /* @__PURE__ */ React.createElement("video", { controls: true, preload: "metadata", poster: d.heroImage || void 0, className: "case-row-video" }, /* @__PURE__ */ React.createElement("source", { src: heroVideo.src, type: "video/mp4" }));
     }
     if (d.resultsImage) {
+      const cap = lang === "de" ? "Ergebnis" : "Outcome";
+      if (/\.mp4$/i.test(d.resultsImage)) {
+        return /* @__PURE__ */ React.createElement(
+          "video",
+          {
+            src: d.resultsImage,
+            className: "case-row-img-zoom",
+            autoPlay: true,
+            loop: true,
+            muted: true,
+            playsInline: true,
+            onClick: () => openLightbox([{ type: "video", src: d.resultsImage, caption: cap }], 0)
+          }
+        );
+      }
       return /* @__PURE__ */ React.createElement(
         "img",
         {
           src: d.resultsImage,
-          alt: lang === "de" ? "Ergebnis" : "Outcome",
+          alt: cap,
           className: "case-row-img-zoom",
-          onClick: () => openLightbox([{ type: "image", src: d.resultsImage, caption: lang === "de" ? "Ergebnis" : "Outcome" }], 0)
+          onClick: () => openLightbox([{ type: "image", src: d.resultsImage, caption: cap }], 0)
         }
       );
     }
@@ -612,15 +627,17 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       {
         className: "bare",
         style: { margin: "16px 0 0" },
-        onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.gif", caption: lang === "de" ? "Neue Website" : "New website" }], 0)
+        onClick: () => openLightbox([{ type: "video", src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4", caption: lang === "de" ? "Neue Website" : "New website" }], 0)
       },
       /* @__PURE__ */ React.createElement(
-        "img",
+        "video",
         {
-          src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.gif",
-          alt: lang === "de" ? "Neue Website" : "New website",
-          style: { width: "100%", maxWidth: 700, margin: "0 auto", borderRadius: 8, cursor: "zoom-in", display: "block" },
-          loading: "lazy"
+          src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4",
+          autoPlay: true,
+          loop: true,
+          muted: true,
+          playsInline: true,
+          style: { width: "100%", maxWidth: 700, margin: "0 auto", borderRadius: 8, cursor: "zoom-in", display: "block" }
         }
       ),
       /* @__PURE__ */ React.createElement("figcaption", { className: "small", style: { marginTop: 6 } }, lang === "de" ? "Neue Website" : "New website")

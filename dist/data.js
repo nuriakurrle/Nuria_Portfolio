@@ -598,7 +598,7 @@ const PROJECTS = [
       designScreens: [],
       /* ── Results ───────────────────────────────────────────────────── */
       outcome: "Hybrides Service-Design-System, getestet \xFCber drei Generationen mit 5 Usability-Tests. Drei Hardware-Varianten (zentrale Stele, Themen-Tafeln, Info-Pfosten als Upgrade-Modul) und eine Mobile Web-App mit Zeitreise-Slider, Audio-Tageb\xFCchern und zentralem Hub. Glaubw\xFCrdige Inhalte durch zwei Content-Partner (STALAG VII A e.V., Karl Bauer). Komplette Brand-Identit\xE4t mit der Moosburger Rose als generationen\xAD\xFCbergreifendes Leitmotiv. Wichtigstes Testing-Insight umgesetzt: Direkteinstieg nach QR-Scan statt Welcome-Screen \u2014 Time-to-Content ist kritisch.",
-      resultsImage: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/Echoes_App.gif",
+      resultsImage: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/Echoes_App.mp4",
       outcomeScenario: 'Stell dir Lena vor, 16, unterwegs am Marienplatz. An der Info-Stele scannt sie den QR-Code \u2014 und landet ohne Download direkt in der Web-App. \xDCber den Zeitreise-Slider legt sie historische Fotos aus dem Karl-Bauer-Archiv \xFCber das heutige Stra\xDFenbild und sieht, wie sich der Platz ver\xE4ndert hat; in den Audio-Tageb\xFCchern h\xF6rt sie die Stimme eines Stalag-Gefangenen. Im zentralen Hub findet sie auf einen Blick VHS-Kurse, den Stalag-Verein und das Museum \u2014 und plant f\xFCr ihre Oma eine gef\xFChrte Tour. So wird aus der \u201EHolschuld" eine \u201EBringschuld": Geschichte findet die Menschen, genau dort, wo sie passiert ist, und verbindet Generationen.',
       outcomeNote: "Am Stalag-Gel\xE4nde steht eine kompakte Themen-Tafel: weniger Text, daf\xFCr Bildvergleich und Audio direkt vor Ort. Ein Scan des QR-Codes \xF6ffnet sofort das passende Standortprofil. \u2192 Das ganze hybride System (drei Tafel-Typen, Web-App-Features, Research & Testing) steht in der vollst\xE4ndigen Dokumentation (PDF).",
       metrics: [
@@ -741,7 +741,7 @@ const PROJECTS = [
       designScreens: [],
       /* ── Results ───────────────────────────────────────────────────── */
       outcome: "Hybrid service-design system, tested across three generations with 5 usability tests. Three hardware variants (central stele, themed signs, info-post upgrade module) and a mobile web app with time-travel slider, audio diaries and central hub. Credibility via two content partners (STALAG VII A e.V., Karl Bauer). Complete brand identity with the Moosburg rose as a cross-generational visual thread. Most important testing insight implemented: direct entry after QR-scan instead of a welcome screen \u2014 time-to-content is critical.",
-      resultsImage: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/Echoes_App.gif",
+      resultsImage: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/Echoes_App.mp4",
       outcomeScenario: `Picture Lena, 16, at Marienplatz. At the info stele she scans the QR code \u2014 and lands straight in the web app, no download. With the time-travel slider she overlays historical photos from the Karl Bauer archive onto today's street view and watches how the square changed; in the audio diaries she hears the voice of a Stalag prisoner. The central hub shows her VHS courses, the Stalag association and the museum at a glance \u2014 and she books a guided tour for her grandmother. That turns "go and fetch it" into "it comes to you": history finds people right where it happened, and connects generations.`,
       outcomeNote: "At the Stalag grounds stands a compact themed sign: less text, more on-site photo comparison and audio. Scanning the QR code opens the matching location profile instantly. \u2192 The full hybrid system (three sign types, web-app features, research & testing) is captured in the complete documentation (PDF).",
       learnings: [
@@ -863,7 +863,7 @@ const PROJECTS = [
         subtaglines: ["Remind, Reuse, Restart", "Fix the Past, Play the Future", "Every Device Deserves a Second Life"]
       },
       websiteFlow: [
-        { num: "1", title: "Submit Your Device", body: "Alte Ger\xE4te hochladen. Beschreibung + Bilder.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.gif" },
+        { num: "1", title: "Submit Your Device", body: "Alte Ger\xE4te hochladen. Beschreibung + Bilder.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4" },
         { num: "2", title: "Get Matched with Expert", body: "Community Repair-Expert wird mit deinem Device gematcht.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_hub.png" },
         { num: "3", title: "Ship It, We Fix It", body: "Versand, Reparatur, zur\xFCck in 2 Wochen.", image: "assets/Portfolio_Content/VInted_Rebranding/shipping_box.png" }
       ],
@@ -992,7 +992,7 @@ const PROJECTS = [
         subtaglines: ["Remind, Reuse, Restart", "Fix the Past, Play the Future", "Every Device Deserves a Second Life"]
       },
       websiteFlow: [
-        { num: "1", title: "Submit Your Device", body: "Upload your old device. Description + photos.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.gif" },
+        { num: "1", title: "Submit Your Device", body: "Upload your old device. Description + photos.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4" },
         { num: "2", title: "Get Matched with an Expert", body: "A community repair expert is matched to your device.", image: "assets/Portfolio_Content/VInted_Rebranding/vinted_hub.png" },
         { num: "3", title: "Ship It, We Fix It", body: "Shipping, repair, returned within 2 weeks.", image: "assets/Portfolio_Content/VInted_Rebranding/shipping_box.png" }
       ],
@@ -1157,7 +1157,7 @@ const PROJECTS = [
           image: "assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png"
         }
       ],
-      resultsImage: "assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.gif",
+      resultsImage: "assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.mp4",
       reflection: "Mein gr\xF6\xDFtes Learning kam aus dem Hackathon: Die besten Ideen entstanden erst unter Druck und im Machen \u2014 nicht beim langen Planen davor. H\xE4tten wir fr\xFCher einfach angefangen, w\xE4ren wir auf deutlich mehr L\xF6sungsans\xE4tze gekommen. Zu viel Vorab-Nachdenken bringt wenig; loslegen, ausprobieren und im Tun verfeinern war f\xFCr uns der schnellere Weg zu guten Konzepten.",
       windowTitle: "Munich_Super_App.fig \u2014 Service Design f\xFCr die Stadt \u{1F3D9}\uFE0F",
       tldr: {
@@ -1260,7 +1260,7 @@ const PROJECTS = [
           image: "assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png"
         }
       ],
-      resultsImage: "assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.gif",
+      resultsImage: "assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.mp4",
       reflection: "My biggest takeaway came from the hackathon: our best ideas only emerged under pressure and through doing \u2014 not from long planning beforehand. If we had just started earlier, we would have landed on far more solution directions. Overthinking upfront achieves little; starting, trying things and refining as you go was the faster path to good concepts for us.",
       windowTitle: "Munich_Super_App.fig \u2014 service design for the city \u{1F3D9}\uFE0F",
       tldr: {
