@@ -56,11 +56,7 @@ function RecruiterContent({ t, lang, openProject, openWindow, closeWindow, onDow
         <div className="recruiter-intro">
           <span className="about-kicker">UX / SERVICE DESIGN</span>
           <h1 className="recruiter-name">{NURIA.name}</h1>
-          <p className="about-lede">
-            {lang === 'de'
-              ? 'Ich entwerfe Systeme, die sich menschlich anfühlen — irgendwo zwischen Pixel, Empathie und Tabellenkalkulation.'
-              : 'I design systems that feel human — somewhere between pixel, empathy and spreadsheets.'}
-          </p>
+          <p className="about-lede">{STR[lang].tagline}</p>
           <div className="about-block recruiter-looking">
             <span className="about-block-label">{lang === 'de' ? 'Was ich suche' : "What I'm looking for"}</span>
             <div className="about-facts">
