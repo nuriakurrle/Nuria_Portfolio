@@ -1,0 +1,8 @@
+# Nicht zu Vercel hochladen (Build-/Backup-/Quell-Ballast)
+node_modules
+assets_originals
+.git
+*.backup
+*.bak-*
+*.py
+.vscode
