@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
   } catch {
     pathname = requestUrl.pathname;
   }
-  if (pathname === '/') pathname = '/Nuria Portfolio.html';
+  if (pathname === '/') pathname = '/index.html';
   const safePath = path.normalize(path.join(rootDir, pathname));
 
   if (!safePath.startsWith(rootDir)) {
