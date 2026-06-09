@@ -1,0 +1,14 @@
+{
+  "name": "nuria-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "start": "node serve.mjs",
+    "serve": "node serve.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5"
+  }
+}

@@ -1,0 +1,2066 @@
+/* global React */
+/* ═════════════════════════════════════════════════════════════════════
+   NURIA PORTFOLIO — content + bilingual strings
+═════════════════════════════════════════════════════════════════════ */
+
+const NURIA = {
+  name: 'Nuria Kurrle',
+  email: 'nuria.kurrle.nk@gmail.com',
+  linkedin: 'linkedin.com/in/nuriakurrle',   /* ← confirm exact URL */
+  phone: '+49 176 32133961',
+  location: 'München · Ottobrunn',
+  available: 'Praxissemester · WS 26/27',
+  photo: 'assets/funsies/nuria.jpg',        /* real photo — Recruiter card */
+  pixelPhoto: 'assets/funsies/pixel_me.png', /* pixel-art portrait — About Me header */
+};
+
+const STR = {
+  de: {
+    role: 'UX/UI · Service Design — B.Sc. Informatik & Design (HM München, 4. Sem.)',
+    tagline: 'Ich entwerfe Systeme, die sich menschlich anfühlen — irgendwo zwischen Pixel, Empathie und Tabellenkalkulation.',
+    availability: 'Praxissemester · WS 26/27 · nur München',
+    open: 'Öffnen',
+    download_cv: 'CV als PDF',
+    contact_cta: 'Mail schreiben',
+    linkedin_cta: 'LinkedIn',
+    figma_cta: 'In Figma öffnen',
+    figma_section: 'Live in Figma',
+    figma_hint: 'Originaldatei im Embed unten — oder im neuen Tab öffnen.',
+    top_projects: 'Ausgewählte Projekte',
+    skills_section: 'Skills & Tools',
+    cv_section: 'Werdegang',
+    contact_section: 'Kontakt',
+    methods: 'Methoden',
+    tools: 'Tools',
+    languages: 'Sprachen',
+    soft_skills: 'Mindset',
+    role_label: 'Rolle',
+    duration_label: 'Dauer',
+    team_label: 'Team',
+    problem_label: 'Problem',
+    process_label: 'Prozess',
+    insights_label: 'Insights',
+    hmw_label: 'How might we…',
+    concept_label: 'Konzept',
+    outcome_label: 'Ergebnis',
+    learnings_label: 'Learnings',
+    metrics_label: 'Kennzahlen',
+    research_label: 'Research-Methoden',
+    coming_soon: 'In Arbeit',
+    progress: 'Fortschritt',
+    phase: 'Phase',
+    file: 'Datei',
+    edit: 'Bearbeiten',
+    view: 'Ansicht',
+    help: 'Hilfe',
+    start: 'Start',
+    close: 'Schließen',
+    minimize: 'Minimieren',
+    maximize: 'Maximieren',
+    placeholder_caption: (cap) => `Bild: ${cap}`,
+    recruiter_intro: 'Studentin der Informatik & Design an der HM München, 4. Semester, Schwerpunkt UX & Service Design. Ich arbeite research-first — Interviews und User Journeys bis Figma-Prototypen und Code (TypeScript/React, n8n). Suche ein Praxissemester für WS 26/27 in München.',
+    why_me: 'Was ich mitbringe',
+    why_bullets: [
+      'Research-first: Interviews, Personas, User Journeys, Usability Tests.',
+      'Hands-on bis ins UI: Figma, TypeScript/React, HTML/CSS.',
+      'Detailbewusst — Tonfall, Typografie, Touchpoints.',
+      'Eigeninitiative: Brand-Guide für Atolls ohne Briefing geliefert.',
+    ],
+    top3_intro: 'Drei Case Studies, drei verschiedene Probleme — zum Aufklappen oder im Vollbild öffnen:',
+    timeline_items: [
+      { year: 'Okt 2024 – jetzt', title: 'B.Sc. Informatik & Design · Hochschule München', body: '4. Semester. Schwerpunkt UX & Service Design. Projekte: Atolls Review Hub, Echoes of Moosburg, Vinted Rebrand.' },
+      { year: 'Nov 2024 – Feb 2025', title: 'Aushilfe Einzelhandel · Bazaar Noir', body: 'Kundenberatung, Warenpräsentation, Verkaufsbereich.' },
+      { year: 'Okt 2022 – Jul 2024', title: 'B.Sc. Medieninformatik · Hochschule Hof', body: 'Grundlagen Java, Webentwicklung, UI-Gestaltung. Erste Figma- und Blender-Erfahrung.' },
+      { year: 'Okt 2019 – Sep 2022', title: 'Aushilfe · Schreibwaren Westermair', body: 'Kasse, Lotto- und Postvorgänge, Kund:innen-Support.' },
+      { year: '2019 – 2022', title: 'Allgemeine Hochschulreife · Therese-von-Bayern Schule', body: 'Schwerpunkt Wirtschaft. Pflichtpraktikum im Einzelhandel.' },
+      { year: 'Sep 2018 – Feb 2019', title: '11. Klasse · Colegio Salliver, Spanien', body: 'Auslandsschuljahr in Andalusien.' },
+    ],
+    skills: {
+      methods: ['User Research', 'Interviews', 'Personas', 'User Journeys', 'Usability Testing', 'Service Design', 'Prototyping'],
+      tools:   ['Figma', 'TypeScript / React', 'JavaScript', 'HTML / CSS', 'Python (Grundkenntnisse)', 'n8n (Grundkenntnisse)', 'FigJam', 'Miro', 'Notion'],
+      langs:   ['Spanisch · Muttersprache', 'Deutsch · Fließend', 'Englisch · B2', 'Italienisch · A1'],
+      soft:    ['Eigeninitiative', 'Strukturiertes Denken', 'Liebe zum Tonfall', 'Iteriert gern (zu) oft'],
+    },
+    skill_bars: [
+      { label: 'Figma',          pct: 90 },
+      { label: 'User Research',  pct: 85 },
+      { label: 'Service Design', pct: 78 },
+      { label: 'TypeScript/React', pct: 70 },
+      { label: 'n8n / Workflows', pct: 60 },
+    ],
+    clippy: '👋 Du bist auf meinem Y2K-Playground — ein Portfolio in OS-Form, kein echtes Tool. Recruiter? Klick „Recruiter.exe". Sonst: erkunde frei.',
+    rules_title: '✦ Anleitung ✦',
+    rules_lines: [
+      'Recruiter? → „Recruiter.exe" öffnet sich gleich von selbst.',
+      'Projekte? → Icons doppelklicken.',
+      'Mail? → ✉ in der Toolbar oder Klippi fragen 📎',
+      'Lost? → Alles ist nur ein Klick weg. Promise.',
+    ],
+    rules_pin: '📌',
+  },
+  en: {
+    role: 'UX/UI · Service Design — B.Sc. Computer Science & Design (HM Munich, 4th sem.)',
+    tagline: 'I design systems that feel human — somewhere between pixels, empathy and spreadsheets.',
+    availability: 'Practical semester · Fall 26 / Spring 27 · Munich only',
+    open: 'Open',
+    download_cv: 'CV as PDF',
+    contact_cta: 'Send email',
+    linkedin_cta: 'LinkedIn',
+    figma_cta: 'Open in Figma',
+    figma_section: 'Live in Figma',
+    figma_hint: 'Original file embedded below — or open it in a new tab.',
+    top_projects: 'Selected projects',
+    skills_section: 'Skills & tools',
+    cv_section: 'Background',
+    contact_section: 'Contact',
+    methods: 'Methods',
+    tools: 'Tools',
+    languages: 'Languages',
+    soft_skills: 'Mindset',
+    role_label: 'Role',
+    duration_label: 'Duration',
+    team_label: 'Team',
+    problem_label: 'Problem',
+    process_label: 'Process',
+    insights_label: 'Insights',
+    hmw_label: 'How might we…',
+    concept_label: 'Concept',
+    outcome_label: 'Outcome',
+    learnings_label: 'Learnings',
+    metrics_label: 'Metrics',
+    research_label: 'Research methods',
+    coming_soon: 'In progress',
+    progress: 'Progress',
+    phase: 'Phase',
+    file: 'File',
+    edit: 'Edit',
+    view: 'View',
+    help: 'Help',
+    start: 'Start',
+    close: 'Close',
+    minimize: 'Minimize',
+    maximize: 'Maximize',
+    placeholder_caption: (cap) => `image: ${cap}`,
+    recruiter_intro: "Computer Science & Design student at HM Munich, 4th semester, focused on UX & service design. Research-first — interviews and user journeys through Figma prototypes and code (TypeScript/React, n8n). Looking for a practical semester for Fall 26 / Spring 27 in Munich.",
+    why_me: 'What I bring',
+    why_bullets: [
+      'Research-first: interviews, personas, user journeys, usability tests.',
+      'Hands-on through to UI: Figma, TypeScript/React, HTML/CSS.',
+      'Detail-driven — tone, typography, touchpoints.',
+      'Initiative: shipped a full brand guide for Atolls — unbriefed.',
+    ],
+    top3_intro: 'Three case studies, three different problems — expand inline or open in a window:',
+    timeline_items: [
+      { year: 'Oct 2024 – now', title: 'B.Sc. Computer Science & Design · HM Munich', body: '4th semester. Focus on UX & service design. Projects: Atolls Review Hub, Echoes of Moosburg, Vinted rebrand.' },
+      { year: 'Nov 2024 – Feb 2025', title: 'Retail assistant · Bazaar Noir', body: 'Customer advice, merchandising, sales floor.' },
+      { year: 'Oct 2022 – Jul 2024', title: 'B.Sc. Media Informatics · HS Hof', body: 'Foundations in Java, web dev, UI design. First Figma and Blender work.' },
+      { year: 'Oct 2019 – Sep 2022', title: 'Cashier · Schreibwaren Westermair', body: 'Till, lottery and postal services, customer questions.' },
+      { year: '2019 – 2022', title: 'Abitur · Therese-von-Bayern Schule', body: 'Focus on economics. Mandatory retail internship.' },
+      { year: 'Sep 2018 – Feb 2019', title: 'Grade 11 · Colegio Salliver, Spain', body: 'Exchange year in Andalusia.' },
+    ],
+    skills: {
+      methods: ['User Research', 'Interviews', 'Personas', 'User Journeys', 'Usability Testing', 'Service Design', 'Prototyping'],
+      tools:   ['Figma', 'TypeScript / React', 'JavaScript', 'HTML / CSS', 'Python (basics)', 'n8n (basics)', 'FigJam', 'Miro', 'Notion'],
+      langs:   ['Spanish · native', 'German · fluent', 'English · B2', 'Italian · A1'],
+      soft:    ['Self-driven', 'Structured thinking', 'Tone-of-voice obsessed', 'Iterates (too) often'],
+    },
+    skill_bars: [
+      { label: 'Figma',           pct: 90 },
+      { label: 'User Research',   pct: 85 },
+      { label: 'Service Design',  pct: 78 },
+      { label: 'TypeScript/React',pct: 70 },
+      { label: 'n8n / Workflows', pct: 60 },
+    ],
+    clippy: "👋 You're on my Y2K playground — a portfolio in OS shape, not an actual tool. Recruiter? Click \"Recruiter.exe\". Otherwise, feel free to wander.",
+    rules_title: '✦ How this works ✦',
+    rules_lines: [
+      'Recruiter? → "Recruiter.exe" opens itself in a sec.',
+      'Projects? → Double-click an icon.',
+      'Mail? → ✉ in the toolbar, or ask Klippi 📎',
+      'Lost? → Everything is one click away. Promise.',
+    ],
+    rules_pin: '📌',
+  },
+};
+
+/* ─── Projects (bilingual) ─────────────────────────────────────────── */
+const PROJECTS = [
+  {
+    id: 'atolls',
+    emoji: '🤖',
+    color: 'mint',
+    status: 'completed',
+    cover: 'assets/icons/atolls.png',
+    coverFit: 'contain',
+    devLog: {
+      stack: ['n8n', 'OpenAI API', 'Next.js', 'TypeScript', 'React', 'Slack API', 'Google Sheets API'],
+      builtSolo: '~60% Frontend',
+      role: 'UX + Workflow + Frontend Dev',
+      notes_de: [
+        '[w1]  Glassdoor-Scraper als n8n-Workflow prototypisiert',
+        '[w1]  Karla-Interview → JTBD: classify, prioritize, draft reply',
+        '[w2]  GPT-Klassifikation 5-stufig: sentiment + topic + tone + urgency + suggested-action',
+        '[w2]  Slack-Integration via webhook — alerts in echtem Atolls-Tonfall',
+        '[w3]  Zapier verworfen → n8n bleibt cleaner für custom logic',
+        '[w3]  Next.js Dashboard solo gebaut — TypeScript + CSS-Grid, ~60% des Codes',
+        '[w4]  A/B-Test: 87% accuracy bei Karlas Originalton — gemessen über 40 reviews',
+        '[w4]  Übergabe: HR-Team schätzt ~70% Zeitersparnis pro Tag',
+      ],
+      notes_en: [
+        '[w1]  prototyped Glassdoor scraper as n8n workflow',
+        '[w1]  Karla interview → JTBD: classify, prioritize, draft reply',
+        '[w2]  5-stage GPT classification: sentiment + topic + tone + urgency + suggested action',
+        '[w2]  Slack integration via webhook — alerts in Atolls\' voice',
+        '[w3]  ditched Zapier → n8n cleaner for custom logic',
+        '[w3]  built Next.js dashboard solo — TypeScript + CSS grid, ~60% of code',
+        '[w4]  A/B test: 87% accuracy on Karla\'s tone — measured across 40 reviews',
+        '[w4]  handover: HR team estimates ~70% time saved per day',
+      ],
+      links: [
+        { label: 'GitHub (privat)', href: '#', icon: '▶' },
+        { label: 'Figma — UI', href: '#', icon: '▶' },
+        { label: 'n8n Workflow', href: '#', icon: '▶' },
+      ],
+    },
+    de: {
+      title: 'Atolls Review Hub',
+      windowTitle: 'Atolls_Review_Hub.exe — Brand Architektur vor Code 💜',
+      description: 'Wir dachten KI-System. Wir bauten Atolls\' Brand-Architektur. 87 % Tonfall-Match auf Karlas Originalantworten.',
+      heroImage: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/atolls_hero.jpg',
+      keyInsight: '"Ich antworte einfach… so wie ich denke, dass Atolls antworten würde." — Karla, HR-Lead. Das war der Moment: das Designproblem war nicht UI. Es war Tonfall.',
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 01: THE PROBLEM
+         ═══════════════════════════════════════════════════════════════════ */
+      section01: {
+        number: '01/04',
+        title: 'Das Problem',
+        subtitle: 'Warum ein KI-System allein nicht reicht',
+        statement: 'Atolls bekommt 50+ Glassdoor-Reviews pro Woche. HR-Lead Karla saß täglich 2–3 Stunden daran — und Trends gingen verloren.',
+        context: 'Lesen, bewerten, im Atolls-Ton antworten, in Glassdoor posten — manuell, Review für Review. Das Schlimmste: ein Review über „toxic management culture" wurde einzeln beantwortet, statt als Warnsignal erkannt. Karla saß festgefahren zwischen Reaktion und Strategie. Das echte Problem war nicht technisch — es war kulturell. Wie könnte ein System HR unterstützen, ohne vollständig zu automatisieren? Wie könnte KI den Atolls-Tonfall reproduzieren, wenn selbst das HR-Team ihn nicht formalisieren konnte?',
+        contextVideo: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/problem_context.mp4',
+        researchHighlights: [
+          'Das Designproblem ist nicht UI — es ist Tonfall. Karla konnte ihn nicht formalisieren, aber sie „spürt" ihn.',
+          'Trends gehen unter, weil HR im Reaktionsmodus steckt. Keyword-Tracking fehlt komplett.',
+          'Generische KI-Antworten fühlen sich schlechter an als gar keine. Empathie ohne Authentizität wirkt billig.',
+          'Karla will Approve/Edit, keine Vollautomation. Vertrauen entsteht durch Control — nicht durch Magic.',
+        ],
+        images: [],
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 02: THE SOLUTION
+         ═══════════════════════════════════════════════════════════════════ */
+      section02: {
+        number: '02/04',
+        title: 'Die Lösung',
+        subtitle: 'Brand-Architektur zuerst, dann die KI',
+        statement: 'Nicht: ein KI-System. Sondern: erst eine Brand- und Language-Architektur — dann die KI-Pipeline mit Tonfall als Constraint.',
+        designPrinciples: [
+          {
+            title: 'Tonfall zuerst, Tech später',
+            description: 'Dokumentiere den Menschen, BEVOR du Code schreibst. Ein Style Guide ist wertvoller als drei Tage Prompt-Iteration.'
+          },
+          {
+            title: 'Constraints sind Features',
+            description: 'Karla wollte KEINE Vollautomation — sie wollte 10-Sekunden-Approves. Approve/Edit-Buttons haben mehr Trust geschaffen als „cool" Magic.'
+          },
+          {
+            title: 'Real Client = exponentielles Learning',
+            description: 'Karlas 40 Excel-Reviews waren wertvoller als jede Hypothese. Pattern Analysis zeigte, dass „salary" Top-3-Keyword war.'
+          },
+          {
+            title: 'Workarounds sind Lösungen',
+            description: 'Kein Glassdoor-API, keine Company-Guidelines, keine vollständigen Daten — Workarounds wurden zum Designprinzip.'
+          },
+        ],
+        designScreens: [
+          {
+            name: 'Review Inbox',
+            description: 'Alle eingehenden Reviews mit AI-generierten Antworten. Sentiment-Tag (Positive / Neutral / Negative), Edit oder Publish. 87 % Tonfall-Übereinstimmung mit Karlas Originalantworten gemessen.',
+            image: '',
+          },
+          {
+            name: 'Insights Dashboard',
+            description: 'Sentiment-Trend, Problem-Radar (Top-Keywords aus negativen Reviews), wöchentliches AI-Summary, Alert wenn zu viele Negativ-Reviews. Das ist das Frühwarnsystem für Kulturthemen.',
+            image: '',
+          },
+          {
+            name: 'Brand & Language Guide',
+            description: '24 Seiten: Vision, Values, Personality, Color System (5 Farben mit Hex), Typografie (Söhne). 12-seitiger Language Guide mit DO\'s, DON\'Ts und 20+ Tonfall-Beispielen für verschiedene Review-Typen.',
+            image: '',
+          },
+        ],
+        solutionVideo: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/solution_demo.mp4',
+        designSystem: {
+          title: 'Brand- & Language-Guide',
+          description: 'Brand Identity: Klarheit, Stabilität, Empathie · Pragmatismus. Tonfall: semiformal, warm, direkt aber nie hart. Farbsystem (UltraBlack, Atolls Grey, Aperol, Sky, Butter) und Typografie (Söhne).',
+          image: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/brand_guide.png',
+        },
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 03: THE PROCESS
+         ═══════════════════════════════════════════════════════════════════ */
+      section03: {
+        number: '03/04',
+        title: 'Der Prozess',
+        subtitle: 'Von Brand-Architektur zur KI-Pipeline',
+        phases: [
+          {
+            week: 'Woche 1',
+            title: 'Research & Scoping',
+            description: '60-Minuten-Interview mit Karla: Prozesse, emotionale Last, was macht eine „gute" Antwort aus. Vor-Ort-Interview in München mit Maria (Extended Team): Zukünftige Use Cases.',
+            images: [],
+            learnings: ['Karla konnte Tonfall nicht erklären, aber sie spürte ihn', 'Das Problem war kulturell, nicht technisch'],
+          },
+          {
+            week: 'Woche 2',
+            title: 'Brand-Architektur & Guide',
+            description: 'Erstellung des 24-seitigen Brand- und Language-Guides. Dokumentation des Atolls-Tons mit DOs, DONTs und 20+ Beispielen für verschiedene Review-Typen.',
+            images: [],
+            learnings: ['Style Guide ist wertvoller als Prompt-Iteration', 'Dokumentation des Menschen VOR Tech-Arbeit'],
+          },
+          {
+            week: 'Woche 3',
+            title: 'n8n Pipeline Design',
+            description: '5-stufige Pipeline: Webhook → Sentiment-Klassifikation → Keyword-Extraktion → Antwortvorschlag mit Tonfall-Constraint → Slack/Google-Sheets. Dashboard-Prototyp in Figma.',
+            images: [],
+            learnings: ['Workarounds wurden zum Designprinzip', 'Keine Glassdoor-API: direkter Scraping via Automation'],
+          },
+          {
+            week: 'Woche 4',
+            title: 'Frontend & Testing',
+            description: 'Next.js Dashboard solo gebaut (TypeScript + CSS-Grid, ~60% der Arbeit). A/B-Test: 87% Tonfall-Accuracy gegen Karlas 40 Original-Antworten. User Testing mit Karla & Team.',
+            images: [],
+            learnings: ['87% Tonfall-Match mit echten Daten validiert', 'HR-Team schätzt ~70% Zeitersparnis'],
+          },
+        ],
+        processVideo: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/process_video.mp4',
+        processImages: [],
+        keyInsights: [
+          'Tonfall zuerst, Tech später — ohne den Brand Guide wäre die KI generisch',
+          'Real Client = Exponentielles Learning — 40 Excel-Reviews waren wertvoller als jede Hypothese',
+          'Constraints bauen Vertrauen — Karla wollte Kontrolle, nicht Automation',
+          'Workarounds werden zum Designprinzip — keine API ist OK, wenn die Lösung authentisch ist',
+        ],
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 04: OUTCOME & INSIGHTS
+         ═══════════════════════════════════════════════════════════════════ */
+      section04: {
+        number: '04/04',
+        title: 'Ergebnis & Reflection',
+        subtitle: 'Was wir gelernt haben',
+        metrics: [
+          { label: 'Tonfall-Accuracy', value: '87%', detail: 'gegen 40 echte Glassdoor-Reviews von Karla' },
+          { label: 'Zeitersparnis (projiziert)', value: '~70%', detail: 'HR-Team schätzt 2–3 h täglich eingespart' },
+          { label: 'Brand Guide', value: '24 Seiten', detail: 'jetzt firmenübergreifend in Use bei Atolls' },
+          { label: 'Pipeline-Stufen', value: '5', detail: 'Webhook → Classification → Extraction → Draft → Publish' },
+        ],
+        outcomes: [
+          'Funktionierendes Prototype, getestet mit Karla und dem Atolls-Team',
+          '24-Seiten Brand Guide und 12-Seiten Language Guide jetzt von Atolls für ALLE zukünftigen Tools genutzt',
+          'n8n-Pipeline produktionsreif, bereit für Live-Implementierung',
+          'Karla: „Wenn das live wäre, würde ich täglich 2–3 Stunden sparen."',
+        ],
+        userValidation: 'Getestet mit 40 echten Glassdoor-Reviews. Karla und erweitertes Team validierte Tonfall und Usefulness bei allen Sentiment-Typen.',
+        learnings: [
+          {
+            title: 'Tonfall zuerst, Tech später',
+            text: 'Wenn KI menschlich fühlen soll, dokumentiere den Menschen, BEVOR du Code schreibst. Ein Style Guide ist wertvoller als drei Tage Prompt-Iteration.'
+          },
+          {
+            title: 'Constraints sind Features',
+            text: 'Karla wollte KEINE Vollautomation — sie wollte 10-Sekunden-Approves. „Boring" Approve/Edit-Buttons haben mehr Trust geschaffen als „cool" Magic.'
+          },
+          {
+            title: 'Real Client = exponentielles Learning',
+            text: 'Karlas 40 Excel-Reviews waren wertvoller als jede Hypothese. Pattern Analysis zeigte, dass „salary" Top-3-Keyword war — das hätten wir nicht erraten.'
+          },
+          {
+            title: 'Workarounds sind Lösungen',
+            text: 'Kein Glassdoor-API, keine Company-Guidelines, keine vollständigen Daten — Workarounds wurden zum Designprinzip, und die Lösung war besser, weil sie real war.'
+          },
+        ],
+        wouldChange: [
+          'Den Language Guide direkt in den GPT-Prompt schreiben, statt drumrum zu designen',
+          '10–15 Tonfall-Beispiele pro Review-Typ sammeln, nicht 5 — 87 % hätte auf 92 % gehen können',
+          'Bi-Weekly-Calls mit Karla einplanen, nicht nur Kick-off + Übergabe',
+          'Approve/Edit-Buttons mit Tonfall-Slider testen (formaler / wärmer / direkter)',
+        ],
+        reflection: 'Das größte Learning: KI-Systeme sind nicht technisch — sie sind kulturell. Ohne den Brand- und Language Guide hätte sich die KI generisch angefühlt — und das wäre schlimmer gewesen als gar keine. Die echten Artefakte (Guide + Prototype) sind lebendiger als der Code: Atolls nutzt den Guide jetzt projektübergreifend, der Prototype wartet auf eine echte Implementierung. Beim nächsten KI-Projekt fange ich noch früher mit Tonfall-Beispielen an.',
+        wickedProblems: 'Wo verläuft die Grenze zwischen „KI unterstützt HR" und „KI ersetzt HR"? In der Praxis wollen Clients oft Vollautomation, aber die beste Lösung ist Semi-Automation mit Human-in-the-Loop.',
+        futureConsiderations: 'Ein echtes Backend würde Multi-Channel-Support erlauben (Glassdoor, LinkedIn, Kundenmail). Derzeit ist die Pipeline auf Glassdoor fokussiert. Community-Features könnten Insights teilen und Benchmarking ermöglichen.',
+      },
+
+      /* ── Problem (old format — deprecated) ───────────────────────────────────────────────────── */
+      problemStatement: 'Atolls bekommt 50+ Glassdoor-Reviews pro Woche. HR-Lead Karla saß täglich 2–3 Stunden daran — und Trends gingen verloren.',
+      problemContext: 'Lesen, bewerten, im Atolls-Ton antworten, in Glassdoor posten — manuell, Review für Review. Das Schlimmste: ein Review über „toxic management culture" wurde einzeln beantwortet, statt als Warnsignal erkannt. Karla saß festgefahren zwischen Reaktion und Strategie. Das echte Problem war nicht technisch — es war kulturell. Wie könnte ein System HR unterstützen, ohne vollständig zu automatisieren? Wie könnte KI den Atolls-Tonfall reproduzieren, wenn selbst das HR-Team ihn nicht formalisieren konnte?',
+      problemImage: '',
+
+      /* ── Research ──────────────────────────────────────────────────── */
+      researchContext: 'Im 60-Minuten-Interview mit Karla kam es schnell raus: sie konnte nicht erklären, „warum" sie so antwortete — nur „wie Atolls antworten würde". Das Designproblem war Empathie und Tonfall, nicht UI. Deshalb: erst Language Guide, dann KI.',
+      researchImage: '',
+      research: [
+        '60-Min-Interview mit Karla (HR-Lead): Prozesse, emotionale Last, was macht eine „gute" Antwort aus?',
+        'Vor-Ort-Interview in München mit Maria (Extended Team): Zukünftige Use Cases',
+        'User Journey Mapping — Status quo (manuell, stressig) vs. mit KI-Agent (schneller, konsistenter)',
+        'Wettbewerbsanalyse HR-Tools (Lattice, Leapsome) — was machen sie, was fehlt',
+        '40 echte Glassdoor-Reviews + Karlas Original-Antworten — Excel-Sheet von Karla nach dem ersten Prototyp',
+      ],
+      insights: [
+        'Das Designproblem ist nicht UI — es ist Tonfall. Karla konnte ihn nicht formalisieren, aber sie „spürt" ihn.',
+        'Trends gehen unter, weil HR im Reaktionsmodus steckt. Keyword-Tracking fehlt komplett.',
+        'Generische KI-Antworten fühlen sich schlechter an als gar keine. Empathie ohne Authentizität wirkt billig.',
+        'Karla will Approve/Edit, keine Vollautomation. Vertrauen entsteht durch Control — nicht durch Magic.',
+        'Keine API-Zugang zu Glassdoor, keine Brand-Guidelines vom Kunden. Workarounds wurden zum Designprinzip.',
+      ],
+      hmw: [
+        'Wie schaffen wir es, dass eine KI „wie Atolls" klingt — ohne dass Atolls das je formalisiert hat?',
+        'Wie nehmen wir HR die emotionale Last negativer Reviews ab, ohne Empathie zu verlieren?',
+        'Wie machen wir aus reaktiver Antwort-Arbeit ein Frühwarnsystem für Kulturthemen?',
+      ],
+
+      /* ── Solution ──────────────────────────────────────────────────── */
+      solutionStatement: 'Nicht: ein KI-System. Sondern: erst eine Brand- und Language-Architektur — dann die KI-Pipeline mit Tonfall als Constraint.',
+      solutionContext: 'Wir bauten ERST einen 24-seitigen Brand- und Language-Guide (nicht im Briefing). Dann die n8n-Pipeline, mit dem Language Guide als Prompt-Constraint. Brand Identity: Klarheit, Stabilität, Empathie · Pragmatismus. Tonfall: semiformal, warm, direkt aber nie hart. Farbsystem (UltraBlack #000, Atolls Grey #1F1F1F, Aperol #FF8562, Sky #A0D8F1, Butter #F4F382) und Typografie (Söhne). Die Pipeline läuft in fünf Stufen: Webhook → Sentiment-Klassifikation → Keyword-Extraktion → Antwortvorschlag mit Tonfall-Constraint → Slack/Google-Sheets. Plus ein Insights-Dashboard mit Sentiment-Trend, Problem-Radar und Alert-System.',
+      solutionImage: '',
+      concept: 'Zwei Use Cases im selben System: (1) Review Inbox — KI klassifiziert, generiert Antwortvorschlag im Atolls-Ton, Karla approved oder editiert. (2) Insights Dashboard — Keyword-Extraktion erkennt wiederkehrende Probleme (salary, communication, culture) als Frühwarnsystem. Beide laufen in n8n, Frontend in Next.js, Datenhaltung in Google Sheets.',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Review Inbox',
+          description: 'Alle eingehenden Reviews mit AI-generierten Antworten. Sentiment-Tag (Positive / Neutral / Negative), Edit oder Publish. 87 % Tonfall-Übereinstimmung mit Karlas Originalantworten gemessen.',
+          image: '',
+        },
+        {
+          name: 'Insights Dashboard',
+          description: 'Sentiment-Trend, Problem-Radar (Top-Keywords aus negativen Reviews), wöchentliches AI-Summary, Alert wenn zu viele Negativ-Reviews. Das ist das Frühwarnsystem für Kulturthemen.',
+          image: '',
+        },
+        {
+          name: 'Brand & Language Guide',
+          description: '24 Seiten: Vision, Values, Personality, Color System (5 Farben mit Hex), Typografie (Söhne). 12-seitiger Language Guide mit DO\'s, DON\'Ts und 20+ Tonfall-Beispielen für verschiedene Review-Typen.',
+          image: '',
+        },
+      ],
+
+      /* ── Results ───────────────────────────────────────────────────── */
+      outcome: 'Funktionierendes Prototype, getestet mit Karla und dem Atolls-Team. 87 % Tonfall-Übereinstimmung mit Karlas Original-Antworten gemessen (gegen 40 echte Reviews). 24-Seiten Brand Guide und 12-Seiten Language Guide werden jetzt von Atolls für ALLE zukünftigen Tools und HR-Kommunikation genutzt. Karla: „Wenn das live wäre, würde ich täglich 2–3 Stunden sparen."',
+      resultsImage: '',
+      metrics: [
+        { l: 'Tonfall-Accuracy', v: '87%' },
+        { l: 'Zeitersparnis (projiziert)', v: '~70%' },
+        { l: 'Brand-Guide', v: '24 Seiten' },
+        { l: 'Pipeline-Stufen', v: '5' },
+      ],
+
+      /* ── Learnings ─────────────────────────────────────────────────── */
+      learnings: [
+        'Tonfall zuerst, Tech später. Wenn KI menschlich fühlen soll, dokumentiere den Menschen, BEVOR du Code schreibst. Ein Style Guide ist wertvoller als drei Tage Prompt-Iteration.',
+        'Constraints sind Features. Karla wollte KEINE Vollautomation — sie wollte 10-Sekunden-Approves. „Boring" Approve/Edit-Buttons haben mehr Trust geschaffen als „cool" Magic.',
+        'Real Client = exponentielles Learning. Karlas 40 Excel-Reviews waren wertvoller als jede Hypothese. Pattern Analysis zeigte, dass „salary" Top-3-Keyword war — das hätten wir nicht erraten.',
+        'Workarounds sind Lösungen. Kein Glassdoor-API, keine Company-Guidelines, keine vollständigen Daten — Workarounds wurden zum Designprinzip, und die Lösung war besser, weil sie real war.',
+      ],
+      wouldChange: [
+        'Den Language Guide direkt in den GPT-Prompt schreiben, statt drumrum zu designen — wir haben den Guide als separates Dokument gepflegt und manuell in den Prompt synchronisiert. Zwei Wahrheiten, ein Drift-Risiko.',
+        '10–15 Tonfall-Beispiele pro Review-Typ sammeln, nicht 5. Beim ersten Prototyp klang die KI noch zu generisch in den Edge Cases (Salary-Kritik, Manager-Beschwerden) — mit mehr Beispielen wäre die 87 % vermutlich auf 92 % gegangen.',
+        'Bi-Weekly-Calls mit Karla einplanen, nicht nur Kick-off + Übergabe. Die Pattern in den 40 Reviews hätte ich früher gesehen — Karla hat Dinge im Vorbeigehen gesagt, die Wochen später Kern-Insights wurden.',
+        'Approve/Edit-Buttons mit Tonfall-Slider testen (formaler / wärmer / direkter). Karla wollte Kontrolle ohne Mehrarbeit — ein Slider hätte das in 2 Sekunden gelöst, statt sie zum manuellen Umformulieren zu zwingen.',
+      ],
+
+      /* ── Reflection ────────────────────────────────────────────────── */
+      reflection: 'Das größte Learning: KI-Systeme sind nicht technisch — sie sind kulturell. Ohne den Brand- und Language Guide hätte sich die KI generisch angefühlt — und das wäre schlimmer gewesen als gar keine. Die echten Artefakte (Guide + Prototype) sind lebendiger als der Code: Atolls nutzt den Guide jetzt projektübergreifend, der Prototype wartet auf eine echte Implementierung. Beim nächsten KI-Projekt fange ich noch früher mit Tonfall-Beispielen an — 10–15 pro Use Case statt 5 — und schreibe den Guide direkt in den Prompt, nicht ums System herum.',
+
+      /* ── Existing meta + media ─────────────────────────────────────── */
+      tldr: {
+        problem: '50+ Reviews/Woche, 2–3 h täglich. Trends gehen unter.',
+        myRole:  'UX Research + Brand-Architektur + n8n-Workflow + Next.js-Frontend (~60 % solo).',
+        solution:'Language Guide ZUERST. Dann KI-Pipeline mit Tonfall als Prompt-Constraint.',
+        outcome: '87 % Tonfall-Accuracy. 24-Seiten Brand Guide jetzt bei Atolls in Use.',
+      },
+      problemShort: 'Atolls\' HR-Team verbrennt 2–3 h täglich mit Glassdoor-Reviews — und übersieht dabei Kultur-Trends.',
+      solutionShort: 'Brand- und Language-Guide ZUERST, dann n8n-Pipeline mit Tonfall-Constraint, Next.js-Dashboard mit Review Inbox + Insights.',
+      role: 'UX Research, Brand-Architektur, n8n-Workflow, Frontend-Dev',
+      duration: 'SS 2025 (4 Monate)',
+      team: 'Team C (4 Personen)',
+      tools: ['n8n', 'OpenAI API', 'Next.js', 'React', 'Figma', 'Google Sheets'],
+      roleChips: ['🔍 Research', '🎨 Brand', '🤖 AI Workflow', '💻 Frontend'],
+      media: [
+        {type:'video', src:'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/atolls_video.mp4', caption:'System-Walkthrough: Review Inbox → Insights Dashboard', duration:'01:24', width:1280, height:720},
+        {type:'image', caption:'User Journey: ohne KI vs. mit KI', width:1200, height:800},
+        {type:'image', caption:'n8n Pipeline — 5 Stufen mit Tonfall als Constraint', width:1600, height:900},
+        {type:'image', caption:'Review Inbox — 87 % Tonfall-Match auf Karlas Originalen', width:1280, height:800},
+        {type:'image', caption:'Insights Dashboard — Sentiment-Trend + Problem-Radar', width:1280, height:800},
+        {type:'image', caption:'Brand Guide — Vision, Values, Color System', width:1000, height:1400},
+        {type:'image', caption:'Language Guide — Tonfall-Beispiele mit DO\'s & DON\'Ts', width:1200, height:900},
+      ],
+    },
+    en: {
+      title: 'Atolls Review Hub',
+      windowTitle: 'Atolls_Review_Hub.exe — brand architecture before code 💜',
+      description: "We thought AI system. We built Atolls' brand architecture. 87% tone-of-voice match on Karla's original replies.",
+      heroImage: 'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/atolls_hero.jpg',
+      keyInsight: '"I just reply… the way I think Atolls would reply." — Karla, HR Lead. That was the moment: the design problem wasn\'t UI. It was tone of voice.',
+
+      /* ── Problem ───────────────────────────────────────────────────── */
+      problemStatement: 'Atolls gets 50+ Glassdoor reviews per week. HR-Lead Karla spent 2–3 hours daily on them — and trends were getting lost.',
+      problemContext: 'Read, tag, reply in Atolls voice, post to Glassdoor — manually, one review at a time. The worst part: a review about "toxic management culture" got answered as a single item, instead of being flagged as a warning sign. Karla was stuck between reaction and strategy. The real problem wasn\'t technical — it was cultural. How could a system support HR without fully automating? How could an AI reproduce Atolls\' tone if even the HR team couldn\'t formalise it?',
+      problemImage: '',
+
+      /* ── Research ──────────────────────────────────────────────────── */
+      researchContext: 'In the 60-minute interview with Karla it surfaced quickly: she couldn\'t explain *why* she replied the way she did — only that she replied "the way Atolls would". The design problem was empathy and tone, not UI. So: language guide first, AI second.',
+      researchImage: '',
+      research: [
+        '60-min interview with Karla (HR lead): processes, emotional load, what makes a "good" reply?',
+        'On-site interview in Munich with Maria (extended team): future use cases',
+        'User journey mapping — status quo (manual, stressful) vs. AI-supported (faster, more consistent)',
+        'Competitive analysis HR tools (Lattice, Leapsome) — what they do, what\'s missing',
+        '40 real Glassdoor reviews + Karla\'s original replies — Excel sheet shared after first prototype',
+      ],
+      insights: [
+        "The design problem isn't UI — it's tone of voice. Karla couldn't formalise it, but she could *feel* it.",
+        'Trends get lost because HR is stuck in reaction mode. No keyword tracking exists.',
+        'Generic AI replies feel worse than none. Empathy without authenticity reads as cheap.',
+        'Karla wants Approve/Edit, not full automation. Trust comes from control — not from magic.',
+        'No Glassdoor API, no brand guidelines from the client. Workarounds became the design principle.',
+      ],
+      hmw: [
+        'How might we make an AI sound "like Atolls" — when Atolls never formalised what that even is?',
+        'How might we lift the emotional load of negative reviews off HR, without losing empathy?',
+        'How might we turn reactive reply-work into an early-warning system for cultural themes?',
+      ],
+
+      /* ── Solution ──────────────────────────────────────────────────── */
+      solutionStatement: 'Not: an AI system. But: brand and language architecture first — then an AI pipeline with tone of voice as the constraint.',
+      solutionContext: 'We built a 24-page brand and language guide first (not in the brief). Then the n8n pipeline, with the language guide as a prompt constraint. Brand identity: clarity, stability, empathy · pragmatism. Tone: semiformal, warm, direct but never harsh. Color system (UltraBlack #000, Atolls Grey #1F1F1F, Aperol #FF8562, Sky #A0D8F1, Butter #F4F382) and typography (Söhne). The pipeline runs in five stages: webhook → sentiment classification → keyword extraction → reply draft with tone constraint → Slack/Google Sheets. Plus an insights dashboard with sentiment trend, problem radar and alert system.',
+      solutionImage: '',
+      concept: 'Two use cases in one system: (1) Review Inbox — AI classifies, drafts a reply in Atolls voice, Karla approves or edits. (2) Insights Dashboard — keyword extraction surfaces recurring themes (salary, communication, culture) as an early-warning system. Both run on n8n, frontend in Next.js, data in Google Sheets.',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Review Inbox',
+          description: 'Incoming reviews with AI-generated replies. Sentiment tag (Positive / Neutral / Negative), Edit or Publish. 87% tone-of-voice match with Karla\'s original replies, measured.',
+          image: '',
+        },
+        {
+          name: 'Insights Dashboard',
+          description: 'Sentiment trend, problem radar (top keywords from negative reviews), weekly AI summary, alert when negative reviews spike. This is the early-warning system for cultural themes.',
+          image: '',
+        },
+        {
+          name: 'Brand & Language Guide',
+          description: '24 pages: vision, values, personality, color system (5 colors with hex), typography (Söhne). 12-page language guide with DOs, DONTs and 20+ tone examples for different review types.',
+          image: '',
+        },
+      ],
+
+      /* ── Results ───────────────────────────────────────────────────── */
+      outcome: 'Working prototype, tested with Karla and the Atolls team. 87% tone-of-voice match with Karla\'s original replies (measured against 40 real reviews). The 24-page brand guide and 12-page language guide are now used by Atolls for ALL future tools and HR communication. Karla: "If this went live, I\'d save 2–3 hours every day."',
+      resultsImage: '',
+      metrics: [
+        { l: 'Tone-of-voice match', v: '87%' },
+        { l: 'Time saved (projected)', v: '~70%' },
+        { l: 'Brand guide', v: '24 pages' },
+        { l: 'Pipeline stages', v: '5' },
+      ],
+
+      /* ── Learnings ─────────────────────────────────────────────────── */
+      learnings: [
+        "Tone first, tech second. If AI is meant to feel human, document the human BEFORE writing code. A style guide is worth more than three days of prompt iteration.",
+        "Constraints are features. Karla didn't want full automation — she wanted 10-second approves. \"Boring\" Approve/Edit buttons built more trust than \"cool\" magic.",
+        'Real client = exponential learning. Karla\'s 40 Excel reviews were more valuable than any hypothesis. Pattern analysis showed "salary" was a top-3 keyword — we never would have guessed.',
+        'Workarounds are solutions. No Glassdoor API, no company guidelines, no complete data — workarounds became the design principle, and the solution was better for being real.',
+      ],
+      wouldChange: [
+        'Write the language guide directly into the GPT prompt, instead of designing around it — we kept the guide as a separate doc and manually synced it into the prompt. Two sources of truth, one drift risk.',
+        'Collect 10–15 tone examples per review type, not 5. On the first prototype the AI still sounded generic on edge cases (salary criticism, manager complaints) — more examples would likely have pushed the 87 % to ~92 %.',
+        "Schedule bi-weekly calls with Karla, not just kickoff + handover. I'd have seen the patterns in the 40 reviews earlier — Karla mentioned things in passing that became core insights weeks later.",
+        'Test the Approve/Edit buttons with a tone slider (formal / warmer / more direct). Karla wanted control without extra work — a slider would solve that in 2 seconds, instead of forcing her to rewrite manually.',
+      ],
+
+      /* ── Reflection ────────────────────────────────────────────────── */
+      reflection: "The biggest lesson: AI systems aren't technical — they're cultural. Without the brand and language guide, the AI would have felt generic — and that would have been worse than nothing. The real artefacts (guide + prototype) are more alive than the code: Atolls now uses the guide across projects, the prototype is waiting for a real implementation. Next AI project I'll start with tone-of-voice examples even earlier — 10–15 per use case instead of 5 — and write the guide directly into the prompt, not around the system.",
+
+      /* ── Existing meta + media ─────────────────────────────────────── */
+      tldr: {
+        problem: '50+ reviews/week, 2–3 h daily. Trends getting lost.',
+        myRole:  'UX research + brand architecture + n8n workflow + Next.js frontend (~60% solo).',
+        solution:'Language guide FIRST. Then AI pipeline with tone of voice as the prompt constraint.',
+        outcome: '87% tone-of-voice match. 24-page brand guide now in use at Atolls.',
+      },
+      problemShort: 'Atolls\' HR team burns 2–3 h daily on Glassdoor reviews — and culture trends slip through.',
+      solutionShort: 'Brand and language guide FIRST, then n8n pipeline with tone-of-voice constraint, Next.js dashboard with Review Inbox + Insights.',
+      role: 'UX Research, Brand Architecture, n8n Workflow, Frontend Dev',
+      duration: 'Summer 2025 (4 months)',
+      team: 'Team C (4 people)',
+      tools: ['n8n', 'OpenAI API', 'Next.js', 'React', 'Figma', 'Google Sheets'],
+      roleChips: ['🔍 Research', '🎨 Brand', '🤖 AI Workflow', '💻 Frontend'],
+      media: [
+        {type:'video', src:'assets/Portfolio_Content/Atolls_Glassdoor_Reviews/atolls_video.mp4', caption:'System walkthrough: Review Inbox → Insights Dashboard', duration:'01:24', width:1280, height:720},
+        {type:'image', caption:'User journey: without AI vs. with AI', width:1200, height:800},
+        {type:'image', caption:'n8n pipeline — 5 stages with tone-of-voice as constraint', width:1600, height:900},
+        {type:'image', caption:"Review Inbox — 87% tone match on Karla's originals", width:1280, height:800},
+        {type:'image', caption:'Insights Dashboard — sentiment trend + problem radar', width:1280, height:800},
+        {type:'image', caption:'Brand Guide — vision, values, color system', width:1000, height:1400},
+        {type:'image', caption:"Language Guide — tone examples with DOs & DON'Ts", width:1200, height:900},
+      ],
+    },
+  },
+  {
+    id: 'echoes',
+    emoji: '🏛️',
+    color: 'pink',
+    status: 'completed',
+    cover: 'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184409 1.png',
+    icon: 'assets/icons/echoes.png',
+    coverFit: 'cover',
+    devLog: {
+      stack: ['HTML', 'CSS', 'JavaScript', 'Figma', 'QR generator'],
+      builtSolo: 'Mobile Web-App Prototyp',
+      role: 'Research + Prototype',
+      notes_de: [
+        '[w1]  6 Interviews · City Walks · Empathy Mapping',
+        '[w2]  Hardware-Iteration: 3 Stelen-Varianten (Holz, Beton, Metall) papier-prototypisiert',
+        '[w2]  Service Blueprint mit Stalag VII A e.V. abgestimmt',
+        '[w3]  Mobile Web-App (HTML/CSS/JS) — kein App-Download, QR → Browser',
+        '[w3]  Photo-Timeline (then/now) als Vanilla-JS Slider, 60fps auf low-end Android',
+        '[w4]  5 Usability-Tests (18-72 J.) — Schriftgröße 18px+ verdoppelt Lesbarkeit bei Senior:innen',
+        '[w4]  Übergabe: 2 Partner-Orgs, 3 Hardware-Varianten dokumentiert',
+      ],
+      notes_en: [
+        '[w1]  6 interviews · city walks · empathy mapping',
+        '[w2]  hardware iteration: 3 stele variants (wood, concrete, metal) paper-prototyped',
+        '[w2]  service blueprint validated with Stalag VII A e.V.',
+        '[w3]  mobile web app (HTML/CSS/JS) — no install, QR → browser',
+        '[w3]  then/now photo timeline as vanilla-JS slider, 60fps on low-end Android',
+        '[w4]  5 usability tests (18-72 yrs) — 18px+ font doubles legibility for seniors',
+        '[w4]  handover: 2 partner orgs, 3 hardware variants documented',
+      ],
+      links: [
+        { label: 'Figma — Hi-Fi', href: '#', icon: '▶' },
+        { label: 'Live Demo', href: '#', icon: '▶' },
+      ],
+    },
+    de: {
+      title: 'Echoes of Moosburg',
+      windowTitle: 'Echoes_Moosburg.html — Service Design, kein App-Build ✦',
+      description: 'Hybrides Service-Design-Ökosystem für Moosburgs Geschichte: physische Tafeln, mobile Web-App und Partner-Institutionen — über drei Generationen getestet.',
+      heroImage: 'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184348 1.png',
+      keyInsight: '„Wir bauen keine App. Wir bauen ein lebendes Netzwerk." — Moosburgs Geschichte gehört nicht ins Archiv, sondern in den Alltag der Bürger:innen. Partner sind nicht Nutzer, Partner sind Mit-Gestalter.',
+
+      /* ── Problem ───────────────────────────────────────────────────── */
+      problemStatement: 'Das stumme Gedächtnis Moosburgs — eine Stadt mit STALAG VII A, mittelalterlicher Struktur, hunderten Geschichten — und nichts davon ist im Alltag sichtbar.',
+      problemContext: 'Wer sich für Moosburgs Geschichte interessiert, landet in fragmentierten Quellen: Stadt-Website, VHS-Kursliste, Stalag-Verein, Museum, Stadtführungen — jeweils eine separate Insel. Niemand weiß, wo anfangen. Drei Probleme überlagern sich: (1) Web-Dilemma — Information über 5+ Quellen verteilt. (2) Holschuld statt Bringschuld — Menschen müssen aktiv suchen, im Moment der Neugier ist nichts greifbar. (3) App-Aversion + Wunsch nach Haptik — Nutzer:innen wollen keine App, aber sie wollen physische Anker und Vertrauen. Und über allem: ein Generationenbruch — Ältere kennen die Geschichten noch, Jüngere wissen nicht einmal, dass es welche gibt.',
+      problemImage: '',
+
+      /* ── Research ──────────────────────────────────────────────────── */
+      researchContext: 'Sechs qualitative Interviews quer durch drei Generationen (18–72 J.), zwei City Walks an historischen Orten, Empathy Mapping pro Persona, eine Customer Journey von „Entdecken" bis „Weitererzählen". Plus Stakeholder-Gespräche mit STALAG VII A e.V. und Karl Bauer (lokaler Historiker) — beide wurden später Content-Partner, nicht nur Quellen.',
+      researchImage: '',
+      research: [
+        '6 qualitative Interviews (18–72 J.) — Tourist:in · Anwohnerin · Schüler:in · Senior:in',
+        'City Walks an historischen Orten — wo schaut man hin, wo geht man vorbei?',
+        'Empathy Mapping pro Persona — Says / Thinks / Feels / Does',
+        'Customer Journey: Entdecken → Verstehen → Weitererzählen',
+        'Stakeholder-Gespräche mit STALAG VII A e.V. und Karl Bauer (lokaler Historiker)',
+      ],
+      insights: [
+        'Web-Dilemma: Information ist über 5+ Quellen fragmentiert. Niemand weiß, wo anfangen.',
+        'Holschuld statt Bringschuld: Im Moment der Neugier ist Information nicht da. Menschen geben auf.',
+        'App-Aversion: Niemand installiert eine App für ein einmaliges Erlebnis. Aber Tafeln und Broschüren werden mitgenommen.',
+        'Generationenbruch: Ältere kennen die Geschichten, Jüngere wissen nicht einmal, dass es welche gibt.',
+        'Tradition und Moderne dürfen sich nicht ausschließen — die Rose aus dem alten Wappen wird zur visuellen Brücke.',
+      ],
+      hmw: [
+        'Wie bringen wir Geschichte aus den Archiven in den Alltag — ohne App-Download?',
+        'Wie verknüpfen wir Orte mit Wissen, ohne neue Infrastruktur zu bauen?',
+        'Wie machen wir Institutionen (Schulen, VHS, Cafés) zu Mit-Gestalter:innen statt nur Nutzer:innen?',
+      ],
+
+      /* ── Solution ──────────────────────────────────────────────────── */
+      solutionStatement: 'Nicht: eine App. Sondern: ein lebendes Netzwerk aus physischen Ankern, digitaler Tiefe und Partner-Institutionen, die Geschichte gemeinsam lebendig machen.',
+      solutionContext: 'Drei Säulen: (1) Physische Touchpoints — eine Info-Stele am Marienplatz mit QR + Flyerfach, Themen-Tafeln am STALAG-Gelände, Info-Pfosten als Upgrade bestehender Beschilderung, QR-Codes auf Bänken / Café-Tischen (Guerrilla-Taktik). (2) Digitale Tiefe — eine mobile Web-App (kein Download): Zeitreise-Slider (damals/heute übereinander), Audio-Tagebücher echter STALAG-Stimmen, zentraler Hub mit ALLEN Stadt-Ressourcen (VHS-Kurse, Verein-Führungen, Museum, Schulprogramme), Community-Besucherbuch für Bürger-Stories. (3) Ecosystem-Partner — Schulen unterrichten vor Ort, VHS promotet Kurse direkt in der App, Cafés bieten QR-Codes als Feature, STALAG VII A e.V. liefert authentische Inhalte. Jeder Partner gewinnt — und die Stadt gewinnt eine lebendige Erinnerungskultur. Visuelles Leitmotiv: die Rose aus dem älteren Moosburger Wappen — auf der Stele bewacht sie den QR-Code, im Onboarding begrüßt sie die Nutzer:innen. Brand-Palette: Pergament-Beige (#EDE4D5), Rostrot (#D24638), Moosgrün (#0B3E33).',
+      solutionImage: '',
+      concept: 'Drei zusammen­arbeitende Säulen — physische Anker (3 Tafel-Typen + Broschüren + QR-Guerrilla), digitale Tiefe (Web-App mit Zeitreise-Slider, Audio-Tagebücher, zentraler Hub, Community-Besucherbuch) und Partner-Institutionen (Schulen, VHS, Cafés, STALAG VII A e.V.). Keine Säule funktioniert isoliert — und das ist der Punkt.',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Info-Stele am Marienplatz',
+          description: 'Zentrale Anlaufstelle mit Infotafel, QR-Code (Rose bewacht ihn) und einem Flyerfach — VHS-Kurse, Stadtführungen und Museumsinfos kommen aus den Gebäuden direkt auf die Straße.',
+          image: '',
+        },
+        {
+          name: 'Themen-Tafeln am STALAG-Gelände',
+          description: 'Kompakt, persönlich, emotional. Einzelne Tagebuch-Auszüge, Foto „damals" über „heute", QR-Code für die vollständige Audio-Geschichte in der App.',
+          image: '',
+        },
+        {
+          name: 'Web-App: Zeitreise-Slider',
+          description: 'Foto von 1945 über heutigem Bild — interaktiv übereinander geschoben. „Ahh, deshalb sieht das hier so aus." Visuelle Transformation, kein Faktenblatt.',
+          image: '',
+        },
+        {
+          name: 'Web-App: Zentraler Hub',
+          description: 'Löst das Web-Dilemma: VHS-Kurse, Verein-Führungen, Museum, Schulprogramme, Community-Stories — alle Stadt-Ressourcen an einem Ort, in einer Logik.',
+          image: '',
+        },
+      ],
+
+      /* ── Results ───────────────────────────────────────────────────── */
+      outcome: 'Hybrides Service-Design-System, getestet über drei Generationen mit 5 Usability-Tests. Drei Hardware-Varianten (zentrale Stele, Themen-Tafeln, Info-Pfosten als Upgrade-Modul) und eine Mobile Web-App mit Zeitreise-Slider, Audio-Tagebüchern und zentralem Hub. Glaubwürdige Inhalte durch zwei Content-Partner (STALAG VII A e.V., Karl Bauer). Komplette Brand-Identität mit der Moosburger Rose als generationen­übergreifendes Leitmotiv. Wichtigstes Testing-Insight umgesetzt: Direkteinstieg nach QR-Scan statt Welcome-Screen — Time-to-Content ist kritisch.',
+      resultsImage: '',
+      metrics: [
+        { l: 'Generationen getestet', v: '3' },
+        { l: 'Usability-Tests', v: '5' },
+        { l: 'Hardware-Varianten', v: '3' },
+        { l: 'Content-Partner', v: '2' },
+      ],
+
+      /* ── Learnings ─────────────────────────────────────────────────── */
+      learnings: [
+        'Service Design > Produkt-Design. Eine App allein hätte das Problem nicht gelöst — Schulen, VHS, Vereine und Cafés mussten Teil der Lösung werden, nicht nur Stakeholder.',
+        'Hybrid schlägt entweder/oder. Nicht digital ODER physisch — sondern: Tafeln schaffen Vertrauen, die App liefert Tiefe, Broschüren werden mitgenommen.',
+        'Time-to-Content ist kritisch. Nach dem QR-Scan erwarten Nutzer:innen sofort Erlebnis, nicht Erklärung. Welcome-Screens raus, Direkteinstieg rein.',
+        'Partner brauchen eigenen Benefit. Schulen wollen lebendigen Unterricht, VHS will Sichtbarkeit, Cafés wollen ein Feature. Wenn alle gewinnen, läuft das System ohne Top-Down-Push.',
+      ],
+      wouldChange: [
+        'Recherche in die bestehenden Rituale der Partner einbauen — STALAG VII A e.V. spricht jeden Tag mit Besucher:innen. Ich kam mit fertigem Interviewleitfaden an, statt ein paar ihrer Führungen mitzulaufen und dort zuzuhören. Das hätte authentischere Quotes geliefert.',
+        'Den Welcome-Screen früher rausschmeißen. Das Testing-Insight „Time-to-Content ist kritisch" kam in der vorletzten Runde — bei drei Tests vorher hatten Nutzer:innen schon abgewunken. Direkteinstieg hätte ich ab Prototyp v2 testen sollen.',
+        'Hardware-Varianten in echten Materialien prototypen, nicht nur auf Papier. Die Diskussion über Stelen-Material (Holz vs. Beton vs. Metall) blieb zu abstrakt — ein einfaches 3D-Druck-Mockup hätte Partner-Gespräche und Wartungs-Fragen viel konkreter gemacht.',
+        'Schulen als Partner schon in der Research-Phase einbinden. Sie kamen erst in der Solution-Phase rein — dabei sehen Lehrkräfte den Generationenbruch jeden Tag aus nächster Nähe und hätten Insights geliefert, für die ich 6 Interviews brauchte.',
+        'Den Ecosystem-Gedanken früher ans Team verkaufen. In den ersten Wochen dachten wir noch in „App", erst Woche 4 kippte das zu „Netzwerk". Hätten wir das Framing am Anfang etabliert, wären die ersten zwei Iterationen nicht App-zentriert gewesen.',
+      ],
+
+      /* ── Reflection ────────────────────────────────────────────────── */
+      reflection: 'Die Zusammenarbeit mit STALAG VII A e.V. hat mir gezeigt: UX-Research findet in Vereinen längst informell statt — sie sprechen jeden Tag mit ihren Besucher:innen. Beim nächsten Projekt würde ich die Recherche in die bestehenden Rituale der Partner einbauen, statt mit fertigem Interviewleitfaden anzurollen. Das größte Learning aber: in Service-Design-Projekten sind Partner-Institutionen keine Nutzer:innen, sondern Mit-Gestalter:innen. Die App war der einfache Teil — das System lebendig zu denken war die eigentliche Designarbeit.',
+
+      /* ── Existing meta + media ─────────────────────────────────────── */
+      tldr: {
+        problem: 'Moosburgs Geschichte ist im Alltag unsichtbar — Info fragmentiert, Generationen­bruch, App-Aversion.',
+        myRole:  'UX Research (6 Interviews, City Walks), Service & Ecosystem Design, Stakeholder-Coordination, Hi-Fi-Prototyp.',
+        solution:'Hybrides Ökosystem: Tafeln + Web-App + Partner (Schulen, VHS, Cafés, STALAG VII A e.V.).',
+        outcome: 'Getestet über 3 Generationen. 3 Hardware-Varianten, 2 Content-Partner. Direkteinstieg nach Testing übernommen.',
+      },
+      problemShort: 'Das stumme Stadtgedächtnis: Moosburgs Geschichte ist im Alltag unsichtbar, Information fragmentiert, Generationen­bruch droht.',
+      solutionShort: 'Hybrides Service-Design-Ökosystem: physische Tafeln + mobile Web-App + Partner-Institutionen (Schulen, VHS, Cafés, Vereine).',
+      role: 'UX Research, Service & Ecosystem Design, Stakeholder-Coordination, Prototyping',
+      duration: 'WS 2024/25 (3 Monate, Abgabe 18.01.2026)',
+      team: 'Team B',
+      tools: ['Figma', 'Miro', 'Canva', 'HTML/CSS/JS'],
+      roleChips: ['🔍 Research', '🗂️ Service Design', '🌐 Ecosystem', '✏️ Prototyping'],
+      media: [
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184348 1.png', caption:'Web-App Welcome Screen mit Moosburger Rose', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184409 1.png', caption:'Hub-Screen Mobile — alle Ressourcen', width:800, height:1400},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Diseño sin título (1) 1.png', caption:'Info-Stele Designvariante', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Diseño sin título (5).png', caption:'Brand-System: Rose · Farben · Typografie', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Gemini_Generated_Image_nk9rsznk9rsznk9r 1.png', caption:'Info-Stele in situ — Moosburg', width:1200, height:800},
+      ],
+    },
+    en: {
+      title: 'Echoes of Moosburg',
+      windowTitle: 'Echoes_Moosburg.html — service design, not app build ✦',
+      description: "Hybrid service-design ecosystem for Moosburg's history: physical signs, mobile web app and partner institutions — tested across three generations.",
+      heroImage: 'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184348 1.png',
+      keyInsight: "\"We're not building an app. We're building a living network.\" — Moosburg's history doesn't belong in the archive, it belongs in everyday life. Partners aren't users — they're co-creators.",
+      tldr: {
+        problem: "Moosburg's history is invisible in everyday life — fragmented info, generational rift, app aversion.",
+        myRole: 'UX research (6 interviews, city walks), service & ecosystem design, stakeholder coordination, hi-fi prototype.',
+        solution: 'Hybrid ecosystem: signs + web app + partners (schools, adult-ed, cafés, STALAG VII A e.V.).',
+        outcome: 'Tested across 3 generations. 3 hardware variants, 2 content partners. Direct-entry shipped after testing.',
+      },
+      problemShort: "The silent city memory: Moosburg's history is invisible in everyday life, information fragmented, generational rift looming.",
+      solutionShort: 'Hybrid service-design ecosystem: physical signs + mobile web app + partner institutions (schools, adult-ed, cafés, associations).',
+      role: 'UX Research, Service & Ecosystem Design, Stakeholder Coordination, Prototyping',
+      duration: 'Winter 2024/25 (3 months, delivery 18.01.2026)',
+      team: 'Team B',
+      tools: ['Figma', 'Miro', 'Canva', 'HTML/CSS/JS'],
+      roleChips: ['🔍 Research', '🗂️ Service Design', '🌐 Ecosystem', '✏️ Prototyping'],
+
+      /* ── Problem ───────────────────────────────────────────────────── */
+      problemStatement: "Moosburg's silent memory — a town with STALAG VII A, medieval fabric, hundreds of stories — and none of it is visible in daily life.",
+      problemContext: "Anyone curious about Moosburg's history lands in fragmented sources: city website, adult-ed course list, the Stalag association, museum, walking tours — each its own island. Nobody knows where to start. Three problems stack: (1) Web dilemma — information scattered across 5+ sources. (2) Pull vs. push — people have to actively search, in the moment of curiosity there's nothing to grab. (3) App fatigue + craving for the physical — users don't want an app, but they want physical anchors and trust. And on top: a generational rift — older people still know the stories, younger ones don't even know stories exist.",
+      problemImage: '',
+
+      /* ── Research ──────────────────────────────────────────────────── */
+      researchContext: 'Six qualitative interviews across three generations (18–72 yrs), two city walks at historical sites, empathy mapping per persona, a customer journey from "discover" to "share". Plus stakeholder conversations with STALAG VII A e.V. and Karl Bauer (local historian) — both later became content partners, not just sources.',
+      researchImage: '',
+      research: [
+        '6 qualitative interviews (18–72 yrs) — tourist · resident · student · senior',
+        'City walks at historical sites — where do people look, where do they walk past?',
+        'Empathy mapping per persona — Says / Thinks / Feels / Does',
+        'Customer journey: discover → understand → share with others',
+        'Stakeholder conversations with STALAG VII A e.V. and Karl Bauer (local historian)',
+      ],
+      insights: [
+        'Web dilemma: information fragmented across 5+ sources. Nobody knows where to start.',
+        "Pull vs. push: at the moment of curiosity, information isn't there. People give up.",
+        'App fatigue: nobody installs an app for a one-time experience. But signs and brochures get picked up.',
+        "Generational rift: older people know the stories, younger ones don't even know stories exist.",
+        "Tradition and modernity don't have to clash — the rose from the older coat of arms becomes the visual bridge.",
+      ],
+      hmw: [
+        "How might we bring history out of archives and into daily life — without an app download?",
+        'How might we link places to knowledge without building new infrastructure?',
+        'How might we turn institutions (schools, adult-ed, cafés) into co-creators, not just users?',
+      ],
+
+      /* ── Solution ──────────────────────────────────────────────────── */
+      solutionStatement: "Not: an app. But: a living network of physical anchors, digital depth, and partner institutions making history alive together.",
+      solutionContext: 'Three pillars: (1) Physical touchpoints — a central info-stele at Marienplatz with QR + brochure rack, themed signs at the STALAG site, info-posts that upgrade existing signage, QR codes on benches and café tables (guerrilla tactic). (2) Digital depth — a mobile web app (no download): time-travel slider (then/now overlaid), audio diaries of real STALAG voices, central hub linking ALL city resources (adult-ed courses, association tours, museum, school programmes), a community guestbook for citizen stories. (3) Ecosystem partners — schools teach on-site, adult-ed promotes courses directly in the app, cafés offer the QR codes as a feature, STALAG VII A e.V. provides authentic content. Every partner wins — and the city gets a living memory culture. Visual thread: the rose from the older Moosburg coat of arms — on the stele it guards the QR code, on the welcome screen it greets the user. Brand palette: parchment beige (#EDE4D5), rust red (#D24638), moss green (#0B3E33).',
+      solutionImage: '',
+      concept: 'Three pillars working together — physical anchors (3 sign types + brochures + guerrilla QR), digital depth (web app with time-travel slider, audio diaries, central hub, community guestbook) and partner institutions (schools, adult-ed, cafés, STALAG VII A e.V.). No pillar works in isolation — and that is the point.',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Info-stele at Marienplatz',
+          description: 'Central anchor: info panel, QR code (rose guards it), brochure rack — adult-ed courses, walking tours and museum flyers come out of the buildings and onto the street.',
+          image: '',
+        },
+        {
+          name: 'Themed signs at STALAG site',
+          description: 'Compact, personal, emotional. Single diary excerpts, a "then" photo over a "today" view, QR code for the full audio story in the app.',
+          image: '',
+        },
+        {
+          name: 'Web app: time-travel slider',
+          description: 'A 1945 photo over today\'s view — slide interactively across. "Oh, that\'s why this looks like this." Visual transformation, not a fact sheet.',
+          image: '',
+        },
+        {
+          name: 'Web app: central hub',
+          description: 'Solves the web dilemma: adult-ed courses, association tours, museum, school programmes, community stories — all city resources in one place, one logic.',
+          image: '',
+        },
+      ],
+
+      /* ── Results ───────────────────────────────────────────────────── */
+      outcome: 'Hybrid service-design system, tested across three generations with 5 usability tests. Three hardware variants (central stele, themed signs, info-post upgrade module) and a mobile web app with time-travel slider, audio diaries and central hub. Credibility via two content partners (STALAG VII A e.V., Karl Bauer). Complete brand identity with the Moosburg rose as a cross-generational visual thread. Most important testing insight implemented: direct entry after QR-scan instead of a welcome screen — time-to-content is critical.',
+      resultsImage: '',
+      learnings: [
+        'Service design > product design. An app alone would not have solved the problem — schools, adult-ed, associations and cafés had to be part of the solution, not just stakeholders.',
+        'Hybrid beats either/or. Not digital OR physical — signs build trust, the app delivers depth, brochures get picked up and taken home.',
+        'Time-to-content is critical. After a QR-scan, users expect experience immediately, not explanation. Welcome screens out, direct entry in.',
+        'Partners need their own benefit. Schools want vivid teaching, adult-ed wants visibility, cafés want a feature. When everyone wins, the system runs without a top-down push.',
+      ],
+      wouldChange: [
+        "Embed the research in the partners' existing rituals — STALAG VII A e.V. talks to visitors every day. I arrived with a finished interview guide instead of walking a few of their tours and listening there. That would have produced more authentic quotes.",
+        'Ditch the welcome screen earlier. The "time-to-content is critical" insight came in the second-to-last round of tests — three rounds before that, users had already bounced. I should have been testing direct entry from prototype v2 onwards.',
+        'Prototype hardware variants in real materials, not just on paper. The debate about stele material (wood vs. concrete vs. metal) stayed too abstract — a simple 3D-printed mockup would have grounded partner conversations and maintenance questions.',
+        "Bring schools in as research partners, not just solution-phase partners. Teachers see the generational rift up close every day — they would have delivered insights I needed 6 interviews to surface.",
+        'Sell the ecosystem framing to the team earlier. For the first weeks we were still thinking "app", only in week 4 did it flip to "network". If we\'d established the framing at the start, the first two iterations wouldn\'t have been app-centric.',
+      ],
+
+      /* ── Reflection ────────────────────────────────────────────────── */
+      reflection: "Working with STALAG VII A e.V. taught me: UX research happens informally inside associations all the time — they talk to their visitors every day. Next project I'd embed research into the partners' existing rituals, instead of arriving with a finished interview guide. The biggest lesson: in service-design projects, partner institutions aren't users — they're co-creators. The app was the easy part — designing the system to stay alive was the actual design work.",
+
+      /* ── Existing meta + media ─────────────────────────────────────── */
+      metrics: [
+        { l: 'Generations tested', v: '3' },
+        { l: 'Usability tests', v: '5' },
+        { l: 'Hardware variants', v: '3' },
+        { l: 'Content partners', v: '2' },
+      ],
+      media: [
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184348 1.png', caption:'Web-app welcome screen with the Moosburg rose', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Screenshot_20260116_184409 1.png', caption:'Hub screen mobile — all resources', width:800, height:1400},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Diseño sin título (1) 1.png', caption:'Info-stele design variant', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Diseño sin título (5).png', caption:'Brand system: rose · colours · typography', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Echoes_of_Moosburg/Gemini_Generated_Image_nk9rsznk9rsznk9r 1.png', caption:'Info-stele in situ — Moosburg', width:1200, height:800},
+      ],
+    },
+  },
+  {
+    id: 'vinted',
+    emoji: '🕹️',
+    color: 'peach',
+    status: 'completed',
+    cover: 'assets/Portfolio_Content/VInted_Rebranding/Logo.png',
+    icon: 'assets/icons/vinted.png',
+    coverFit: 'contain',
+    customTabs: 'vinted-rewind',
+    devLog: {
+      stack: ['Figma', 'Photoshop', 'Illustrator', 'ChatGPT'],
+      builtSolo: 'Team (3–4) · Brand + UI Lead',
+      role: 'Brand Designer + Visual + UI/UX',
+      noteHead_de: 'Komplettes Brand-Ökosystem — von Visual Identity bis Pop-up-Shop.',
+      noteHead_en: 'Full brand ecosystem — from visual identity to pop-up shop.',
+      notes_de: [
+        '[w1]  Strategie: Reparatur + Recycling als Retro-Gaming-Hub neu gedacht',
+        '[w2]  Visual System: Pixel-Logo, Farbpalette (Yellow/Blue/Red/Black), Type-Stack',
+        '[w3]  Website 3-Step Flow (Submit · Match · Ship)',
+        '[w3]  App-Screens: Earn · Game · Redeem — Punkte-Mechanik',
+        '[w4]  Gamification: 5 Aktionen → Punkte, 3 Level (Rookie · Master · Legend)',
+        '[w4]  Physical Touchpoints: Arcade-Repair-Shops + Retro-Game-Box Packaging',
+        '[w5]  Social Strategy: Instagram (Feed · Stories · Reels) + Brand-Film',
+      ],
+      notes_en: [
+        '[w1]  strategy: reframed repair + recycling as a retro-gaming hub',
+        '[w2]  visual system: pixel logo, palette (yellow/blue/red/black), type stack',
+        '[w3]  website 3-step flow (submit · match · ship)',
+        '[w3]  app screens: earn · game · redeem — points mechanic',
+        '[w4]  gamification: 5 actions → points, 3 levels (rookie · master · legend)',
+        '[w4]  physical touchpoints: arcade repair shops + retro-game-box packaging',
+        '[w5]  social strategy: Instagram (feed · stories · reels) + brand film',
+      ],
+      links: [
+        { label: 'Figma — Brand Bible', href: 'https://www.figma.com/design/ivyvi4VafeVD24myjw74UF/Vinted-Retro-Rebranding', icon: '▶' },
+      ],
+    },
+    figmaUrl: 'https://www.figma.com/design/ivyvi4VafeVD24myjw74UF/Vinted-Retro-Rebranding?node-id=611-747&t=vDk2rG9tNKkibcWw-1',
+    figmaEmbedUrl: 'https://embed.figma.com/design/ivyvi4VafeVD24myjw74UF/Vinted-Retro-Rebranding?node-id=611-747&embed-host=share',
+    de: {
+      title: 'Vinted Rewind',
+      description: 'Vinted-Rebrand als Retro-Gaming-Hub: Reparatur-Service, App-Gamification, Pop-up-Arcades — Reparatur wird spielerisch, nicht moralisch.',
+      heroImage: 'assets/Portfolio_Content/VInted_Rebranding/Magazines Mockup Opened And Closed Poster.png',
+      brief: 'Rebranding von Vinted: Nicht einfach ein Logo. Sondern ein Ökosystem, bei dem Menschen alte Geräte reparieren, tauschen, spielen — und Punkte sammeln.',
+      strategy: 'Die Retro-Gaming-Ästhetik spricht zwei Zielgruppen an: (1) Junge Menschen, die bewusst „Abstand" von der digitalen Welt suchen + alte Geräte lieben, (2) Ältere Generation, die ihre Geräte reparieren lassen wollen. Das Reward-System (Retro-Games spielen = Punkte = Rabatte) macht Reparatur & Recycling lustig, nicht moralisch.',
+      coreInsight: 'Junge Menschen wollen bewusst weg von der digitalen Welt. Sie lieben alte Geräte. Sie wollen Dinge reparieren, nicht entsorgen. Vinted Rewind ist der Ort, wo Reparatur + Recycling durch Retro-Gaming lustig wird.',
+      windowTitle: 'Vinted_Rewind.fig — Press Start 🕹️',
+      tldr: {
+        problem: 'Reparatur fühlt sich moralisch an („du solltest"), nicht spielerisch.',
+        myRole:  'Komplettes Brand-System: Visual Identity + Website + App + Gamification + Social + Video.',
+        solution:'„Vinted Rewind" — Reparatur als Retro-Gaming. Punkte, Mini-Games, Avatare freischalten.',
+        outcome: 'Brand-Ökosystem: Visual Identity, Website, App, Reward-System, Pop-up Repair Shops, Social-Strategie, Brand-Film.',
+      },
+      problemShort: 'Reparatur & Recycling fühlen sich moralisch an — nicht spielerisch. Vinted hat das Potenzial, aber nicht die Sprache.',
+      solutionShort: '„Vinted Rewind" — Retro-Gaming-Hub mit Reparatur-Service. Komplettes Ökosystem von Pixel-Logo bis Pop-up Arcade.',
+      role: 'Brand Designer, Visual Designer, UI/UX Designer',
+      duration: 'WS 24/25 (1 Semester)',
+      team: 'Team (3–4 Personen)',
+      tools: ['Figma', 'Photoshop', 'Illustrator', 'ChatGPT'],
+      roleChips: ['🎮 Brand Strategy', '🎨 Visual System', '📱 App + Web', '🏪 Physical'],
+      reflection: 'Die größte Lektion: Nachhaltigkeit muss nicht moralisch sein, um zu wirken. Sobald wir „Du solltest reparieren" gegen „Du kannst dabei spielen" getauscht haben, hat sich das ganze Brand-Vokabular geöffnet. Was sich anfangs wie zwei Welten anfühlte — Retro-Gaming und Repair-Service — wurde zu einer einzigen Idee mit klarem Tonfall.',
+      personality: {
+        tone: 'Spielerisch, nostalgisch, empowernd',
+        values: ['Reuse > Recycle', 'Community-Repair', 'Retro-Aesthetic', 'Sustainability'],
+        archetype: 'Der Enthusiast + Der Rebell (gegen Fast-Tech-Kultur)',
+      },
+      visualIdentity: {
+        logoLabel: 'Pixel-Art Hybrid: Roboter + Wrench + Game-Controller',
+        logoNote: 'Symbolisiert: Tech + Repair + Fun',
+        logoImage: 'assets/Portfolio_Content/VInted_Rebranding/Logo.png',
+        colorPalette: [
+          { hex: '#FFB700', name: 'Retro Yellow' },
+          { hex: '#4169E1', name: 'Retro Blue' },
+          { hex: '#FF6B6B', name: 'Retro Red' },
+          { hex: '#1a1a1a', name: 'Game-Console Black' },
+        ],
+        typography: {
+          headlines: 'Pixel-Font (für Retro-Vibe)',
+          body: 'Clean Sans-Serif (für Lesbarkeit)',
+          sample: 'VINTED REWIND',
+        },
+        imagery: ['Pixel-Art für Branding-Assets', '3D Renders für Produkte', 'Mix von Retro & Modern = Y2K-Nostalgia'],
+        style: 'Y2K trifft 8-Bit-Nostalgie',
+      },
+      brandSystem: {
+        coreMessage: 'Reparatur + Recycling + Retro-Gaming = Punkte + Community',
+        tagline: 'Bring Your Gadgets Back to Life. Press Start!',
+        subtaglines: ['Remind, Reuse, Restart', 'Fix the Past, Play the Future', 'Every Device Deserves a Second Life'],
+      },
+      websiteFlow: [
+        { num: '1', title: 'Submit Your Device', body: 'Alte Geräte hochladen. Beschreibung + Bilder.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006592.png' },
+        { num: '2', title: 'Get Matched with Expert', body: 'Community Repair-Expert wird mit deinem Device gematcht.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006647.png' },
+        { num: '3', title: 'Ship It, We Fix It', body: 'Versand, Reparatur, zurück in 2 Wochen.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006650.png' },
+      ],
+      appScreens: [
+        { title: 'Earn Tab', body: 'Punkte-Übersicht. Aktivitäten (Verkauf, Kauf, Game).', image: 'assets/Portfolio_Content/VInted_Rebranding/Group 1000006356.png' },
+        { title: 'Game Tab', body: 'Tägliches Retro-Mini-Game. +10 Punkte pro Tag.', image: 'assets/Portfolio_Content/VInted_Rebranding/Group 1000006415.png' },
+        { title: 'Redeem Tab', body: 'Shop: Rabatte, Repairs, Custom Avatar.', image: 'assets/Portfolio_Content/VInted_Rebranding/Play here.png' },
+      ],
+      rewardLevels: [
+        { emoji: '🏅', title: 'Retro Rookie', xp: '0–500 XP', perk: 'Sticker Set (kostenlos)' },
+        { emoji: '🎮', title: 'Game Master',  xp: '500–1500 XP', perk: '10% Rabatt + Exclusive Game' },
+        { emoji: '👑', title: 'Repair Legend', xp: '1500+ XP', perk: 'Custom Avatar-Figur (3D gedruckt!)' },
+      ],
+      gamification: {
+        intro: 'Das Problem: Reparatur & Recycling fühlen sich moralisch an („du solltest"). Die Lösung: Mach es spielerisch! Punkte sammeln, Games spielen, Avatars freischalten.',
+        earning: [
+          { points: '+10', action: 'Tägliches Mini-Game', body: 'Jeden Tag ein neues Retro-Game spielen.' },
+          { points: '+30', action: 'Etwas Kaufen', body: 'Second-Hand Device kaufen.' },
+          { points: '+50', action: 'Etwas Verkaufen', body: 'Altes Gerät auf Vinted verkaufen.' },
+          { points: '+70', action: 'Reparatur nutzen', body: 'Repair-Service von Experten.' },
+          { points: '+50', action: 'Freund einladen', body: 'Jemanden zur Community einladen.' },
+        ],
+        rewards: [
+          { name: 'Rabatt 10%', cost: '200 Punkte' },
+          { name: 'Kostenloser Repair (bis €20)', cost: '500 Punkte' },
+          { name: 'Exclusive Retro-Game', cost: '300 Punkte' },
+          { name: 'Custom Avatar-Figur', cost: '1000 Punkte (ultimate)' },
+        ],
+      },
+      physical: {
+        shopTitle: 'Vinted Rewind Pop-Up Shops',
+        shopConcept: 'Hybrid Arcade + Repair-Center',
+        shopBullets: [
+          'Dein Gerät bringen → Expert repariert es',
+          'Während du wartest: Retro-Games spielen (mit Nintendo-ähnlichen Konsolen)',
+          'Punkte sammeln, während du spielst',
+          'Kaufe alte Geräte im Shop-Bereich',
+        ],
+        shopBranding: 'Arcade-Aesthetic. Neon-Schilder. Pixelated Graphics an den Wänden.',
+        shopImage: 'assets/Portfolio_Content/VInted_Rebranding/leere-anschlagtafel-auf-bushaltestellehalt-nachts 1.png',
+        packagingTitle: 'Packaging: Like a Retro Game Box',
+        packagingBody: 'Wenn Geräte zurück zu dir kommen, kommen sie in einer Custom Retro-Game-Box-Style Verpackung. Vorne: „VINTED REWIND"-Logo + Pixel-Art. Hinten: Dein Device als „Game Cover"-Illustration. Auspacken wird zum Event, nicht zur Routine.',
+        packagingImage: 'assets/Portfolio_Content/VInted_Rebranding/Shipping Box Mockup 1.png',
+      },
+      social: [
+        { title: 'Feed Posts', body: 'Before/After Repair Stories (Pixel-Art-Overlays).', image: 'assets/Portfolio_Content/VInted_Rebranding/Magazines Mockup, Top View 2 1.png' },
+        { title: 'Stories',    body: 'Daily „Play & Earn"-Stories. Game-Challenges. Polls.', image: 'assets/Portfolio_Content/VInted_Rebranding/ChatGPT Image 27. Juni 2025, 18_57_57.png' },
+        { title: 'Reels',      body: 'Quick „How to Repair"-Videos. Game-Highlights. Community Features.', image: 'assets/Portfolio_Content/VInted_Rebranding/ChatGPT Image 27. Juni 2025, 20_55_06.png' },
+      ],
+      videos: [
+        {
+          title: 'Brand Film (30s)',
+          tagline: '„Bring Your Gadgets Back to Life. Press Start!"',
+          body: 'Old Device → Repair → Works Again → Happy Customer → Points. Style: Retro-Game-Cut-Scenes + Real-Footage-Mix.',
+          src: 'assets/Portfolio_Content/VInted_Rebranding/VID-20250630-WA0038.mp4',
+        },
+        {
+          title: 'How-It-Works Animation (45s)',
+          tagline: 'Submit → Match → Repair → Return → Earn Points',
+          body: 'Animated Pixel-Art-Sequenzen.',
+          src: '',
+        },
+        {
+          title: 'Customer Testimonial Series',
+          tagline: 'Real People, Real Repairs',
+          body: 'Kurze TikTok-Format-Clips (15–20s), echte Reparatur-Stories + Rewards.',
+          src: '',
+        },
+      ],
+      research: [
+        'Strategie: Reframing von Reparatur als Spiel, nicht Moral',
+        'Visual: Pixel-Art, Y2K-Werbeästhetik, 8-Bit-Game-Boxen',
+        'Konkurrenz: Depop, eBay Vintage, Etsy — fashion-zentrierte Plattformen',
+        'Zielgruppe: Junge Retro-Lovers + ältere Generation, die reparieren statt entsorgen will',
+      ],
+      metrics: [{ l: 'Touchpoints', v: '7' }, { l: 'App-Screens', v: '5' }, { l: 'Level-System', v: '3' }],
+    },
+    en: {
+      title: 'Vinted Rewind',
+      description: 'Vinted rebrand as a retro-gaming hub: repair service, app gamification, pop-up arcades — repair turned playful, not preachy.',
+      heroImage: 'assets/Portfolio_Content/VInted_Rebranding/Magazines Mockup Opened And Closed Poster.png',
+      brief: 'Rebranding Vinted: not just a logo. An ecosystem where people fix, swap, play with old gadgets — and collect points doing it.',
+      strategy: 'The retro-gaming aesthetic speaks to two audiences at once: (1) young people who want to step away from the digital, who love old hardware, and (2) an older generation who want their devices repaired. The reward system (play retro games = earn points = unlock discounts) makes repair & recycling fun, not preachy.',
+      coreInsight: 'Young people are deliberately stepping away from the digital. They love old gadgets. They want to fix things, not toss them. Vinted Rewind is the place where repair + recycling becomes fun through retro-gaming.',
+      windowTitle: 'Vinted_Rewind.fig — Press Start 🕹️',
+      tldr: {
+        problem: 'Repair feels moral ("you should"), not playful.',
+        myRole:  'Full brand system: visual identity + website + app + gamification + social + video.',
+        solution:'"Vinted Rewind" — repair as retro gaming. Points, mini-games, unlockable avatars.',
+        outcome: 'Brand ecosystem: visual identity, website, app, reward system, pop-up repair shops, social strategy, brand film.',
+      },
+      problemShort: 'Repair & recycling feel preachy — not playful. Vinted has the reach but not the vocabulary.',
+      solutionShort: '"Vinted Rewind" — a retro-gaming hub with a repair service. Full ecosystem from pixel logo to pop-up arcade.',
+      role: 'Brand Designer, Visual Designer, UI/UX Designer',
+      duration: 'WS 24/25 (1 semester)',
+      team: 'Team (3–4 people)',
+      tools: ['Figma', 'Photoshop', 'Illustrator', 'ChatGPT'],
+      roleChips: ['🎮 Brand Strategy', '🎨 Visual System', '📱 App + Web', '🏪 Physical'],
+      reflection: 'The biggest takeaway: sustainability does not need to be moral to land. The moment we swapped "you should repair" for "you can play while you do", the whole brand vocabulary opened up. What initially felt like two worlds — retro gaming and a repair service — settled into a single idea with one clear tone of voice.',
+      personality: {
+        tone: 'Playful, nostalgic, empowering',
+        values: ['Reuse > Recycle', 'Community repair', 'Retro aesthetic', 'Sustainability'],
+        archetype: 'The Enthusiast + The Rebel (against fast-tech culture)',
+      },
+      visualIdentity: {
+        logoLabel: 'Pixel-art hybrid: robot + wrench + game controller',
+        logoNote: 'Symbolises: tech + repair + fun',
+        logoImage: 'assets/Portfolio_Content/VInted_Rebranding/Logo.png',
+        colorPalette: [
+          { hex: '#FFB700', name: 'Retro Yellow' },
+          { hex: '#4169E1', name: 'Retro Blue' },
+          { hex: '#FF6B6B', name: 'Retro Red' },
+          { hex: '#1a1a1a', name: 'Game-Console Black' },
+        ],
+        typography: {
+          headlines: 'Pixel font (for the retro vibe)',
+          body: 'Clean sans-serif (for legibility)',
+          sample: 'VINTED REWIND',
+        },
+        imagery: ['Pixel art for brand assets', '3D renders for products', 'Mix of retro & modern = Y2K nostalgia'],
+        style: 'Y2K meets 8-bit nostalgia',
+      },
+      brandSystem: {
+        coreMessage: 'Repair + Recycling + Retro-Gaming = Points + Community',
+        tagline: 'Bring Your Gadgets Back to Life. Press Start!',
+        subtaglines: ['Remind, Reuse, Restart', 'Fix the Past, Play the Future', 'Every Device Deserves a Second Life'],
+      },
+      websiteFlow: [
+        { num: '1', title: 'Submit Your Device', body: 'Upload your old device. Description + photos.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006592.png' },
+        { num: '2', title: 'Get Matched with an Expert', body: 'A community repair expert is matched to your device.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006647.png' },
+        { num: '3', title: 'Ship It, We Fix It', body: 'Shipping, repair, returned within 2 weeks.', image: 'assets/Portfolio_Content/VInted_Rebranding/Frame 1000006650.png' },
+      ],
+      appScreens: [
+        { title: 'Earn tab',   body: 'Points overview. Activities (sell, buy, game).', image: 'assets/Portfolio_Content/VInted_Rebranding/Group 1000006356.png' },
+        { title: 'Game tab',   body: 'Daily retro mini-game. +10 points a day.',         image: 'assets/Portfolio_Content/VInted_Rebranding/Group 1000006415.png' },
+        { title: 'Redeem tab', body: 'Shop: discounts, repairs, custom avatar.',        image: 'assets/Portfolio_Content/VInted_Rebranding/Play here.png' },
+      ],
+      rewardLevels: [
+        { emoji: '🏅', title: 'Retro Rookie',  xp: '0–500 XP',   perk: 'Sticker set (free)' },
+        { emoji: '🎮', title: 'Game Master',   xp: '500–1500 XP', perk: '10% discount + exclusive game' },
+        { emoji: '👑', title: 'Repair Legend', xp: '1500+ XP',    perk: 'Custom avatar figure (3D-printed!)' },
+      ],
+      gamification: {
+        intro: 'The problem: repair & recycling feel moral ("you should"). The solution: make it playful. Collect points, play games, unlock avatars.',
+        earning: [
+          { points: '+10', action: 'Daily mini-game', body: 'Play a new retro game every day.' },
+          { points: '+30', action: 'Buy something',   body: 'Purchase a second-hand device.' },
+          { points: '+50', action: 'Sell something',  body: 'Sell an old device on Vinted.' },
+          { points: '+70', action: 'Use the repair',  body: 'Use the expert repair service.' },
+          { points: '+50', action: 'Invite a friend', body: 'Bring someone into the community.' },
+        ],
+        rewards: [
+          { name: '10% discount', cost: '200 points' },
+          { name: 'Free repair (up to €20)', cost: '500 points' },
+          { name: 'Exclusive retro game', cost: '300 points' },
+          { name: 'Custom avatar figure', cost: '1000 points (ultimate)' },
+        ],
+      },
+      physical: {
+        shopTitle: 'Vinted Rewind Pop-Up Shops',
+        shopConcept: 'Hybrid arcade + repair centre',
+        shopBullets: [
+          'Bring your device → an expert repairs it',
+          'While you wait: play retro games (on Nintendo-style consoles)',
+          'Collect points while you play',
+          'Buy old devices in the shop area',
+        ],
+        shopBranding: 'Arcade aesthetic. Neon signage. Pixelated graphics on the walls.',
+        shopImage: 'assets/Portfolio_Content/VInted_Rebranding/leere-anschlagtafel-auf-bushaltestellehalt-nachts 1.png',
+        packagingTitle: 'Packaging: Like a Retro Game Box',
+        packagingBody: 'When devices come back to you, they arrive in a custom retro-game-box-style package. Front: "VINTED REWIND" logo + pixel art. Back: your device as a "game cover" illustration. Unboxing becomes an event, not a routine.',
+        packagingImage: 'assets/Portfolio_Content/VInted_Rebranding/Shipping Box Mockup 1.png',
+      },
+      social: [
+        { title: 'Feed posts', body: 'Before/after repair stories (pixel-art overlays).', image: 'assets/Portfolio_Content/VInted_Rebranding/Magazines Mockup, Top View 2 1.png' },
+        { title: 'Stories',    body: 'Daily "Play & Earn" stories. Game challenges. Polls.', image: 'assets/Portfolio_Content/VInted_Rebranding/ChatGPT Image 27. Juni 2025, 18_57_57.png' },
+        { title: 'Reels',      body: 'Quick "how to repair" videos. Game highlights. Community features.', image: 'assets/Portfolio_Content/VInted_Rebranding/ChatGPT Image 27. Juni 2025, 20_55_06.png' },
+      ],
+      videos: [
+        {
+          title: 'Brand Film (30s)',
+          tagline: '"Bring Your Gadgets Back to Life. Press Start!"',
+          body: 'Old device → repair → working again → happy customer → points. Style: retro-game cut-scenes mixed with real footage.',
+          src: 'assets/Portfolio_Content/VInted_Rebranding/VID-20250630-WA0038.mp4',
+        },
+        {
+          title: 'How-It-Works Animation (45s)',
+          tagline: 'Submit → Match → Repair → Return → Earn Points',
+          body: 'Animated pixel-art sequences.',
+          src: '',
+        },
+        {
+          title: 'Customer Testimonial Series',
+          tagline: 'Real people, real repairs',
+          body: 'Short TikTok-style clips (15–20s), real repair stories + rewards.',
+          src: '',
+        },
+      ],
+      research: [
+        'Strategy: reframing repair as play, not as morality',
+        'Visual: pixel art, Y2K advertising, 8-bit game boxes',
+        'Competition: Depop, eBay Vintage, Etsy — fashion-centric platforms',
+        'Audience: young retro lovers + an older generation who want to fix, not toss',
+      ],
+      metrics: [{ l: 'Touchpoints', v: '7' }, { l: 'App screens', v: '5' }, { l: 'Level system', v: '3' }],
+    },
+  },
+  {
+    id: 'munichapp',
+    emoji: '🏙️',
+    color: 'sky',
+    status: 'completed',
+    cover: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+    icon: 'assets/icons/munich.png',
+    coverFit: 'cover',
+    devLog: {
+      stack: ['Miro', 'Figma', 'FigJam', 'MIT App Inventor'],
+      builtSolo: 'Co-Lead Research (4-Team)',
+      role: 'UX Research + Service Design',
+      notes_de: [
+        '[w1]  Interview-Guide (Before · During · After) + DSGVO-Setup',
+        '[w2]  6+ Interviews quer durch Alter & Lebenslage (30-45 min)',
+        '[w2]  4 Personas synthetisiert: Senior · Berufstätige · Tourist · Student',
+        '[w3]  Customer Journey über 5 Phasen, Pains/Gains aus Affinity Mapping',
+        '[w3]  JTBD-Statements als Service-Design-Anker',
+        '[w4]  Low-Fi Prototyp in MIT App Inventor — testbar ohne dev-setup',
+        '[w4]  Hi-Fi Dashboard-Mockups in Figma + Implementierungs-Roadmap',
+      ],
+      notes_en: [
+        '[w1]  interview guide (Before · During · After) + GDPR setup',
+        '[w2]  6+ interviews across age & life stages (30-45 min)',
+        '[w2]  synthesized 4 personas: senior · pro · tourist · student',
+        '[w3]  customer journey across 5 phases, pains/gains from affinity mapping',
+        '[w3]  JTBD statements as service-design anchors',
+        '[w4]  low-fi prototype in MIT App Inventor — testable without dev setup',
+        '[w4]  hi-fi dashboard mockups in Figma + implementation roadmap',
+      ],
+      links: [
+        { label: 'Figma — Hi-Fi', href: '#', icon: '▶' },
+        { label: 'Miro — Journey + JTBD', href: '#', icon: '▶' },
+      ],
+    },
+    de: {
+      title: 'Munich Super App',
+      description: 'Ein Service-Design-Konzept für eine einzige München-App — Mobilität, Verwaltung, Tickets, Wohnen, alles in einem.',
+      context: '4-monatiges Service-Design-Studienprojekt an der HM München. Im 4er-Team haben wir untersucht, wie städtische Services in München gebündelt werden könnten — und welche Hürden Bürger:innen aktuell zwischen MVGO, HandyParken, München Ticket & Co. erleben.',
+      keyInsight: 'App-Wildwuchs ist das Kernproblem: Münchner:innen wechseln zwischen 5+ Apps für einen einzigen Vorgang. Eine „Super App" heißt also nicht „noch eine App" — sondern „eine weniger jonglieren".',
+      problemStatement: 'Münchner:innen jonglieren zwischen MVGO, HandyParken, München Ticket, Stadtverwaltung & Wohnungsbörse — jede App hat ihre eigene Logik.',
+      problemContext: 'Sieben städtische Services, sieben Apps, kein Überblick. Bürger:innen verlieren Fristen, Tickets verschwinden im E-Mail-Chaos. Wir wollten verstehen, wie die Stadt das in einer einzigen App bündeln könnte.',
+      problemImage: 'assets/Portfolio_Content/Munich_Super_App/UserJourney1.png',
+      researchContext: 'Qualitative Interviews mit Bürger:innen quer durch Alter und Lebenslage, alle nach DSGVO sauber aufgesetzt. Strukturierter Guide in drei Phasen: Before · During · After. Empathy Mapping pro Persona, dann Synthese in Pains/Gains.',
+      researchImage: 'assets/Portfolio_Content/Munich_Super_App/1000158732.jpg',
+      solutionStatement: 'Service-Design-Konzept einer „Munich Super App" — ein Dashboard für Mobilität, Verwaltung, Kultur und Wohnen.',
+      solutionContext: 'Vier Verticals: Mobilität (MVG · HandyParken), Verwaltung (Behörden · Anträge), Kultur & Freizeit (Tickets · Museen · Schwimmbäder) und Wohnen (Wohnungsbörse). Personalisierte, proaktive Erinnerungen. Wallet- und Kalender-Integration. Barrierefreiheit als Default — nicht als Opt-in.',
+      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Hi-Fi Detail-Screen',
+          description: 'Beispielhafte Service-Detailansicht aus dem Dashboard — zeigt wie die Service-Design-Prinzipien (Accessibility-First, Progressive Disclosure) auf Screen-Ebene umgesetzt sind. [TODO: präzisere Annotation was konkret auf dem Screen passiert]',
+          image: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png',
+        },
+      ],
+      resultsImage: '',
+      reflection: 'User Research im 4er-Team zu koordinieren war härter als die Recherche selbst. Wir haben gelernt, einen Interview-Guide v0 schon in Woche 2 zu verschriftlichen, damit alle parallel arbeiten können, ohne auseinanderzudriften. Das saubere DSGVO-Setup hat sich auch ausgezahlt — Teilnehmende öffneten sich schneller, als ich erwartet hätte.',
+      windowTitle: 'Munich_Super_App.fig — Service Design für die Stadt 🏙️',
+      tldr: {
+        problem: 'Münchner:innen jonglieren zwischen MVGO, HandyParken, München Ticket, Stadtverwaltung & Wohnungsbörse — jede App eigene Logik.',
+        myRole:  'Co-Lead User Research, Interview-Setup (DSGVO), Empathy- & Journey-Mapping im 4er-Team.',
+        solution:'Service-Design-Konzept einer „Munich Super App" — ein Dashboard für Mobilität, Verwaltung, Kultur und Wohnen.',
+        outcome: 'Vollständige SD-Doku (Empathy · Journey · Pains/Gains · JTBD) + Low-Fi-Prototyp in MIT App Inventor.',
+      },
+      problemShort: '7 städtische Services, 7 Apps, kein Überblick — Bürger:innen verlieren Fristen, Tickets und Zeit.',
+      solutionShort: 'Service-Design-Konzept für eine zentrale Stadt-App, die Mobilität, Verwaltung, Tickets & Wohnen bündelt.',
+      role: 'UX Research, Service Design, Empathy & Journey Mapping, Prototyping',
+      duration: 'SS 2025 (4 Monate)',
+      team: '4er-Team · Studienprojekt HM München',
+      tools: ['Miro', 'Figma', 'FigJam', 'MIT App Inventor'],
+      roleChips: ['🔍 Research', '🗂️ Service Design', '🧠 JTBD', '✏️ Prototyping'],
+      research: [
+        'Qualitative Interviews (30–45 min, Audio + Notizen) mit Bürger:innen quer durch Alter & Lebenslage',
+        'Strukturierter Guide nach Phasen: Before · During · After',
+        'Empathy Mapping pro Persona: Says · Thinks · Feels · Does',
+        'Customer Journey über 5 Phasen — Bedarf → Planung → Buchung → Nutzung → Erinnerung',
+        'Affinity Mapping & Synthese in Pains / Gains',
+        'JTBD-Statements + 4 Personas (Senior:in · Berufstätige · Tourist:in · Student:in)',
+        'Sauberes Setup: Datenschutzerklärung & Einwilligung schriftlich',
+      ],
+      insights: [
+        '„App-Wildwuchs": Bürger:innen wechseln ständig zwischen MVGO, München Parking, muenchen.de — keine zentrale Übersicht.',
+        'Wichtige Fristen & Termine werden vergessen — Erinnerungen kommen zu spät oder gar nicht.',
+        'Datenschutzbedenken bremsen Nutzung. Transparenz ist kein Feature, sondern Grundvoraussetzung.',
+        'Accessibility wird unterschätzt: Senior:innen scheitern an kleiner Schrift und unklaren Symbolen.',
+        'Sprachbarriere für Tourist:innen & Neuankömmlinge — Services oft nur auf Deutsch verfügbar.',
+      ],
+      hmw: [
+        'Wie integrieren wir städtische Services so, dass Bürger:innen ihren Alltag in einer App planen können — ohne App-Wechsel?',
+        'Wie schaffen wir Vertrauen in eine zentrale städtische App, gerade bei sensiblen Daten?',
+        'Wie machen wir die App für 4 sehr unterschiedliche Personas gleichermaßen nutzbar?',
+      ],
+      concept: 'Eine Munich Super App mit zentralem Dashboard für vier Service-Verticals: Mobilität (MVG · HandyParken), Verwaltung (Behörden · Anträge), Kultur & Freizeit (München Ticket · Museen · Schwimmbäder) und Wohnen (Wohnungsbörse). Personalisierte, proaktive Erinnerungen. Wallet- und Kalender-Integration. Barrierefreie Gestaltung als Default — nicht als Option.',
+      outcome: 'Vollständige Service-Design-Dokumentation: Empathy Maps, Journey Map, Pains/Gains-Synthese, JTBD-Statements, Personas. Plus Low-Fi-Prototyp in MIT App Inventor und Hi-Fi-Mockups in Figma. Implementierungs-Roadmap als Übergabe.',
+      learnings: [
+        'Vier sehr unterschiedliche Personas zwingen zu echter Inklusivität — nicht zu Lippenbekenntnis.',
+        'Service Design ≠ App Design. Das größte Problem war Organisations- und Datenarchitektur, nicht UI.',
+        'Sauberes Interview-Setup (Datenschutzerklärung, Einwilligung, Anonymisierung) macht Teilnehmende ehrlicher — nicht vorsichtiger.',
+        'Im 4er-Team funktionierte „kleine Schritte, gemeinsame Synthese" besser als Arbeitsteilung in Silos.',
+      ],
+      wouldChange: [
+        'Im nächsten Team-Projekt: Interview-Guide v0 schon in Woche 1 verschriftlichen, nicht erst Woche 2-3 — wir sind eine Weile auseinandergedriftet, bevor wir uns synchronisiert haben.',
+        'Stakeholder-Interviews (MVG, Stadtverwaltung) parallel zur User-Recherche planen — Service Design braucht beide Perspektiven, wir hatten nur die Bürger:innen-Sicht.',
+        '„Kleine Schritte, gemeinsame Synthese" als Team-Rhythmus von Anfang an etablieren — wir sind erst Mitte Semester reingekommen, davor zu viel Silo-Arbeit.',
+      ],
+      metrics: [{l:'Interviews', v:'6+'},{l:'Personas', v:'4'},{l:'Services integriert', v:'7'}],
+      media: [
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158730.jpg', caption:'Empathy Map · Personas-Skizze', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158734.jpg', caption:'JTBD-Statement & 4 Personas', width:1200, height:800},
+      ],
+    },
+    en: {
+      title: 'Munich Super App',
+      description: 'A service-design concept for a single Munich app — mobility, admin, tickets, housing, all in one.',
+      context: '4-month service-design student project at HM Munich. In a 4-person team we investigated how city services in Munich could be bundled — and which pain points citizens currently hit between MVGO, HandyParken, Munich Ticket and co.',
+      keyInsight: 'App sprawl is the core problem: Munich citizens switch between 5+ apps for a single task. A "super app" doesn\'t mean "one more app" — it means "one less to juggle".',
+      problemStatement: 'Munich citizens juggle MVGO, HandyParken, Munich Ticket, city admin & housing portal — every app its own logic.',
+      problemContext: 'Seven city services, seven apps, no overview. Citizens lose deadlines, tickets vanish in email chaos. We wanted to understand how the city could bundle this into a single app.',
+      problemImage: 'assets/Portfolio_Content/Munich_Super_App/UserJourney1.png',
+      researchContext: 'Qualitative interviews with citizens across ages and life stages, all set up cleanly under GDPR. Structured guide in three phases: Before · During · After. Empathy mapping per persona, then synthesis into pains / gains.',
+      researchImage: 'assets/Portfolio_Content/Munich_Super_App/1000158732.jpg',
+      solutionStatement: 'A service-design concept for a Munich Super App — one dashboard for mobility, admin, culture and housing.',
+      solutionContext: 'Four verticals: mobility (MVG · HandyParken), administration (city offices · applications), culture & leisure (tickets · museums · pools) and housing. Personalised, proactive reminders. Wallet and calendar integration. Accessibility as default, not opt-in.',
+      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [
+        {
+          name: 'Hi-Fi Detail Screen',
+          description: 'Example service detail view from the dashboard — shows how the service-design principles (accessibility-first, progressive disclosure) translate to screen level. [TODO: sharper annotation of what specifically happens on this screen]',
+          image: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png',
+        },
+      ],
+      resultsImage: '',
+      reflection: 'Coordinating user research in a 4-person team was harder than the research itself. We learned to ship a written interview-guide v0 by week 2 so everyone could parallelise without diverging. The clean GDPR setup also paid off — participants opened up faster than I expected.',
+      windowTitle: 'Munich_Super_App.fig — service design for the city 🏙️',
+      tldr: {
+        problem: 'Munich citizens juggle MVGO, HandyParken, Munich Ticket, city admin & housing portal — every app its own logic.',
+        myRole:  'Co-lead user research, GDPR-clean interview setup, empathy & journey mapping in a 4-person team.',
+        solution:'Service-design concept for a Munich Super App — one dashboard for mobility, admin, culture and housing.',
+        outcome: 'Full SD documentation (empathy · journey · pains/gains · JTBD) plus a low-fi MIT App Inventor prototype.',
+      },
+      problemShort: '7 city services, 7 apps, no overview — citizens lose deadlines, tickets and time.',
+      solutionShort: 'A service-design concept for a single Munich app bundling mobility, admin, tickets and housing.',
+      role: 'UX research, service design, empathy & journey mapping, prototyping',
+      duration: 'Summer 2025 (4 months)',
+      team: '4-person team · HM Munich student project',
+      tools: ['Miro', 'Figma', 'FigJam', 'MIT App Inventor'],
+      roleChips: ['🔍 Research', '🗂️ Service Design', '🧠 JTBD', '✏️ Prototyping'],
+      research: [
+        'Qualitative interviews (30–45 min, audio + notes) across ages and life stages',
+        'Structured guide in three phases: Before · During · After',
+        'Empathy mapping per persona: Says · Thinks · Feels · Does',
+        'Customer journey across 5 phases — need → planning → booking → use → reminder',
+        'Affinity mapping & synthesis into Pains / Gains',
+        'JTBD statements + 4 personas (senior · working professional · tourist · student)',
+        'Clean setup: written GDPR consent + privacy declaration',
+      ],
+      insights: [
+        '"App-sprawl": citizens constantly switch between MVGO, München Parking, muenchen.de — no single source of truth.',
+        'Important deadlines and appointments get lost — reminders arrive too late or not at all.',
+        'Privacy concerns block adoption. Transparency is not a feature, it is a precondition.',
+        'Accessibility is underestimated: seniors struggle with small text and unclear icons.',
+        'Language barrier for tourists & newcomers — most services are German-only.',
+      ],
+      hmw: [
+        'How might we integrate city services so citizens can plan their day in one app — no app-switching?',
+        'How might we build trust in a centralised city app despite the sensitivity of the data?',
+        'How might we make the app equally usable for 4 very different personas?',
+      ],
+      concept: 'A Munich Super App with a central dashboard for four service verticals: mobility (MVG · HandyParken), administration (city offices · applications), culture & leisure (Munich Ticket · museums · pools) and housing. Personalised, proactive reminders. Wallet and calendar integration. Accessibility as default — not as opt-in.',
+      outcome: 'Complete service-design documentation: empathy maps, journey map, pains/gains synthesis, JTBD statements, personas. Plus a low-fi MIT App Inventor prototype and hi-fi Figma mockups. Implementation roadmap as a handover.',
+      learnings: [
+        'Four very different personas force real inclusivity — not lip service.',
+        'Service design ≠ app design. The biggest problem was org and data architecture, not UI.',
+        'A clean interview setup (consent, GDPR, anonymisation) makes participants more honest, not more cautious.',
+        '"Small steps, shared synthesis" worked better in a 4-person team than siloed division of labour.',
+      ],
+      wouldChange: [
+        'Next team project: write interview-guide v0 in week 1, not weeks 2-3 — we drifted apart for a bit before we synced up.',
+        'Plan stakeholder interviews (MVG, city administration) in parallel with user research — service design needs both perspectives, we only had the citizen side.',
+        'Establish "small steps, shared synthesis" as the team rhythm from day one — we only got into that rhythm mid-semester, before that too much silo work.',
+      ],
+      metrics: [{l:'Interviews', v:'6+'},{l:'Personas', v:'4'},{l:'Services integrated', v:'7'}],
+      media: [
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158730.jpg', caption:'Empathy map · personas sketch', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158734.jpg', caption:'JTBD statement & 4 personas', width:1200, height:800},
+      ],
+    },
+  },
+  {
+    id: 'donbosco',
+    emoji: '📋',
+    color: 'blue',
+    status: 'wip',
+    progress: 65,
+    de: {
+      title: 'Don Bosco App',
+      windowTitle: 'DonBosco_App.exe — still in the oven 🔨',
+      problemShort: 'Buchungs- und Kommunikationsprozesse in sozialen Einrichtungen sind zu komplex.',
+      solutionShort: 'Nutzerzentrisches Buchungssystem — research-basiert, noch in Entwicklung.',
+      role: 'UX Research, Service Design',
+      duration: 'SS 2025 (laufend)',
+      team: 'Team B',
+      phase: 'Konzeption & Research',
+      /* WIP loading-modal fields */
+      wipShortConcept: 'Digitalisierung für Jugendorganisation — einfach & barrierefrei.',
+      wipDescription: 'Eine lokale Jugendorganisation in München brauchte einen Weg, ihre Angebote digital zu verwalten. Eine einfache, barrierefreie Form für Jugendliche, um sich für Workshops anzumelden.',
+      wipPhase: 'Early Design',
+      wipProgress: 30,
+      wipETA: 'Q1 2026',
+      tools: ['Figma', 'Miro', 'Notion'],
+      roleChips: ['🔍 Research', '🗂️ Service Design'],
+      /* ── WIP-honest case study scaffolding ─────────────────────────── */
+      context: 'Service-Design-Projekt mit einer lokalen Jugendorganisation in München. Die Einrichtung organisiert Workshops für Jugendliche, verwaltet Anmeldungen bisher aber großteils per Aushang, Telefon und Excel. Unsere Aufgabe: Wo lohnt sich Digitalisierung — und wo schadet sie?',
+      problemContext: 'Die Anmeldung zu einem Workshop läuft heute über drei bis vier Touchpoints (Aushang → Anruf → handschriftliche Liste → Bestätigung per WhatsApp). Für die Sozialpädagog:innen ist das zeitintensiv, für Jugendliche unklar (gibt es noch Plätze? Bin ich angemeldet?). Eine reine Online-Form würde die Hälfte der Zielgruppe verlieren — barrierefreier Zugang ist kein Nice-to-have, sondern Kernanforderung.',
+      keyInsight: '[In Arbeit] Erste Beobachtung: die Sozialpädagog:innen wollen kein „weiteres Tool", sie wollen weniger Tools. Wenn die Lösung mehr Klicks erzeugt als die aktuelle Excel, gewinnt die Excel.',
+      hmw: [
+        'Wie können wir Workshop-Anmeldungen digitalisieren, ohne Jugendliche ohne Smartphone auszuschließen?',
+        'Wie nehmen wir Sozialpädagog:innen Arbeit ab, ohne ihnen ein neues Tool aufzudrücken?',
+        'Wie machen wir den Anmeldestatus für Jugendliche und Eltern transparent — ohne Push-Notification-Spam?',
+      ],
+      research: [
+        'Stakeholder-Gespräche mit Sozialpädagog:innen der Einrichtung (laufend)',
+        'Beobachtung des Ist-Prozesses vor Ort (Aushang → Anruf → Liste → WhatsApp)',
+        'Desk Research zu Barrierefreiheit in Jugendarbeit-Tools',
+        '[geplant] Interviews mit 4–6 Jugendlichen und 2–3 Eltern',
+      ],
+      reflection: 'Bewusst noch ohne fertige Insights oder Metriken — das Projekt ist in der Discovery-Phase. Mein größtes Learning bisher: bei sozialen Einrichtungen ist „Digitalisierung" oft Code für „uns wurde gesagt, wir bräuchten eine App". Erst Service-Mapping zeigt, ob digital wirklich die richtige Antwort ist, oder ob ein besserer Aushang reicht. Nächster Schritt: Co-Design-Session mit dem Team, um die echten Bottlenecks zu finden.',
+      wouldChange: [
+        '[laufend ergänzt] Bisher größte Lektion: erste Stakeholder-Runde hätte ich offener anlegen sollen — ich kam mit „wie soll die App aussehen?" rein, statt „was nervt euch am aktuellen Prozess?".',
+      ],
+    },
+    en: {
+      title: 'Don Bosco App',
+      windowTitle: 'DonBosco_App.exe — still in the oven 🔨',
+      problemShort: 'Booking & communication flows in social institutions are too complex.',
+      solutionShort: 'User-centered booking system — research-driven, still in development.',
+      role: 'UX Research, Service Design',
+      duration: 'Summer 2025 (ongoing)',
+      team: 'Team B',
+      phase: 'Concept & research',
+      /* WIP loading-modal fields */
+      wipShortConcept: 'Digitalisation for a youth organisation — simple & accessible.',
+      wipDescription: 'A local Munich youth organisation needed a way to manage their offerings digitally. A simple, accessible form for young people to sign up for workshops.',
+      wipPhase: 'Early Design',
+      wipProgress: 30,
+      wipETA: 'Q1 2026',
+      tools: ['Figma', 'Miro', 'Notion'],
+      roleChips: ['🔍 Research', '🗂️ Service Design'],
+      /* ── WIP-honest case study scaffolding ─────────────────────────── */
+      context: 'A service-design project with a local Munich youth organisation. The institution runs workshops for teenagers but currently manages sign-ups through posters, phone calls and Excel sheets. Our task: where does digitalisation help — and where does it hurt?',
+      problemContext: 'Signing up for a workshop today runs through three or four touchpoints (poster → phone call → handwritten list → WhatsApp confirmation). It eats up time for the social workers and leaves teenagers unclear (are spots still open? am I in?). A pure online form would lose half the audience — accessible access is not a nice-to-have, it is the core requirement.',
+      keyInsight: '[In progress] First observation: the social workers don\'t want "another tool", they want fewer tools. If the solution adds more clicks than the current Excel, the Excel wins.',
+      hmw: [
+        'How might we digitise workshop sign-ups without excluding teenagers who don\'t own a smartphone?',
+        'How might we take work off the social workers without forcing yet another tool on them?',
+        'How might we make sign-up status transparent for teens and parents — without push-notification spam?',
+      ],
+      research: [
+        'Stakeholder conversations with the social workers at the institution (ongoing)',
+        'On-site observation of the current process (poster → call → list → WhatsApp)',
+        'Desk research on accessibility in youth-work tools',
+        '[planned] Interviews with 4–6 teenagers and 2–3 parents',
+      ],
+      reflection: 'Deliberately still without finished insights or metrics — the project is in discovery. My biggest takeaway so far: in social institutions, "digitalisation" is often code for "someone told us we need an app". Only service mapping shows whether digital is actually the right answer, or whether a better poster would do. Next step: co-design session with the team to find the real bottlenecks.',
+      wouldChange: [
+        '[updated as I go] Biggest lesson so far: I should have opened the first stakeholder round wider — I walked in asking "how should the app look?" instead of "what about the current process drives you up the wall?".',
+      ],
+    },
+  },
+  {
+    id: 'clarity',
+    emoji: '📓',
+    color: 'pink',
+    status: 'wip',
+    progress: 35,
+    icon: 'assets/icons/journaling.png',
+    cover: 'assets/Portfolio_Content/Clearity_Journal/Screenshot_20260508_105422 1.png',
+    devLog: {
+      stack: ['Figma', 'FigJam', 'Miro', 'pdftotext', 'Notion'],
+      builtSolo: 'Team 4 · ~25 % Lead (Research + IA)',
+      role: 'UX Research, Information Architecture, Privacy-Strategy',
+      notes_de: [
+        '16 qualitative + quantitative Interviews (18–25 J.) → 5 Kernerkenntnisse',
+        '81 % journalisieren nicht regelmäßig → Habit-Problem, kein Motivationsproblem',
+        '94 % verlangen E2E-Verschlüsselung — Privacy ist Dealbreaker, kein Feature',
+        '73 % skeptisch gegenüber KI → Explainability als Pflicht',
+        'Zwei autonome Agenten: Sentiment + Pattern, beide lokal',
+        'Information Architecture: 5 Säulen — Home, History, Add Entry, Insights, Calendar',
+        'Wireframes (Figma) + Navigation Architecture (FigJam) komplett dokumentiert',
+        'Zero-Knowledge Backend skizziert — Entries optional rein lokal',
+      ],
+      notes_en: [
+        '16 qualitative + quantitative interviews (ages 18–25) → 5 core insights',
+        '81 % don\'t journal regularly → habit problem, not motivation',
+        '94 % require E2E encryption — privacy is a dealbreaker, not a feature',
+        '73 % skeptical of AI → explainability is mandatory',
+        'Two autonomous agents: sentiment + pattern, both on-device',
+        'Information architecture: 5 pillars — Home, History, Add Entry, Insights, Calendar',
+        'Full wireframes (Figma) + navigation architecture (FigJam)',
+        'Zero-knowledge backend sketched — entries can stay fully local',
+      ],
+      links: [
+        { label: 'Konzept-PDF', href: 'assets/Portfolio_Content/Clearity_Journal/Konzept.pdf', icon: '📄' },
+      ],
+    },
+    de: {
+      title: 'Clarity — Your mind stays yours',
+      description: 'Ein Privacy-first-Journaling-App-Konzept, aktuell in der Research-Synthese.',
+      problemStatement: '81 % der 18–25-Jährigen journalisieren nicht regelmäßig — nicht aus Motivationsmangel, sondern weil Privacy, leere Seiten und unverständliche KI als Barrieren wirken.',
+      problemContext: 'Wir wollten verstehen, was Gen-Z davon abhält, regelmäßig zu journalisieren. Die naheliegende Antwort wäre „fehlende Motivation". In den Interviews zeigte sich aber, dass Datenschutz-Sorgen, leere Seiten und Blackbox-KI die echten Barrieren sind.',
+      problemImage: '',
+      researchContext: '16 qualitative und quantitative Interviews mit Personen zwischen 18 und 25 Jahren. Affinity Mapping zu Barrieren, Routinen und Privacy-Bedenken. Wettbewerbsanalyse von Day One, Reflectly, Stoic und Apple Journal. Personas und User Stories nach AS-A / I-WANT-TO / SO-THAT-Format.',
+      researchImage: '',
+      solutionStatement: 'Privacy-first Journal-App mit zwei on-device Agenten, 30-Sek-Einträgen und einem Weekly Digest als Herzstück.',
+      solutionContext: 'Vier Säulen: (1) E2E-Verschlüsselung mit optional rein lokaler Speicherung und Zero-Knowledge-Backend, (2) zwei autonome on-device Agenten — Sentiment + Pattern, (3) Weekly Digest als wöchentliche, sanfte Zusammenfassung, (4) Habit-First Design mit Voice/Photo/Quick-Mood-Einträgen in unter 30 Sekunden.',
+      solutionImage: '',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [],
+      resultsImage: '',
+      reflection: 'Auf halber Strecke wäre das Team fast in eine UI gestartet, bevor wir die Privacy-Architektur ausreichend geklärt hatten. Wir haben rechtzeitig korrigiert — aber die Lektion: in Privacy-first-Projekten IST der Datenfluss das Design. Nächste Phase: Wireframes, die den Privacy-Status sichtbar machen, nicht verstecken.',
+      /* WIP loading-modal fields */
+      wipShortConcept: 'Privacy-first Journaling — deine Gedanken, deine Kontrolle.',
+      wipDescription: 'Eine Journaling-App, in der Nutzer:innen 100 % Kontrolle über ihre Daten haben. Alles läuft lokal, Sync ist E2E-verschlüsselt, KI-Features sind optional und transparent.',
+      wipPhase: 'Konzeptphase · Research-Synthese & IA',
+      wipProgress: 35,
+      wipETA: 'Q3 2026',
+      windowTitle: 'Clarity.app — privacy-first journaling 📓',
+      problemShort: '81 % der 18–25-Jährigen journalisieren nicht regelmäßig — Privacy-Sorgen, leere Seiten und unklare KI blockieren sie.',
+      solutionShort: 'Privacy-first Journal-App: zwei On-Device-Agenten (Sentiment + Pattern), 30-Sek-Einträge, Weekly Digest. Vollständig lokal, E2E-verschlüsselt.',
+      role: 'UX Research, Information Architecture, Privacy-Strategy',
+      duration: 'SS 2026 (laufend, ca. 12 Wochen)',
+      team: 'Team 4 · 4 Personen',
+      phase: 'Konzeptphase · Research-Synthese & IA',
+      tools: ['Figma', 'FigJam', 'Miro', 'Notion'],
+      roleChips: ['🔍 Research', '🗂️ IA', '🔒 Privacy', '✏️ UX'],
+      context: 'Semesterprojekt im Kurs "Mobile Anwendungen" an der HM München. Vier Studentinnen sollten eine vollständig nutzerzentrierte mobile App konzipieren — von Research bis High-Level IT-Architektur. Wir entschieden uns früh gegen Trend-Chasing und für eine Bedürfnisfrage: Was hindert Gen-Z am Journaling?',
+      research: [
+        '16 qualitative + quantitative Interviews (18–25 Jahre)',
+        'Affinity Mapping zu Barrieren, Routinen und Privacy-Bedenken',
+        'Wettbewerbsanalyse: Day One, Reflectly, Stoic, Apple Journal',
+        'Personas: "Anna" (Privacy-Bewusste) und "Marcus" (Gewohnheits-Kämpfer)',
+        'User Stories nach AS-A / I-WANT-TO / SO-THAT-Format mit Acceptance Criteria',
+      ],
+      insights: [
+        '81 % journalisieren nicht regelmäßig — Habit-Problem, kein Motivationsproblem',
+        '67 % würden keine Journaling-App nutzen, die nicht vollständig sicher ist. 94 % verlangen E2E-Verschlüsselung.',
+        '73 % unbequem mit KI, die Gedanken analysiert — Explainability senkt Misstrauen dramatisch.',
+        '38 % schreiben nicht, weil ihre Einträge "nicht schön aussehen" — Beautiful-by-Default ist Pflicht.',
+        '47 % wollen eine wöchentliche Zusammenfassung als motivierenden Payoff.',
+      ],
+      hmw: [
+        'Wie machen wir Journaling zu einer 30-Sekunden-Gewohnheit statt einer 30-Minuten-Aufgabe?',
+        'Wie machen wir Privacy zum sichtbaren Vertrauenssignal — nicht zur versteckten Fußnote?',
+        'Wie machen wir KI-Analyse so transparent, dass aus Misstrauen Neugier wird?',
+      ],
+      concept: 'Clarity steht auf vier Säulen: (1) Privacy-First Architektur mit E2E-Verschlüsselung, optional rein lokaler Speicherung und Zero-Knowledge-Backend. (2) Zwei autonome on-device Agenten — der Sentiment Agent liest emotionalen Ton, der Pattern Agent erkennt wiederkehrende Trigger. (3) Weekly Digest als Herzstück: jede Woche eine sanfte Zusammenfassung mit Triggers, Themen und Insights. (4) Habit-First Design — Voice, Photo oder Quick Mood machen Einträge in unter 30 Sekunden möglich.',
+      outcome: 'Aktueller Stand (Konzeptphase): Research-Synthese aus 16 Interviews, 5 Kernerkenntnisse, 2 Personas, erste User Stories und eine 5-Säulen-Information-Architecture. Privacy-Strategie und Tonalität für die Privacy-Policy stehen. Wireframes, Hi-Fi-Design und IT-Architektur folgen in der nächsten Phase.',
+      tldr: {
+        problem: 'Gen-Z journalisiert nicht — wegen Privacy-Sorgen, KI-Skepsis und leeren Seiten.',
+        myRole:  'Research-Lead + IA-Lead im 4er-Team; Privacy-Strategie und Personas eigenverantwortlich.',
+        solution:'Privacy-first Journal-App mit 2 on-device Agenten, 30-Sek-Einträgen und Weekly Digest.',
+        outcome: 'Konzeptphase: Research synthetisiert, Personas + IA stehen. Nächster Schritt: Wireframes.',
+      },
+      metrics: [
+        { v: '16',  l: 'Interviews (18–25 J.)' },
+        { v: '5',   l: 'Kernerkenntnisse' },
+        { v: '94 %', l: 'wollen E2E-Verschlüsselung' },
+        { v: '<2 min', l: 'pro Eintrag' },
+      ],
+      learnings: [
+        'Privacy ist kein Feature, sondern Architektur. Sichtbar machen heißt Vertrauen aufbauen.',
+        'KI-Akzeptanz steigt dramatisch, wenn man erklärt wie sie funktioniert — Black-Box verlieren ist das Ziel.',
+        'Habit-Design schlägt Feature-Stacking. Die App, die Reibung wegnimmt, gewinnt.',
+        'Recruiter-Tipp: Forschen bevor man baut spart später Monate Refactoring.',
+      ],
+      wouldChange: [
+        'Klickbarer Prototyp parallel zu den Wireframes — Usability-Tests hätten zwei Iterationen mehr erlaubt.',
+        'Frühere Validierung der "Weekly Digest"-Visualisierung mit echten Beispieldaten.',
+      ],
+      media: [
+        { type: 'image', src: 'assets/Portfolio_Content/Clearity_Journal/Screenshot_20260508_105422 1.png', caption: 'Onboarding & Privacy-Awareness Screen', width: 1200, height: 800 },
+      ],
+    },
+    en: {
+      title: 'Clarity — Your mind stays yours',
+      description: 'A privacy-first journaling app concept, currently in research synthesis.',
+      problemStatement: "81 % of 18–25-year-olds don't journal regularly — not from lack of motivation, but because privacy worries, blank pages and opaque AI act as barriers.",
+      problemContext: 'We wanted to understand what stops Gen-Z from journaling regularly. The obvious answer would be "lack of motivation". But interviews showed that privacy worries, blank pages and black-box AI are the real barriers.',
+      problemImage: '',
+      researchContext: '16 qualitative and quantitative interviews with people aged 18–25. Affinity mapping on barriers, routines and privacy concerns. Competitive analysis of Day One, Reflectly, Stoic and Apple Journal. Personas and user stories in AS-A / I-WANT-TO / SO-THAT format.',
+      researchImage: '',
+      solutionStatement: 'Privacy-first journaling app with two on-device agents, 30-second entries and a Weekly Digest as the centerpiece.',
+      solutionContext: 'Four pillars: (1) E2E encryption with optional fully local storage and a zero-knowledge backend, (2) two autonomous on-device agents — sentiment + pattern, (3) Weekly Digest as a gentle weekly summary, (4) habit-first design with voice / photo / quick-mood entries in under 30 seconds.',
+      solutionImage: '',
+      beforeImage: '',
+      afterImage: '',
+      designScreens: [],
+      resultsImage: '',
+      reflection: "Halfway through, the team almost jumped into a UI before we'd cleared the privacy architecture. We caught it in time — but the lesson: in privacy-first projects, the data flow IS the design. Next phase: wireframes that surface the privacy state, not hide it.",
+      /* WIP loading-modal fields */
+      wipShortConcept: 'Privacy-first journaling — your thoughts, your control.',
+      wipDescription: 'A journaling app where users have 100% control over their data. Everything runs locally, sync is E2E encrypted, AI features are optional and transparent.',
+      wipPhase: 'Concept phase · research synthesis & IA',
+      wipProgress: 35,
+      wipETA: 'Q3 2026',
+      windowTitle: 'Clarity.app — privacy-first journaling 📓',
+      problemShort: '81% of 18–25-year-olds don\'t journal regularly — privacy worries, blank pages and opaque AI act as barriers.',
+      solutionShort: 'Privacy-first journal app: two on-device agents (sentiment + pattern), 30-sec entries, Weekly Digest. Fully local, E2E-encrypted.',
+      role: 'UX Research, Information Architecture, Privacy Strategy',
+      duration: 'Summer 2026 (ongoing, ~12 weeks)',
+      team: 'Team 4 · 4 people',
+      phase: 'Concept phase · research synthesis & IA',
+      tools: ['Figma', 'FigJam', 'Miro', 'Notion'],
+      roleChips: ['🔍 Research', '🗂️ IA', '🔒 Privacy', '✏️ UX'],
+      context: 'Semester project in the "Mobile Applications" course at HM Munich. Four students were tasked with concepting a fully user-centered mobile app — from research through high-level IT architecture. We decided early against trend-chasing and started with a needs question: what stops Gen-Z from journaling?',
+      research: [
+        '16 qualitative + quantitative interviews (ages 18–25)',
+        'Affinity mapping on barriers, routines and privacy concerns',
+        'Competitive analysis: Day One, Reflectly, Stoic, Apple Journal',
+        'Personas: "Anna" (privacy-aware) and "Marcus" (habit-struggler)',
+        'User stories in AS-A / I-WANT-TO / SO-THAT format with acceptance criteria',
+      ],
+      insights: [
+        '81 % don\'t journal regularly — habit problem, not motivation problem.',
+        '67 % won\'t use a journaling app that isn\'t fully secure. 94 % demand E2E encryption.',
+        '73 % uncomfortable with AI analyzing their thoughts — explainability dramatically reduces distrust.',
+        '38 % don\'t write because their entries "don\'t look beautiful" — beautiful-by-default is mandatory.',
+        '47 % want a weekly summary as a motivating payoff.',
+      ],
+      hmw: [
+        'How might we make journaling a 30-second habit instead of a 30-minute task?',
+        'How might we make privacy a visible trust signal rather than a hidden footnote?',
+        'How might we make AI analysis so transparent that distrust turns into curiosity?',
+      ],
+      concept: 'Clarity stands on four pillars: (1) Privacy-first architecture with E2E encryption, optional fully local storage and a zero-knowledge backend. (2) Two autonomous on-device agents — the Sentiment Agent reads emotional tone, the Pattern Agent spots recurring triggers. (3) Weekly Digest as the centerpiece: every week a gentle summary of triggers, themes and insights. (4) Habit-first design — voice, photo or quick-mood entries that finish in under 30 seconds.',
+      outcome: 'Current state (concept phase): research synthesis from 16 interviews, 5 core insights, 2 personas, first user stories and a 5-pillar information architecture. Privacy strategy and the tone for a plain-language privacy policy are set. Wireframes, hi-fi design and IT architecture follow in the next phase.',
+      tldr: {
+        problem: 'Gen-Z doesn\'t journal — privacy worries, AI skepticism and blank pages get in the way.',
+        myRole:  'Research lead + IA lead on a 4-person team; privacy strategy and personas owned end-to-end.',
+        solution:'Privacy-first journal app with 2 on-device agents, 30-sec entries and a Weekly Digest.',
+        outcome: 'Concept phase: research synthesized, personas + IA in place. Next: wireframes.',
+      },
+      metrics: [
+        { v: '16',  l: 'interviews (18–25 y.o.)' },
+        { v: '5',   l: 'core insights' },
+        { v: '94 %', l: 'want E2E encryption' },
+        { v: '<2 min', l: 'per entry' },
+      ],
+      learnings: [
+        'Privacy isn\'t a feature — it\'s architecture. Making it visible is how you build trust.',
+        'AI acceptance rises dramatically once people understand how it works — losing the black-box is the goal.',
+        'Habit design beats feature stacking. The app that removes friction wins.',
+        'Recruiter takeaway: researching before building saves months of refactoring later.',
+      ],
+      wouldChange: [
+        'A clickable prototype in parallel with the wireframes — usability tests could have run two more iterations.',
+        'Earlier validation of the "Weekly Digest" visualization with real sample data.',
+      ],
+      media: [
+        { type: 'image', src: 'assets/Portfolio_Content/Clearity_Journal/Screenshot_20260508_105422 1.png', caption: 'Onboarding & privacy awareness screen', width: 1200, height: 800 },
+      ],
+    },
+  },
+  
+  /* ═══════════════════════════════════════════════════════════════════════
+     SOULSPHERE BOT — NEW 4-SECTION STRUCTURE (section01 / section02 / section03 / section04)
+     ═══════════════════════════════════════════════════════════════════════ */
+  {
+    id: 'soulsphere',
+    emoji: '✨',
+    color: 'pink',
+    status: 'completed',
+    cover: 'assets/Portfolio_Content/Soulsphere_Bot/SOULSPHERE_Logo.png',
+    coverFit: 'contain',
+    de: {
+      title: 'Soulsphere Bot',
+      windowTitle: 'Soulsphere_Bot.exe — Conversational AI meets Astrology 🔮',
+      description: 'Ein Astrology-Chatbot für persönliche Reflexion. Research zeigt: Menschen nutzen astrologische Archetypen zur Selbsterkenntnis. Wir bauten die Erfahrung, nicht nur die App.',
+      heroImage: 'assets/Portfolio_Content/Soulsphere_Bot/hero.png',
+      keyInsight: '"Astrologie ist ein Spiegel, nicht eine Kristallkugel." Der eigentliche Wert liegt nicht in Vorhersagen, sondern in Selbst-Verständnis.',
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 01: THE PROBLEM
+         ═══════════════════════════════════════════════════════════════════ */
+      section01: {
+        number: '01/04',
+        title: 'Das Problem',
+        subtitle: 'Warum braucht es einen Astrology-Chatbot?',
+        statement: 'Menschen suchen nach Selbstverständnis, nutzen dafür Astrologie — aber halten Apps dafür für oberflächlich.',
+        context: 'Astrologie ist kein Nischen-Phänomen: 40% der Millennials verfolgen ihre Horoskope regelmäßig (Pew Research). Das echte Phänomen ist nicht das Vorhersagen — es ist das Narrativ. Ein Horoskop funktioniert wie ein Spiegel für Selbstreflexion: "Das stimmt für meine Situation." Das Problem: Bestehende Astro-Apps sind technisch einfach, narrativ dünn und fühlen sich wie Commerce-Tools an, nicht wie Werkzeuge für echte Reflexion. Wo sind die tieferen Fragen? Wo ist die Menschlichkeit?',
+        researchHighlights: [
+          '40% Millennials folgen Astrologie regelmäßig — aber Qualität der Inhalte ist bei 60% gering bewertet',
+          'Hauptnutzungsfall: Selbstverstehen während Unsicherheit (Beziehung, Karriere, Identität)',
+          'Existierende Apps fühlen sich zu kommerziell an — User wünschen sich Tiefe statt Vorhersagen',
+          'Archetypen (als psychologisches Konzept) wirken kraftvoller als generische Horoskope',
+        ],
+        images: [],
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 02: THE SOLUTION
+         ═══════════════════════════════════════════════════════════════════ */
+      section02: {
+        number: '02/04',
+        title: 'Die Lösung',
+        subtitle: 'Ein Chatbot, der wie ein Reflexions-Mentor wirkt',
+        statement: 'Nicht: automatische Horoskope. Sondern: ein Chatbot, der dich durch deine Astrologie-Archetypen führt und Reflexion fördert.',
+        designPrinciples: [
+          {
+            title: 'Archetype as Mirror',
+            description: 'Die Astrologie wird nicht als Wahrheit verkauft, sondern als psychologischer Spiegel — "Das sind deine Archetypen, was erkennst du darin über dich?"'
+          },
+          {
+            title: 'Conversational, not Mystical',
+            description: 'Der Bot spricht warm, direkt und ohne "mystische" Affektation. Astrologie-Jargon wird erklärt. Der Tonfall ist wie ein guter Freund, nicht ein Wahrsager.'
+          },
+          {
+            title: 'Privacy & Agency',
+            description: 'Keine Tracking, keine Upsells. Der Chat ist privat. Der User hat Kontrolle über, wie viel sie teilt — echte Sicherheit für Verletzlichkeit.'
+          },
+          {
+            title: 'Beautiful Simplicity',
+            description: 'Minimalistische UI mit langer Nachrichten-History. Der Chat selbst ist das Interface — keine Ablenkung.'
+          },
+        ],
+        designScreens: [
+          {
+            name: 'Onboarding: Birth Chart Input',
+            description: 'Einfache, vertrauenswürdige Erfassung von Geburtsdatum/Zeit/Ort. Visuelle Erklärung warum das nötig ist (nicht: "für dein Horoskop").',
+            image: '',
+          },
+          {
+            name: 'Chat Interface with Archetype Breakdown',
+            description: 'Dein Chart wird in 5 Archetypen aufgelöst (Sun/Moon/Rising/Venus/Mars). Der Bot kann zu jedem Archetyp antworten — "Was bedeutet deine Löwe-Venus in Liebesbeziehungen?" ist echte Reflexion.',
+            image: '',
+          },
+          {
+            name: 'Insights Panel: Your Archetypal Profile',
+            description: 'Eine lesbare Zusammenfassung deines Charts — nicht als "Vorhersage", sondern als "Deine innere Struktur". Farbcodiert, schön, verständlich.',
+            image: '',
+          },
+        ],
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 03: THE PROCESS
+         ═══════════════════════════════════════════════════════════════════ */
+      section03: {
+        number: '03/04',
+        title: 'Der Prozess',
+        subtitle: 'Von Astrologie-Skeptizismus zu echtem Verständnis',
+        phases: [
+          {
+            week: 'Woche 1: Research',
+            title: 'User Interviews mit Astrologie-Fans und Skeptikern',
+            description: '6 Interviews: 3 aktive Astrologie-User (2–5x pro Woche), 3 Skeptiker (aber neugierig). Was suchen sie? Wie nutzen sie bestehende Apps?',
+            learnings: [
+              'User wollen keine Vorhersagen — sie wollen Selbstverständnis (Archetypen wirken stärker als Horoskope)',
+              'Bestehende Apps fühlen sich zu kommerziell an (drängen Subscriptions, Readings, Berichte auf)',
+              'Archetypen-Konzept ist neuer Einstiegspunkt für Skeptiker ("Das ist psychologisch, nicht esoterisch")',
+            ]
+          },
+          {
+            week: 'Woche 2: Concepting',
+            title: 'Chatbot statt App — warum?',
+            description: 'Aus der Research kam raus: der größte Wert liegt in der Konversation. Ein strukturiertes Horoskop-Interface würde das zerstören. Chatbot erlaubt: kontextuelle Antworten, tiefere Fragen, echte Reflexion.',
+            learnings: [
+              'Conversational Interface fördert Tiefe über Breite — lieber 10 tiefe Fragen als 100 oberflächliche Facts',
+              'Die Archetypen werden zum Leitfaden für den Bot (nicht umgekehrt) — der Bot ist Mentor, nicht Oracle',
+            ]
+          },
+          {
+            week: 'Woche 3: Prototyping',
+            title: 'Low-fi Chat-Mockups + Archetypen-Research',
+            description: 'Parallele Arbeit: (1) Chat-UX-Prototyp in Figma (minimalistische Nachrichten-Timeline). (2) Recherche der 5 Key-Archetypen und deren psychologische Bedeutung (Sun/Moon/Rising/Venus/Mars).',
+            learnings: [
+              'Archetype-Descriptions müssen zweideutig sein — sie sollen wie ein Spiegel funktionieren, nicht wie dogmatische Aussagen',
+              'Chat-UI braucht viel Whitespace — Nachrichten sind Inhalte, keine Ablenkung',
+            ]
+          },
+          {
+            week: 'Woche 4: Implementation & Testing',
+            title: 'Clickable Prototype mit GPT + User Testing',
+            description: '1 User Testing Session mit 3 Usern (2 Astrologie-Fans, 1 Skeptiker). "Fühlt sich der Bot wie ein Mentor an oder wie ein Marketing-Tool?" Feedback: Tonfall anpassen, weniger "mystische" Language.',
+            learnings: [
+              'Der erste Prototyp-Tonfall war zu "astrologisch" — Nutzer wollten mehr Alltagssprache + Erklärungen',
+              'User wollen Know-your-Limits: Der Bot sollte klar sagen, wo die Astrologie aufhört und Psychologie anfängt',
+            ]
+          },
+        ],
+        keyInsights: [
+          'Archetypen sind psychologisch stärker als Horoskope — Menschen identifizieren sich mit Archetypen, nicht mit Vorhersagen',
+          'Conversational UI ist das Killer-Feature — Tiefe statt Breite',
+          'Tonfall ist kritisch: Ein Hauch zu "mystisch" und die App fühlt sich unglaubwürdig an',
+          'Skeptiker sind wertvoll: Ein skeptischer User testet rigoroser — wenn die App für ihn funktioniert, funktioniert sie',
+        ],
+      },
+
+      /* ═══════════════════════════════════════════════════════════════════
+         SECTION 04: OUTCOME & INSIGHTS
+         ═══════════════════════════════════════════════════════════════════ */
+      section04: {
+        number: '04/04',
+        title: 'Ergebnis & Learnings',
+        subtitle: 'Was wir über Astrologie, UX und Vertrauen gelernt haben',
+        metrics: [
+          { label: 'User Testing Sessions', value: '3', detail: 'Mit Astrologie-Fans und Skeptikern — 100% würden das Tool wieder nutzen' },
+          { label: 'Tonfall-Iterationen', value: '4', detail: 'Von zu "mystisch" zu "warm und erklärend"' },
+          { label: 'Archetypen im Scope', value: '5', detail: 'Sun/Moon/Rising/Venus/Mars — ausreichend Tiefe ohne zu komplex zu werden' },
+        ],
+        outcomes: [
+          'Funktionierender Chatbot-Prototyp, der Archetypen als Reflexions-Werkzeug nutzt',
+          'Tonfall-Guide für "Astrologie erklären ohne zu verkaufen"',
+          '3 getestete User alle mit "würde ich weitermachen"-Feedback',
+          'Klare Architektur: Archetypen-Datenbank + GPT-Prompt mit Tonfall-Constraint (wie Atolls)',
+        ],
+        userValidation: '3/3 User-Test-Teilnehmer würden das Tool regelmäßig nutzen. Skeptiker-User: "Das fühlt sich wie ein echtes Werkzeug an, nicht wie Hokuspokus."',
+        learnings: [
+          {
+            title: 'Archetypen sind mächtiger als Vorhersagen',
+            text: 'Das größte Learning: Menschen nutzen Astrologie nicht für Vorhersagen, sondern für Selbstverstehen. Archetypen-basierte Reflexion ist psychologisch wirksamer als "dein Glück heute".'
+          },
+          {
+            title: 'Tonfall entscheidet über Glaubwürdigkeit',
+            text: 'Ein zu "mystischer" Ton macht die App unglaubwürdig, besonders für Skeptiker. Der richtige Tonfall ("warm, erklärend, neugierig") öffnet die Tür auch für kritische User.'
+          },
+          {
+            title: 'Conversational UI ermöglicht echte Tiefe',
+            text: 'Ein Chatbot-Format erlaubt Konversation statt Monolog. Der User kann Fragen stellen, der Bot kann kontextuell antworten. Das ist die Essenz von Reflexion.'
+          },
+          {
+            title: 'Privacy ist kein Nice-to-Have',
+            text: 'Astrologie-User teilen private Gedanken. Eine offene Privacy-Policy und echte Datensicherheit sind nicht optional — sie sind Voraussetzung für Vertrauen.'
+          },
+        ],
+        wouldChange: [
+          'Ein zweites User-Testing mit 5+ Nutzern wäre gut gewesen — 3 ist zu klein um Muster zu sehen',
+          'Früher mit dem Tonfall-Testing starten — wir haben das erst in Iteration 3 angegangen',
+          'Eine "Limits"-Sektion einbauen, wo der Bot klar sagt "das ist Astrologie, keine Therapie"',
+          'Die Archetypen-Datenbank von Anfang an erweiterbar designen (nicht nur 5 Archetypen, sondern ein Framework)',
+        ],
+        reflection: 'Das Projekt hat mich gelehrt, dass die besten Tools diejenigen sind, die sich *klein* anfühlen. Ein Chatbot, der dich gut zuhört, wirkt mächtiger als eine App, die dir 1000 Features aufzwingt. Astrologie ist hier nur das Medium — das echte Projekt war: "Wie baue ich ein Tool, das echte Reflexion fördert?" Beim nächsten Projekt mit ganzheitlichen Tools würde ich noch früher mit echten Nutzern testen.',
+        wickedProblems: 'Wo verläuft die Grenze zwischen "Astrologie als Reflexions-Tool" und "Astrologie als Wahrsagung"? Wir haben versucht, sie klar zu ziehen, aber in der Realität sind User-Erwartungen gemischter als die Doku.',
+        futureConsiderations: 'Ein echtes Backend (nicht nur Prototype) würde Community-Features erlauben: "Teile dein Chart mit Freunden", "Vergleiche deine Archetypen". Das könnte das social-Network-Potenzial ent­sperren — derzeit ist es zu isoliert.',
+      },
+      
+      tldr: {
+        problem: 'Menschen nutzen Astrologie-Apps zur Selbsterkenntnis, aber existierende Apps fühlen sich kommerziell / oberflächlich an.',
+        myRole: 'Research (6 Interviews), UX-Konzept (Chatbot statt App), Prototyping, User Testing (3 Sessions).',
+        solution: 'Chatbot mit Archetypen-fokus (Sun/Moon/Rising/Venus/Mars) — Reflexions-Tool statt Wahrsager-Tool. Tonfall: warm, erklärend, psychologisch.',
+        outcome: '3/3 User würden weitermachen. Prototype funktioniert. Tonfall-Guide für "Astrologie ohne Verkaufen".',
+      },
+      problemShort: 'Astrologie-Apps sind entweder zu kommerziell oder zu oberflächlich — User suchen echte Selbsterkenntnis.',
+      solutionShort: 'Conversational Chatbot mit Archetypen als Reflexions-Spiegel — psychologisch statt wahrsagerisch.',
+      role: 'UX Research, Concept, Prototyping, User Testing',
+      duration: 'SS 2024 (4 Wochen)',
+      team: 'Solo (Uni-Projekt)',
+      tools: ['Figma', 'GPT-4', 'User Research'],
+      roleChips: ['🔍 Research', '🎨 Concept', '📱 Prototyping', '🧪 User Testing'],
+    },
+    en: {
+      title: 'Soulsphere Bot',
+      windowTitle: 'Soulsphere_Bot.exe — conversational AI meets astrology 🔮',
+      description: 'An astrology chatbot for personal reflection. Research shows: people use astrological archetypes for self-understanding. We built the experience, not just the app.',
+      heroImage: 'assets/Portfolio_Content/Soulsphere_Bot/hero.png',
+      keyInsight: '"Astrology is a mirror, not a crystal ball." The real value isn\'t predictions — it\'s self-understanding.',
+
+      section01: {
+        number: '01/04',
+        title: 'The Problem',
+        subtitle: 'Why does an astrology chatbot matter?',
+        statement: 'People search for self-understanding through astrology — but dismiss astrology apps as shallow.',
+        context: 'Astrology isn\'t niche: 40% of millennials follow their horoscopes regularly (Pew Research). But the real phenomenon isn\'t prediction — it\'s narrative. A horoscope works like a mirror for self-reflection: "That\'s true for my situation." The problem: existing astro-apps are technically simple, narratively thin, and feel like commerce tools, not reflection tools. Where are the deeper questions? Where\'s the humanity?',
+        researchHighlights: [
+          '40% of millennials follow astrology regularly — but 60% rate content quality as low',
+          'Main use case: self-understanding during uncertainty (relationships, career, identity)',
+          'Existing apps feel too commercial — users want depth, not predictions',
+          'Archetypes (as psychological concept) resonate stronger than generic horoscopes',
+        ],
+      },
+
+      section02: {
+        number: '02/04',
+        title: 'The Solution',
+        subtitle: 'A chatbot that acts like a reflection mentor',
+        statement: 'Not: automated horoscopes. But: a chatbot that guides you through your astrological archetypes and fosters reflection.',
+        designPrinciples: [
+          {
+            title: 'Archetype as Mirror',
+            description: 'Astrology isn\'t sold as truth — it\'s a psychological mirror. "These are your archetypes, what do you recognize in them?"'
+          },
+          {
+            title: 'Conversational, not Mystical',
+            description: 'The bot speaks warmly, directly, without "mystical" affectation. Astrology jargon is explained. The tone is like a good friend, not a fortune teller.'
+          },
+          {
+            title: 'Privacy & Agency',
+            description: 'No tracking, no upsells. The chat is private. You control what you share — genuine safety for vulnerability.'
+          },
+          {
+            title: 'Beautiful Simplicity',
+            description: 'Minimalist UI with long message history. The chat itself is the interface — no distraction.'
+          },
+        ],
+        designScreens: [
+          {
+            name: 'Onboarding: Birth Chart Input',
+            description: 'Simple, trustworthy capture of birth date/time/place. Visual explanation why it matters (not: "for your horoscope").',
+            image: '',
+          },
+          {
+            name: 'Chat Interface with Archetype Breakdown',
+            description: 'Your chart broken into 5 archetypes (Sun/Moon/Rising/Venus/Mars). Bot can answer to each — "What does your Scorpio Venus mean for relationships?" is genuine reflection.',
+            image: '',
+          },
+          {
+            name: 'Insights Panel: Your Archetypal Profile',
+            description: 'A readable summary of your chart — not as "prediction" but "your inner structure." Color-coded, beautiful, understandable.',
+            image: '',
+          },
+        ],
+      },
+
+      section03: {
+        number: '03/04',
+        title: 'The Process',
+        subtitle: 'From astrology skepticism to genuine understanding',
+        phases: [
+          {
+            week: 'Week 1: Research',
+            title: 'User interviews with astrology fans and skeptics',
+            description: '6 interviews: 3 active astrology users (2–5x per week), 3 skeptics (but curious). What are they searching for? How do they use existing apps?',
+            learnings: [
+              'Users don\'t want predictions — they want self-understanding (archetypes resonate stronger than horoscopes)',
+              'Existing apps feel too commercial (pushing subscriptions, readings, reports)',
+              'Archetype concept is a new entry point for skeptics ("This is psychology, not esotericism")',
+            ]
+          },
+          {
+            week: 'Week 2: Concepting',
+            title: 'Chatbot instead of app — why?',
+            description: 'From research: the greatest value lies in conversation. A structured horoscope interface would destroy that. Chatbot allows: contextual answers, deeper questions, genuine reflection.',
+            learnings: [
+              'Conversational interface drives depth over breadth — 10 deep questions beat 100 surface facts',
+              'Archetypes become the chatbot\'s guide (not the reverse) — the bot is mentor, not oracle',
+            ]
+          },
+          {
+            week: 'Week 3: Prototyping',
+            title: 'Low-fi chat mockups + archetype research',
+            description: 'Parallel work: (1) Chat UX prototype in Figma (minimalist message timeline). (2) Research the 5 key archetypes and their psychological meaning (Sun/Moon/Rising/Venus/Mars).',
+            learnings: [
+              'Archetype descriptions need to be ambiguous — they should mirror-like, not dogmatic',
+              'Chat UI needs lots of whitespace — messages are content, not distraction',
+            ]
+          },
+          {
+            week: 'Week 4: Implementation & Testing',
+            title: 'Clickable prototype with GPT + user testing',
+            description: '1 user testing session with 3 participants (2 astrology fans, 1 skeptic). "Does the bot feel like a mentor or a marketing tool?" Feedback: adjust tone, less "mystical" language.',
+            learnings: [
+              'First prototype tone was too "astrological" — users wanted more everyday language + explanations',
+              'Users want know-your-limits: The bot should clearly state where astrology stops and psychology begins',
+            ]
+          },
+        ],
+        keyInsights: [
+          'Archetypes are psychologically stronger than horoscopes — people identify with archetypes, not predictions',
+          'Conversational UI is the killer feature — depth over breadth',
+          'Tone is critical: slightly too "mystical" and the app feels untrustworthy',
+          'Skeptics are valuable: a skeptical user tests more rigorously — if it works for them, it works',
+        ],
+      },
+
+      section04: {
+        number: '04/04',
+        title: 'Results & Learnings',
+        subtitle: 'What we learned about astrology, UX, and trust',
+        metrics: [
+          { label: 'User Testing Sessions', value: '3', detail: 'With astrology fans and skeptics — 100% would use again' },
+          { label: 'Tone Iterations', value: '4', detail: 'From too "mystical" to "warm and explanatory"' },
+          { label: 'Archetypes in Scope', value: '5', detail: 'Sun/Moon/Rising/Venus/Mars — enough depth without overwhelming complexity' },
+        ],
+        outcomes: [
+          'Working chatbot prototype using archetypes as reflection tool',
+          'Tone guide for "explaining astrology without selling it"',
+          '3 user test participants all with "would use again" feedback',
+          'Clear architecture: archetype database + GPT prompt with tone constraint (like Atolls)',
+        ],
+        userValidation: '3/3 user test participants would use regularly. Skeptic user: "This feels like a real tool, not hocus pocus."',
+        learnings: [
+          {
+            title: 'Archetypes are more powerful than predictions',
+            text: 'The biggest learning: people don\'t use astrology for predictions, they use it for self-understanding. Archetype-based reflection is psychologically stronger than "your luck today."'
+          },
+          {
+            title: 'Tone determines credibility',
+            text: 'A too-"mystical" tone makes the app untrustworthy, especially for skeptics. The right tone ("warm, explanatory, curious") opens doors to critical users.'
+          },
+          {
+            title: 'Conversational UI enables genuine depth',
+            text: 'A chatbot format allows conversation instead of monologue. The user can ask questions, the bot responds contextually. That\'s the essence of reflection.'
+          },
+          {
+            title: 'Privacy is non-negotiable',
+            text: 'Astrology users share private thoughts. Open privacy policy and real data security aren\'t optional — they\'re prerequisites for trust.'
+          },
+        ],
+        wouldChange: [
+          'A second round of testing with 5+ users — 3 is too small to spot patterns',
+          'Start tone testing earlier — we addressed it in iteration 3',
+          'Build a "Limits" section where the bot clearly says "this is astrology, not therapy"',
+          'Design the archetype database as extensible from day one (not just 5 archetypes, but a framework)',
+        ],
+        reflection: 'This project taught me that the best tools are the ones that feel *small*. A chatbot that listens well feels more powerful than an app forcing 1000 features on you. Astrology here was just the medium — the real project was: "How do I build a tool that fosters genuine reflection?" Next time with holistic tools, I\'d test with real users even sooner.',
+        wickedProblems: 'Where\'s the line between "astrology as reflection tool" vs. "astrology as fortune-telling"? We tried drawing it clearly, but real user expectations are messier than the documentation.',
+        futureConsiderations: 'A real backend (not just prototype) would unlock community features: "Share your chart with friends", "Compare your archetypes". That could unlock social-network potential — currently it\'s too isolated.',
+      },
+      
+      tldr: {
+        problem: 'People use astrology apps for self-understanding, but existing apps feel commercial / shallow.',
+        myRole: 'Research (6 interviews), UX concept (chatbot vs. app), prototyping, user testing (3 sessions).',
+        solution: 'Chatbot focused on archetypes (Sun/Moon/Rising/Venus/Mars) — reflection tool vs. fortune-teller. Tone: warm, explanatory, psychological.',
+        outcome: '3/3 users would continue. Prototype works. Tone guide for "astrology without selling."',
+      },
+      problemShort: 'Astrology apps are either too commercial or too shallow — users want genuine self-understanding.',
+      solutionShort: 'Conversational chatbot with archetypes as reflection mirror — psychological, not mystical.',
+      role: 'UX Research, Concept, Prototyping, User Testing',
+      duration: 'Summer 2024 (4 weeks)',
+      team: 'Solo (university project)',
+      tools: ['Figma', 'GPT-4', 'User Research'],
+      roleChips: ['🔍 Research', '🎨 Concept', '📱 Prototyping', '🧪 User Testing'],
+    },
+  },
+];
+
+
+/* ─── Skill catalogue & bidirectional skill↔project mapping ──────────
+   Moved here from app.jsx so both app.jsx (renders SkillContent windows)
+   and windows.jsx (renders the skill filter inside Projects.exe) can read
+   from the same source of truth. */
+const PROJECT_TAGS = {
+  atolls:    ['research', 'service', 'testing', 'figma', 'react', 'n8n', 'html', 'js', 'docker'],
+  echoes:    ['research', 'service', 'testing', 'figma', 'js'],
+  soulsphere:['figma', 'testing', 'js'],
+  vinted:    ['figma'],
+  munichapp: ['research', 'service', 'testing', 'figma'],
+  donbosco:  ['research', 'service', 'figma', 'react', 'n8n', 'docker'],
+  clarity:   ['research', 'service', 'figma', 'react', 'js'],
+};
+
+const SKILL_CATALOG = [
+  { key: 'research', de: 'UX Research',    en: 'UX Research',    icon: '🔍',  color: '#B8CDC8',
+    tooltip_de: ['6 Interviews · Empathy & Journey Maps', '4 Personas · 3 Generationen'],
+    tooltip_en: ['6 interviews · empathy & journey maps', '4 personas · 3 generations'] },
+  { key: 'service',  de: 'Service Design', en: 'Service Design', icon: '🗺️', color: '#FDE68A',
+    tooltip_de: ['JTBD · Service Blueprints', 'Hybride Touchpoint-Systeme'],
+    tooltip_en: ['JTBD · service blueprints', 'Hybrid touchpoint systems'] },
+  { key: 'testing',  de: 'Testing',        en: 'Testing',        icon: '🧪', color: '#F9C8E4',
+    tooltip_de: ['5 Usability-Tests (Echoes)', '4 Persona-Tests (Munich)'],
+    tooltip_en: ['5 usability tests (Echoes)', '4 persona tests (Munich)'] },
+  { key: 'figma',    de: 'Figma',          en: 'Figma',          icon: '🎨', color: '#DDB8C6',
+    tooltip_de: ['Hi-Fi Prototypen · Brand-Bibles', 'Alle 6 Projekte'],
+    tooltip_en: ['Hi-fi prototypes · brand bibles', 'All 6 projects'] },
+  { key: 'react',    de: 'React',          en: 'React',          icon: '⚛️', color: '#8FAACA',
+    tooltip_de: ['Atolls Dashboard (~60% solo)', 'TypeScript · Next.js'],
+    tooltip_en: ['Atolls dashboard (~60% solo)', 'TypeScript · Next.js'] },
+  { key: 'n8n',      de: 'n8n',            en: 'n8n',            icon: '🔗', color: '#FDE68A',
+    tooltip_de: ['5-stufige AI-Pipeline · GPT + Slack', 'Atolls Review Hub'],
+    tooltip_en: ['5-stage AI pipeline · GPT + Slack', 'Atolls Review Hub'] },
+  { key: 'html',     de: 'HTML / CSS',     en: 'HTML / CSS',     icon: '🌐', color: '#B8CDC8',
+    tooltip_de: ['Atolls Frontend (Next.js + Grid)', 'Dieses Portfolio (Y2K-OS)'],
+    tooltip_en: ['Atolls frontend (Next.js + grid)', 'This portfolio (Y2K-OS)'] },
+  { key: 'js',       de: 'JavaScript',     en: 'JavaScript',     icon: '⚡', color: '#FFE9B5',
+    tooltip_de: ['Vanilla + React · Interaktion', 'Atolls · Journal · Portfolio'],
+    tooltip_en: ['Vanilla + React · interactions', 'Atolls · Journal · portfolio'] },
+  { key: 'docker',   de: 'Docker',         en: 'Docker',         icon: '🐳', color: '#8FAACA',
+    tooltip_de: ['Dev-Container · Compose-Stacks', 'Atolls · DonBosco'],
+    tooltip_en: ['Dev containers · compose stacks', 'Atolls · DonBosco'] },
+];
+
+window.NURIA = NURIA;
+window.STR = STR;
+window.PROJECTS = PROJECTS;
+window.SKILL_CATALOG = SKILL_CATALOG;
+window.PROJECT_TAGS = PROJECT_TAGS;

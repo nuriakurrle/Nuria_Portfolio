@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build / deploy
+.vercel
+
+# Editor
+.vscode/
+
+# Lokale Original-Medien (NICHT zu GitHub – zu groß; separat sichern!)
+assets_originals/
+
+# OS
+.DS_Store
+Thumbs.db

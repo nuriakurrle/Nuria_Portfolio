@@ -1,0 +1,355 @@
+/* global React */
+/* PAINT.EXE — pink Y2K paint with preset sketches + draw mode + save PNG */
+const { useRef: usePaintRef, useState: usePaintState, useEffect: usePaintEffect } = React;
+
+/* Pink Y2K palette (matches the screenshot) */
+const PAINT_PALETTE = [
+  '#000000', '#7F7F7F', '#C44CA0', '#E08AC4', '#F7C8E0', '#FFD6E8',
+  '#FFFFFF', '#BFBFBF', '#7A5FFF', '#A48CFF', '#C9B7FF', '#E4DCFF',
+  '#FF6B6B', '#FFA8A8', '#FFD6A5', '#FFE9C9', '#A8FF60', '#CFFFE3',
+  '#3A8DCB', '#AEE6FF', '#2E8A5A', '#FBE38C', '#F2A65A', '#D97757',
+];
+
+/* Preset sketches that paint themselves on the canvas */
+const SKETCHES = {
+  wireframe: {
+    title: { de: 'Skizze: Wireframe — Atolls Map', en: 'Sketch: Wireframe — Atolls Map' },
+    draw: (ctx, w, h) => {
+      ctx.strokeStyle = '#2a2030'; ctx.lineWidth = 2; ctx.lineCap = 'round';
+      // phone outline
+      const px = w*0.32, py = 30, pw = w*0.36, ph = h - 60;
+      roundRect(ctx, px, py, pw, ph, 18); ctx.stroke();
+      // notch
+      ctx.fillStyle = '#2a2030';
+      ctx.fillRect(px + pw/2 - 26, py + 6, 52, 6);
+      // header
+      ctx.strokeRect(px+14, py+24, pw-28, 32);
+      label(ctx, '☰ atolls', px+22, py+44);
+      // map area (hatched)
+      const mx = px+14, my = py+62, mw = pw-28, mh = 120;
+      ctx.strokeRect(mx, my, mw, mh);
+      hatch(ctx, mx+2, my+2, mw-4, mh-4, '#C9B7FF');
+      // pins
+      pin(ctx, mx+mw*0.3, my+mh*0.4);
+      pin(ctx, mx+mw*0.6, my+mh*0.6);
+      pin(ctx, mx+mw*0.45, my+mh*0.25);
+      // card stack
+      let cy = py+200;
+      for (let i=0; i<3; i++) {
+        ctx.strokeRect(px+14, cy, pw-28, 38);
+        ctx.fillStyle = '#666'; ctx.font = '11px monospace';
+        ctx.fillText('▢ location  ─ ─ ─ ─ ─', px+22, cy+16);
+        ctx.fillText('1.2km · open', px+22, cy+30);
+        cy += 44;
+      }
+      // tabbar
+      ctx.strokeRect(px+14, py+ph-46, pw-28, 32);
+      for (let i=0; i<4; i++) {
+        ctx.fillStyle = i===0 ? '#C44CA0' : '#bbb';
+        ctx.fillRect(px+24+i*((pw-48)/4), py+ph-36, 14, 14);
+      }
+      // annotation
+      ctx.strokeStyle = '#C44CA0'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(px-8, py+44); ctx.lineTo(px+14, py+44); ctx.stroke();
+      ctx.fillStyle = '#C44CA0'; ctx.font = '13px "Architects Daughter", cursive';
+      ctx.textAlign = 'right';
+      ctx.fillText('hamburger?', px-12, py+30);
+      ctx.fillText('or icon-bar?', px-12, py+46);
+      ctx.beginPath(); ctx.moveTo(px+pw+8, py+pw*0.4); ctx.lineTo(px+pw-14, py+pw*0.4); ctx.stroke();
+      ctx.textAlign = 'left';
+      ctx.fillText('user pins!', px+pw+12, py+pw*0.4);
+      ctx.fillText('persistent?', px+pw+12, py+pw*0.4+16);
+    },
+  },
+  flow: {
+    title: { de: 'Skizze: User Flow — Echoes', en: 'Sketch: User Flow — Echoes' },
+    draw: (ctx, w, h) => {
+      ctx.strokeStyle = '#2a2030'; ctx.lineWidth = 2;
+      ctx.font = '13px "Architects Daughter", cursive'; ctx.fillStyle = '#2a2030';
+      const nodes = [
+        { x: 60,  y: 80,  t: 'home' },
+        { x: 220, y: 80,  t: 'scan QR' },
+        { x: 380, y: 80,  t: 'object \nrecognized' },
+        { x: 540, y: 80,  t: 'story \nplays' },
+        { x: 380, y: 220, t: 'save to \nmemory book' },
+        { x: 220, y: 220, t: 'share \nstory' },
+        { x: 60,  y: 220, t: 'browse \nmuseum' },
+      ];
+      // boxes
+      nodes.forEach(n => {
+        roundRect(ctx, n.x, n.y, 110, 60, 8); ctx.stroke();
+        const lines = n.t.split('\n');
+        lines.forEach((line, i) => ctx.fillText(line, n.x+10, n.y+24+i*16));
+      });
+      // arrows
+      const arrows = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6],[6,0],[2,4]];
+      ctx.strokeStyle = '#C44CA0';
+      arrows.forEach(([a,b]) => {
+        const A = nodes[a], B = nodes[b];
+        arrow(ctx, A.x+55, A.y+60, B.x+55, B.y);
+      });
+      // annotation
+      ctx.fillStyle = '#7A5FFF'; ctx.font = '14px "Architects Daughter"';
+      ctx.fillText('★ key delight moment', 380, 200);
+      ctx.fillStyle = '#2E8A5A';
+      ctx.fillText('feedback: needs onboarding tip here ↓', 60, 60);
+    },
+  },
+  moodboard: {
+    title: { de: 'Skizze: Moodboard — Pixel Lilac', en: 'Sketch: Moodboard — Pixel Lilac' },
+    draw: (ctx, w, h) => {
+      // tile grid
+      const cols = 5, rows = 3, pad = 12;
+      const tw = (w - pad*(cols+1)) / cols;
+      const th = (h - pad*(rows+1)) / rows;
+      const colors = ['#C9B7FF','#F7C8E0','#AEE6FF','#FFD6A5','#CFFFE3',
+                      '#FBE38C','#FFA8A8','#7A5FFF','#E08AC4','#3A8DCB',
+                      '#2E8A5A','#F2A65A','#D97757','#A48CFF','#FDE68A'];
+      const labels = ['lilac','pink','sky','peach','mint','butter','rose','plum','candy','deep',
+                      'forest','rust','clay','wisp','sun'];
+      for (let r=0; r<rows; r++) for (let c=0; c<cols; c++) {
+        const i = r*cols+c;
+        const x = pad + c*(tw+pad), y = pad + r*(th+pad);
+        ctx.fillStyle = colors[i]; ctx.fillRect(x, y, tw, th);
+        ctx.strokeStyle = '#2a2030'; ctx.lineWidth = 1.5; ctx.strokeRect(x,y,tw,th);
+        ctx.fillStyle = '#2a2030'; ctx.font = '10px monospace';
+        ctx.fillText(labels[i], x+4, y+th-6);
+      }
+    },
+  },
+  blank: {
+    title: { de: 'Leere Leinwand — leg los', en: 'Blank canvas — go wild' },
+    draw: (ctx, w, h) => {
+      ctx.fillStyle = '#fff'; ctx.fillRect(0,0,w,h);
+    },
+  },
+};
+
+/* helpers */
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+function hatch(ctx, x, y, w, h, color) {
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
+  ctx.strokeStyle = color; ctx.lineWidth = 1;
+  for (let i=-h; i<w+h; i+=8) {
+    ctx.beginPath(); ctx.moveTo(x+i,y); ctx.lineTo(x+i+h,y+h); ctx.stroke();
+  }
+  ctx.restore();
+}
+function pin(ctx, x, y) {
+  ctx.fillStyle = '#C44CA0';
+  ctx.beginPath();
+  ctx.arc(x, y-6, 5, 0, Math.PI*2); ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(x-4, y-4); ctx.lineTo(x+4, y-4); ctx.lineTo(x, y+4); ctx.closePath(); ctx.fill();
+}
+function arrow(ctx, x1, y1, x2, y2) {
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  const ang = Math.atan2(y2-y1, x2-x1);
+  ctx.beginPath();
+  ctx.moveTo(x2, y2);
+  ctx.lineTo(x2 - 8*Math.cos(ang - 0.35), y2 - 8*Math.sin(ang - 0.35));
+  ctx.lineTo(x2 - 8*Math.cos(ang + 0.35), y2 - 8*Math.sin(ang + 0.35));
+  ctx.closePath(); ctx.fillStyle = '#C44CA0'; ctx.fill();
+}
+function label(ctx, text, x, y) {
+  ctx.fillStyle = '#2a2030'; ctx.font = '14px "Architects Daughter", cursive';
+  ctx.fillText(text, x, y);
+}
+
+function PaintContent({ lang }) {
+  const canvasRef = usePaintRef(null);
+  const overlayRef = usePaintRef(null);
+  const [tool, setTool] = usePaintState('pencil'); // pencil | brush | eraser | fill
+  const [color, setColor] = usePaintState('#C44CA0');
+  const [size, setSize] = usePaintState(3);
+  const [sketch, setSketch] = usePaintState('wireframe');
+  const [coord, setCoord] = usePaintState({ x: 0, y: 0 });
+  const isDrawing = usePaintRef(false);
+  const last = usePaintRef(null);
+
+  const W = 480, H = 320;
+
+  /* Load a sketch */
+  function loadSketch(key) {
+    setSketch(key);
+    const cvs = canvasRef.current;
+    if (!cvs) return;
+    const ctx = cvs.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H);
+    SKETCHES[key].draw(ctx, W, H);
+  }
+  usePaintEffect(() => { loadSketch('wireframe'); }, []);
+
+  /* Drawing */
+  function getPos(e) {
+    const cvs = canvasRef.current;
+    const rect = cvs.getBoundingClientRect();
+    const sx = W / rect.width, sy = H / rect.height;
+    const cx = (e.touches?.[0]?.clientX ?? e.clientX) - rect.left;
+    const cy = (e.touches?.[0]?.clientY ?? e.clientY) - rect.top;
+    return { x: cx * sx, y: cy * sy };
+  }
+  function down(e) {
+    e.preventDefault();
+    const p = getPos(e);
+    isDrawing.current = true;
+    last.current = p;
+    if (tool === 'fill') { floodFill(p.x|0, p.y|0); isDrawing.current = false; return; }
+    stroke(p, p);
+  }
+  function move(e) {
+    const p = getPos(e);
+    setCoord({ x: p.x|0, y: p.y|0 });
+    if (!isDrawing.current) return;
+    stroke(last.current, p);
+    last.current = p;
+  }
+  function up() { isDrawing.current = false; last.current = null; }
+
+  function stroke(a, b) {
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    if (tool === 'eraser') { ctx.strokeStyle = '#ffffff'; ctx.lineWidth = size * 3; }
+    else if (tool === 'brush') { ctx.strokeStyle = color; ctx.lineWidth = size * 2.5; ctx.globalAlpha = 0.6; }
+    else { ctx.strokeStyle = color; ctx.lineWidth = size; ctx.globalAlpha = 1; }
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  function floodFill(x, y) {
+    const ctx = canvasRef.current.getContext('2d');
+    const img = ctx.getImageData(0,0,W,H);
+    const data = img.data;
+    const idx = (x,y) => (y*W + x) * 4;
+    const target = [data[idx(x,y)], data[idx(x,y)+1], data[idx(x,y)+2], data[idx(x,y)+3]];
+    const repl = hexToRgba(color);
+    if (target[0]===repl[0] && target[1]===repl[1] && target[2]===repl[2]) return;
+    const stack = [[x,y]];
+    const match = (i) => Math.abs(data[i]-target[0])<8 && Math.abs(data[i+1]-target[1])<8 && Math.abs(data[i+2]-target[2])<8;
+    while (stack.length) {
+      const [cx,cy] = stack.pop();
+      if (cx<0||cy<0||cx>=W||cy>=H) continue;
+      const i = idx(cx,cy);
+      if (!match(i)) continue;
+      data[i]=repl[0]; data[i+1]=repl[1]; data[i+2]=repl[2]; data[i+3]=255;
+      stack.push([cx+1,cy],[cx-1,cy],[cx,cy+1],[cx,cy-1]);
+    }
+    ctx.putImageData(img, 0, 0);
+  }
+  function hexToRgba(hex) {
+    const n = parseInt(hex.slice(1), 16);
+    return [(n>>16)&255, (n>>8)&255, n&255, 255];
+  }
+
+  function saveImage() {
+    const cvs = canvasRef.current;
+    const a = document.createElement('a');
+    a.href = cvs.toDataURL('image/png');
+    a.download = `nuria_paint_${Date.now()}.png`;
+    a.click();
+  }
+
+  function clearCanvas() {
+    const ctx = canvasRef.current.getContext('2d');
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(0,0,W,H);
+  }
+
+  const tools = [
+    { id: 'pencil',  glyph: '✏', label: lang==='de'?'Stift':'Pencil' },
+    { id: 'brush',   glyph: '🖌', label: lang==='de'?'Pinsel':'Brush' },
+    { id: 'eraser',  glyph: '🧽', label: lang==='de'?'Radierer':'Eraser' },
+    { id: 'fill',    glyph: '🪣', label: lang==='de'?'Füllen':'Fill' },
+  ];
+
+  return (
+    <div className="paint-app">
+      {/* Menubar */}
+      <div className="paint-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span>
+        <span><u>I</u>mage</span><span><u>C</u>olors</span><span><u>H</u>elp</span>
+      </div>
+
+      <div className="paint-toolbar-row">
+        {/* Tool column */}
+        <div className="paint-tools">
+          {tools.map(tt => (
+            <button key={tt.id} className={`p-tool ${tool===tt.id?'on':''}`} onClick={() => setTool(tt.id)} title={tt.label}>
+              <span>{tt.glyph}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Canvas */}
+        <div className="paint-canvas-wrap">
+          <canvas
+            ref={canvasRef}
+            width={W} height={H}
+            className="paint-canvas"
+            onMouseDown={down} onMouseMove={move} onMouseUp={up} onMouseLeave={up}
+            onTouchStart={down} onTouchMove={move} onTouchEnd={up}
+          />
+        </div>
+      </div>
+
+      {/* Palette */}
+      <div className="paint-palette">
+        {PAINT_PALETTE.map(c => (
+          <button
+            key={c}
+            className={`swatch ${color===c?'on':''}`}
+            style={{ background: c }}
+            onClick={() => setColor(c)}
+            title={c}
+          />
+        ))}
+        <div className="paint-current" title="Current">
+          <span style={{ background: color }} />
+        </div>
+        <div className="paint-size">
+          {[2,4,7,11].map(s => (
+            <button key={s} className={`p-size ${size===s?'on':''}`} onClick={() => setSize(s)}>
+              <span style={{ width: s, height: s, background: '#2a2030' }} />
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Sketch / action bar */}
+      <div className="paint-actions">
+        <span className="mono" style={{fontSize:11, color:'#666'}}>{lang==='de'?'Skizze laden:':'Load sketch:'}</span>
+        {Object.entries(SKETCHES).map(([k, s]) => (
+          <button key={k} className={`pix-btn ${sketch===k?'primary':''}`} onClick={() => loadSketch(k)} style={{fontSize:11, padding:'2px 6px'}}>
+            {k === 'wireframe' && '▦'} {k === 'flow' && '→'} {k === 'moodboard' && '▣'} {k === 'blank' && '☐'} {' '}
+            {k}
+          </button>
+        ))}
+        <span style={{flex:1}} />
+        <button className="pix-btn" onClick={clearCanvas} style={{fontSize:11}}>✕ {lang==='de'?'Leeren':'Clear'}</button>
+        <button className="pix-btn primary" onClick={saveImage} style={{fontSize:11}}>💾 {lang==='de'?'Speichern (.png)':'Save (.png)'}</button>
+      </div>
+
+      {/* Status bar */}
+      <div className="paint-statusbar">
+        <span>{lang==='de'?'Für Hilfe: F1':'For help, press F1'}</span>
+        <span style={{flex:1}} />
+        <span>{coord.x}, {coord.y}</span>
+        <span>{W}x{H}</span>
+      </div>
+
+      <div className="paint-caption mono">
+        {SKETCHES[sketch].title[lang]}
+      </div>
+    </div>
+  );
+}
+
+window.PaintContent = PaintContent;

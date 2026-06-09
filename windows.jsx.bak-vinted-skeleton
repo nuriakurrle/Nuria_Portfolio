@@ -1,0 +1,2378 @@
+/* global React, STR, PROJECTS, NURIA, SKILL_CATALOG, PROJECT_TAGS, Placeholder, MediaGallery, Tabs */
+const { useState: useStateW } = React;
+
+/* ─────────────────────────────────────────────────────────────────────
+   TECH STACK — name → local logo map.
+   Only entries listed here render with a logo image; anything not in the
+   map falls back to a clean text-only tile (still styled, just no icon).
+───────────────────────────────────────────────────────────────────── */
+const TOOL_LOGOS = {
+  /* exact-name matches */
+  'Figma':                    'assets/logos/figma_logo.png',
+  'FigJam':                   'assets/logos/figma_logo.png',
+  'React':                    'assets/logos/react_logo.png',
+  'React / Next.js':          'assets/logos/react_logo.png',
+  'TypeScript / React':       'assets/logos/react_logo.png',
+  'Next.js':                  'assets/logos/react_logo.png',
+  'HTML / CSS':               'assets/logos/html_css_logo.png',
+  'HTML/CSS':                 'assets/logos/html_css_logo.png',
+  'n8n':                      'assets/logos/n8n_logo.png',
+  'n8n (Grundkenntnisse)':    'assets/logos/n8n_logo.png',
+  'n8n (basics)':             'assets/logos/n8n_logo.png',
+  'Node.js':                  'assets/logos/nodejs_logo.png',
+  'Python':                   'assets/logos/python.png',
+  'Python (Grundkenntnisse)': 'assets/logos/python.png',
+  'Python (basics)':          'assets/logos/python.png',
+  'OpenAI API':               'assets/logos/openai.png',
+  'OpenAI':                   'assets/logos/openai.png',
+  'ChatGPT':                  'assets/logos/openai.png',
+  'Docker':                   'assets/logos/docker_logo.png',
+};
+
+function getToolLogo(name) {
+  if (!name) return null;
+  if (TOOL_LOGOS[name]) return TOOL_LOGOS[name];
+  /* loose match: any known token appearing in the name */
+  const lower = name.toLowerCase();
+  const key = Object.keys(TOOL_LOGOS).find(k => lower.includes(k.toLowerCase().split(' ')[0]));
+  return key ? TOOL_LOGOS[key] : null;
+}
+
+function TechStack({ items, title }) {
+  if (!items || !items.length) return null;
+  return (
+    <div className="tech-items" role="list">
+      {items.map((name, i) => {
+        const logo = getToolLogo(name);
+        return (
+          <div key={`${name}-${i}`} className={`tech-item ${logo ? 'has-logo' : 'no-logo'}`} role="listitem" title={name}>
+            {logo
+              ? <img src={logo} alt={name} loading="lazy" />
+              : <span className="tech-glyph" aria-hidden="true">⚙️</span>}
+            <span>{name}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   TL;DR CARD — 4-cell case-study summary at the top of every project
+   ─────────────────────────────────────────────────────────────────────
+   Goal: a recruiter has the whole case study in their head in 10 seconds.
+   Problem → My role → Solution → Outcome, in that scan order. */
+// TL;DR card removed — replaced by compact overview-first layout.
+
+/* ═════════════════════════════════════════════════════════════════════
+   RECRUITER WINDOW — the priority view
+═════════════════════════════════════════════════════════════════════ */
+function RecruiterContent({ t, lang, openProject, openWindow, closeWindow, onDownloadCV, openLightbox }) {
+  /* Marquee projects — curated top 3 in fixed order: Atolls, Echoes, Vinted.
+     Anything else falls into the "more projects" footer link. This is the
+     Amanda-style index: 3 scannable cards, not the full catalogue. */
+  const marqueeIds = ['atolls', 'echoes', 'vinted'];
+  const topProjects = marqueeIds
+    .map(id => PROJECTS.find(p => p.id === id && p.status === 'completed'))
+    .filter(Boolean);
+  /* WIPs currently in progress — shown in a separate section below. */
+  const wipProjects = PROJECTS.filter(p => p.status === 'wip').slice(0, 3);
+
+  /* Closing transition — used by every project-card click and the
+     "view all projects" CTA. The pattern: trigger fade, perform the next
+     nav, then close Recruiter once the animation completes. CSS class
+     .recruiter-content--closing runs the scale-down + fade. */
+  const [closing, setClosing] = React.useState(false);
+  const handOff = (nav) => {
+    if (closing) return;
+    setClosing(true);
+    if (typeof nav === 'function') nav();
+    setTimeout(() => { if (closeWindow) closeWindow('recruiter'); }, 420);
+  };
+  /* Derive the city from NURIA.location (e.g. "München · Ottobrunn" → "München"). */
+  const city = (NURIA.location || '').split('·')[0].trim();
+
+  return (
+    <div className={`recruiter-content recruiter-content--landing${closing ? ' recruiter-content--closing' : ''}`}>
+      {/* ── HERO IDENTITY — discipline-first ─────────────────────────── */}
+      <div className="recruiter-hero">
+        <div className="recruiter-portrait">
+          <img
+            src={NURIA.photo}
+            alt={NURIA.name}
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+        </div>
+        <div className="recruiter-intro">
+          <h1 className="recruiter-name">{NURIA.name}</h1>
+          <p className="recruiter-discipline">UX / Service Design · research-first</p>
+          <p className="recruiter-credential mono">
+            B.Sc. Informatik & Design · HM München · 4. Sem.
+          </p>
+          <div className="recruiter-status-big">
+            <span className="recruiter-status-dot" aria-hidden="true">●</span>
+            {lang === 'de'
+              ? `Praxissemester · WS 26/27 · ${city}`
+              : `Internship · WS 26/27 · ${city}`}
+          </div>
+          <blockquote className="recruiter-quote">
+            {lang === 'de'
+              ? '„Ich entwerfe Systeme, die sich menschlich anfühlen — irgendwo zwischen Pixel, Empathie und Tabellenkalkulation."'
+              : '"I design systems that feel human — somewhere between pixel, empathy and spreadsheets."'}
+          </blockquote>
+          <div className="recruiter-contact-buttons">
+            <a className="recruiter-btn-email" href={`mailto:${NURIA.email}`}>
+              ✉ {lang === 'de' ? 'Mail' : 'Email'}
+            </a>
+            <a className="recruiter-btn-linkedin" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">
+              in LinkedIn
+            </a>
+            <a className="recruiter-btn-cv" href="assets/Nuria_Kurrle_CV.pdf" download>
+              ⬇ CV
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="recruiter-divider"></div>
+
+      {/* ── MARQUEE PROJECTS — 3 visual cards, vertical stack ───────── */}
+      <div className="recruiter-projects-section">
+        <h2 className="recruiter-projects-title">
+          {lang === 'de' ? 'Ausgewählte Projekte' : 'Selected work'}
+        </h2>
+
+        <div className="recruiter-projects-grid recruiter-projects-grid--stack">
+          {topProjects.map(project => {
+            const d = project[lang];
+            /* Trigger fade-out of the landing while the project window opens
+               on top, then close Recruiter behind it. */
+            const openCase = () => handOff(() => openWindow('project', { projectId: project.id }));
+            const roleChips = d.roleChips?.slice(0, 2) || [];
+            return (
+              <div
+                key={project.id}
+                className="recruiter-project-card--new"
+                onClick={openCase}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCase(); } }}
+                role="button"
+                tabIndex={0}
+              >
+                {/* Hero image with overlay tags. Prefer heroImage (curated
+                   product shot) over cover (the icon-sized tile). Falls back
+                   to a colored emoji block if both 404. */}
+                <div className="recruiter-card-hero">
+                  {(d.heroImage || project.cover) ? (
+                    <img
+                      src={d.heroImage || project.cover}
+                      alt={d.title}
+                      style={{ objectFit: d.heroImage ? 'cover' : (project.coverFit || 'cover') }}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement?.classList.add('recruiter-card-hero--fallback');
+                      }}
+                    />
+                  ) : null}
+                  <div className="recruiter-card-hero-fallback-glyph" aria-hidden="true">
+                    {project.emoji}
+                  </div>
+                  <span
+                    className="recruiter-card-status"
+                    title={project.status === 'completed' ? (lang === 'de' ? 'Abgeschlossen' : 'Completed') : (lang === 'de' ? 'In Arbeit' : 'In progress')}
+                    aria-hidden="true"
+                  >
+                    {project.status === 'completed' ? '✓' : '◐'}
+                  </span>
+                  <div className="recruiter-card-hero-overlay">
+                    <div className="recruiter-card-tags">
+                      {roleChips.map((chip, i) => (
+                        <span key={i} className="recruiter-chip-tag">{chip}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Title & Description */}
+                <div className="recruiter-card-content">
+                  <h3 className="recruiter-card-title">{d.title.split('—')[0].trim()}</h3>
+                  <p className="recruiter-card-desc">{d.problemShort}</p>
+
+                  {/* Quick meta */}
+                  <div className="recruiter-card-footer-meta">
+                    {d.duration && (
+                      <span className="recruiter-meta-chip">⏱️ {d.duration.split('(')[0].trim()}</span>
+                    )}
+                    {d.team && (
+                      <span className="recruiter-meta-chip">👥 {d.team.split('·')[0].trim()}</span>
+                    )}
+                  </div>
+                </div>
+
+                {/* CTA button */}
+                <button
+                  className="recruiter-card-cta-new"
+                  onClick={(e) => { e.stopPropagation(); openCase(); }}
+                >
+                  {lang === 'de' ? 'Case Study öffnen →' : 'Open Case Study →'}
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {wipProjects.length > 0 && (
+        <div className="recruiter-section recruiter-section--wip">
+          <h3 className="recruiter-section-title">
+            🔄 {lang === 'de' ? 'Momentan in Arbeit' : 'Currently in Progress'}
+          </h3>
+          <p className="recruiter-section-sub mono">
+            {lang === 'de'
+              ? 'Aktive Projekte — Einblick, nicht das Endprodukt.'
+              : 'Active projects — a peek, not the finished story.'}
+          </p>
+
+          <div className="recruiter-wip-grid">
+            {wipProjects.map(project => {
+              const d = project[lang];
+              const roleChipsPreview = d.roleChips?.slice(0, 2) || [];
+              const openCase = () => handOff(() => openWindow('project', { projectId: project.id }));
+              return (
+                <div
+                  key={project.id}
+                  className="recruiter-card recruiter-card--wip"
+                  onClick={openCase}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCase(); } }}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <div className="recruiter-card-header">
+                    <span className="recruiter-card-emoji">{project.emoji}</span>
+                    <div className="recruiter-card-title">
+                      <div className="recruiter-card-name">{d.title}</div>
+                      <div className="recruiter-card-desc">{d.problemShort}</div>
+                    </div>
+                  </div>
+
+                  <div className="recruiter-card-meta">
+                    {roleChipsPreview.map((chip, i) => (
+                      <span key={i} className="recruiter-meta-chip">{chip}</span>
+                    ))}
+                    {d.duration && <span className="recruiter-meta-chip mono">{d.duration}</span>}
+                  </div>
+
+                  <div className="recruiter-card-status">
+                    <span className="recruiter-status-badge wip">
+                      🔄 {lang === 'de' ? 'In Arbeit' : 'In Progress'}
+                    </span>
+                    {typeof project.progress === 'number' && (
+                      <span className="recruiter-status-progress mono">{project.progress}%</span>
+                    )}
+                  </div>
+
+                  <button
+                    className="recruiter-card-cta recruiter-card-cta--wip"
+                    onClick={(e) => { e.stopPropagation(); openCase(); }}
+                  >
+                    → {lang === 'de' ? 'Einblick' : 'Preview'}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="recruiter-view-all">
+        <button
+          className="recruiter-view-all-btn"
+          onClick={() => handOff(() => openWindow('projects'))}
+        >
+          {lang === 'de'
+            ? '→ Alle Projekte ansehen'
+            : '→ View all projects'}
+        </button>
+      </div>
+
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   Single-scroll layout — sticky pill nav with smooth-scroll to sections.
+   Buffer-inspired: sections stack vertically; click a pill, page glides.
+───────────────────────────────────────────────────────────────────── */
+function CaseScrollLayout({ sections, prevProj, nextProj, openWindow, lang, miniTitle, miniDek, introBlock, noProjectNav }) {
+  const [activeId, setActiveId] = React.useState(sections[0]?.id);
+  const rootRef = React.useRef(null);
+
+  const scrollTo = (id) => {
+    setActiveId(id);
+    const el = rootRef.current?.querySelector(`#section-${id}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  /* Update active pill based on which section is most visible, + reveal-on-scroll. */
+  React.useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+    const sectionTargets = sections.map(s => root.querySelector(`#section-${s.id}`)).filter(Boolean);
+    const revealTargets = Array.from(root.querySelectorAll('.reveal'));
+    if (sectionTargets.length === 0 && revealTargets.length === 0) return;
+
+    /* The case study scrolls inside .case-study-container, not the page. */
+    const scrollRoot = root.closest('.case-study-container');
+
+    /* Reveal-on-scroll stays on the observer — it only needs a one-shot trigger. */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && e.target.classList.contains('reveal')) {
+          e.target.classList.add('revealed');
+        }
+      });
+    }, { root: scrollRoot || null, threshold: 0.12, rootMargin: '-24px 0px -40% 0px' });
+    revealTargets.forEach(t => io.observe(t));
+
+    /* Active pill is picked by geometry, not intersection ratio: tall sections
+       never reach a high visible-area ratio, so ratio-based spy skipped them.
+       Instead, the active section is the last one whose top has crossed an
+       "active line" ~30% down the scroll viewport. Height-independent. */
+    const scroller = scrollRoot || window;
+    let ticking = false;
+    const pickActive = () => {
+      ticking = false;
+      const rootRect = scrollRoot
+        ? scrollRoot.getBoundingClientRect()
+        : { top: 0, height: window.innerHeight };
+      const line = rootRect.top + rootRect.height * 0.3;
+      let currentId = sectionTargets[0]?.id;
+      for (const el of sectionTargets) {
+        if (el.getBoundingClientRect().top - line <= 0) currentId = el.id;
+      }
+      if (currentId) setActiveId(currentId.replace(/^section-/, ''));
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(pickActive);
+    };
+    scroller.addEventListener('scroll', onScroll, { passive: true });
+    pickActive();
+
+    return () => {
+      io.disconnect();
+      scroller.removeEventListener('scroll', onScroll);
+    };
+  }, [sections]);
+
+  const shortTitle = (p) => (p?.[lang]?.title || '').split('—')[0].trim();
+
+  return (
+    <div className="case-scroll-layout" ref={rootRef}>
+      {(miniTitle || miniDek) && (
+        <header className="case-mini-header">
+          {miniTitle && <strong>{miniTitle}</strong>}
+          {miniDek && <span className="case-mini-header-dek">— {miniDek}</span>}
+        </header>
+      )}
+      {introBlock && <div className="tab-content case-intro-wrap">{introBlock}</div>}
+      {sections.map((s, i) => (
+        <section key={s.id} id={`section-${s.id}`} className="case-scroll-section">
+          {(s.chapterTitle || sections.length > 1) && (
+            <header className="case-chapter">
+              <span className="case-chapter-num">
+                {String(i + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}
+              </span>
+              {s.chapterTitle && <h2 className="case-chapter-title">{s.chapterTitle}</h2>}
+            </header>
+          )}
+          {s.content}
+        </section>
+      ))}
+      <nav className="case-scroll-nav" aria-label="Section navigation">
+        {!noProjectNav && (
+          <button
+            type="button"
+            className="case-scroll-arrow"
+            disabled={!prevProj}
+            onClick={() => prevProj && openWindow && openWindow('project', { projectId: prevProj.id })}
+            title={prevProj ? prevProj[lang]?.title : ''}
+          >
+            ← {prevProj ? shortTitle(prevProj) : (lang === 'de' ? 'Vorheriges' : 'Previous')}
+          </button>
+        )}
+        <div className="case-scroll-pills">
+          {sections.map(s => (
+            <button
+              key={s.id}
+              type="button"
+              className={`case-scroll-pill ${activeId === s.id ? 'active' : ''}`}
+              onClick={() => scrollTo(s.id)}
+            >
+              {s.label}
+            </button>
+          ))}
+        </div>
+        {!noProjectNav && (
+          <button
+            type="button"
+            className="case-scroll-arrow"
+            disabled={!nextProj}
+            onClick={() => nextProj && openWindow && openWindow('project', { projectId: nextProj.id })}
+            title={nextProj ? nextProj[lang]?.title : ''}
+          >
+            {nextProj ? shortTitle(nextProj) : (lang === 'de' ? 'Fertig' : 'Done')} →
+          </button>
+        )}
+      </nav>
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   SYSTEM JOURNEY — "a path through the network", drawn as a map route.
+   The images are stops down a winding, hand-drawn dashed trail; a Moosburg-
+   rose pin marks each stop. Stops alternate left/right so the trail weaves.
+   The dashed <path> is a smooth Catmull-Rom curve through the pin tips, whose
+   positions are measured in JS (ResizeObserver + onLoad) so it stays glued to
+   the pins on any width. */
+/* Split a sentence into [bold lead, rest] for the reflection prose: the lead is
+   the first clause up to the first ". " (kept) or " — " (split on the dash). */
+function splitLead(text) {
+  const dot = text.indexOf('. ');
+  const dash = text.indexOf(' — ');
+  let idx = -1;
+  if (dot !== -1 && (dash === -1 || dot < dash)) idx = dot + 1;   // include the period
+  else if (dash !== -1) idx = dash;                                // dash kept in the rest
+  if (idx === -1) return [text, ''];
+  return [text.slice(0, idx), text.slice(idx).trim()];
+}
+
+function smoothRoute(pts) {
+  if (pts.length < 2) return '';
+  let d = `M ${pts[0].x},${pts[0].y}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[i + 2] || p2;
+    const c1x = p1.x + (p2.x - p0.x) / 6;
+    const c1y = p1.y + (p2.y - p0.y) / 6;
+    const c2x = p2.x - (p3.x - p1.x) / 6;
+    const c2y = p2.y - (p3.y - p1.y) / 6;
+    d += ` C ${c1x},${c1y} ${c2x},${c2y} ${p2.x},${p2.y}`;
+  }
+  return d;
+}
+
+function SystemJourney({ title, intro, images, hub, openLightbox }) {
+  const stageRef = React.useRef(null);
+  const pinRefs = React.useRef([]);
+  const [geo, setGeo] = React.useState({ w: 0, h: 0, d: '' });
+
+  const measure = React.useCallback(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const sb = stage.getBoundingClientRect();
+    const pts = [];
+    pinRefs.current.forEach((el) => {
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      // anchor at the rose centre so the trail threads through each marker.
+      pts.push({ x: r.left + r.width / 2 - sb.left, y: r.top + r.height / 2 - sb.top });
+    });
+    setGeo({ w: sb.width, h: sb.height, d: smoothRoute(pts) });
+  }, []);
+
+  React.useEffect(() => {
+    measure();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(measure) : null;
+    if (ro && stageRef.current) ro.observe(stageRef.current);
+    window.addEventListener('resize', measure);
+    const t = setTimeout(measure, 450); // settle after fonts/images load
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', measure);
+      clearTimeout(t);
+    };
+  }, [measure, images]);
+
+  const items = images.map((it) => ({ type: 'image', src: it.src, caption: it.caption || '' }));
+
+  return (
+    <section className="case-section system-journey-section">
+      {title && <h3>{title}</h3>}
+      {intro && <p className="journey-intro">{intro}</p>}
+      <div className="system-journey" ref={stageRef}>
+        {images.map((img, i) => (
+          <div className={'journey-stop' + (img.bare ? ' bare' : '')} key={i}>
+            <span className="journey-pin" ref={(el) => { pinRefs.current[i] = el; }}>
+              <img className="journey-rose" src={hub} alt="" aria-hidden="true" />
+            </span>
+            <figure className="journey-card" onClick={() => openLightbox(items, i)}>
+              <img src={img.src} alt={img.caption || ''} loading="lazy" onLoad={measure} />
+              {(img.caption || img.text) && (
+                <figcaption>
+                  {img.caption && (
+                    <span className="journey-cap-title"><b>{i + 1}</b> {img.caption}</span>
+                  )}
+                  {img.text && <span className="journey-cap-text">{img.text}</span>}
+                </figcaption>
+              )}
+            </figure>
+          </div>
+        ))}
+        <svg className="journey-path" width={geo.w} height={geo.h} aria-hidden="true">
+          <path d={geo.d} />
+        </svg>
+      </div>
+    </section>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   PROJECT DETAIL WINDOW
+═════════════════════════════════════════════════════════════════════ */
+function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindow }) {
+  const d = project[lang];
+
+  /* Linear pager: walk through all completed projects with prev/next.
+     Replaces the old left sidebar — bottom-bar feels less crowded and
+     turns the case studies into a guided tour. */
+  const completedProjects = PROJECTS.filter(p => p.status === 'completed');
+  const currentIdx = completedProjects.findIndex(p => p.id === project.id);
+  const prevProj = currentIdx > 0 ? completedProjects[currentIdx - 1] : null;
+  const nextProj = currentIdx >= 0 && currentIdx < completedProjects.length - 1
+    ? completedProjects[currentIdx + 1]
+    : null;
+
+  /* WIP fallback: render the simple preview when the case study isn't
+     fleshed out yet (no research array). Clarity has rich content → falls
+     through to the full case study. DonBosco doesn't → simple preview. */
+  const hasRichContent = Array.isArray(d.research) && d.research.length > 0;
+  const isWipPreview = project.status === 'coming-soon' || (project.status === 'wip' && !hasRichContent);
+  if (isWipPreview) {
+    return (
+      <div className="content">
+        <div className="hero">
+          <div style={{ fontSize: 64, alignSelf:'center', textAlign:'center' }}>{project.emoji}</div>
+          <div>
+            <h1>{d.title}</h1>
+            <div className="tag mono">{d.problemShort}</div>
+            <span className="chip peach">🔨 {project.status === 'wip'
+              ? (lang === 'de' ? 'In Arbeit' : 'In Progress')
+              : t.coming_soon}</span>
+          </div>
+        </div>
+        {d.phase && (
+          <div className="callout yellow">
+            <strong>{t.phase}:</strong> {d.phase}
+            {typeof project.progress === 'number' && (
+              <div style={{ marginTop: 8 }}>
+                <div className="bar" style={{ height: 18 }}>
+                  <div style={{ width: `${project.progress}%` }} />
+                </div>
+                <div className="mono" style={{ marginTop: 4 }}>{project.progress}% — {t.progress}</div>
+              </div>
+            )}
+          </div>
+        )}
+        {d.context && (
+          <>
+            <h2>{lang === 'de' ? 'Kontext' : 'Context'}</h2>
+            <p>{d.context}</p>
+          </>
+        )}
+        <h2>{t.role_label}</h2>
+        <p>{d.role}{d.duration ? ` · ${d.duration}` : ''}{d.team ? ` · ${d.team}` : ''}</p>
+        {Array.isArray(d.tools) && d.tools.length > 0 && (
+          <div className="tag-row">{d.tools.map(tt => <span key={tt} className="chip">{tt}</span>)}</div>
+        )}
+        <Placeholder caption={t.placeholder_caption('Process Snapshot')} />
+      </div>
+    );
+  }
+
+  /* Hero stays above the tabs — project identity. Two-column layout:
+  /* ── Intro block + chapter header rendered by CaseScrollLayout now,
+        so the panels themselves stay order-agnostic. ───────────────── */
+  const introBlock = (
+    <>
+      <div className="case-intro-block">
+        <h1 className="case-intro-title">{d.title}</h1>
+        {d.description && <p className="case-intro-desc">{d.description}</p>}
+        <div className="case-intro-tags">
+          {d.duration && <span className="case-intro-tag">{d.duration}</span>}
+          {d.team && <span className="case-intro-tag">{d.team}</span>}
+          {(d.tools || []).slice(0, 3).map(tt => <span key={tt} className="case-intro-tag">{tt}</span>)}
+        </div>
+      </div>
+      {(() => {
+        const heroVideo = project.id === 'atolls' ? d.media?.find(m => m.type === 'video' && m.src) : null;
+        if (heroVideo) {
+          return (
+            <div className="case-hero-bleed">
+              <video controls preload="metadata" poster={d.heroImage || undefined} style={{ width: '100%', display: 'block' }}>
+                <source src={heroVideo.src} type="video/mp4" />
+              </video>
+            </div>
+          );
+        }
+        if (d.heroImage) {
+          return (
+            <div className="case-hero-bleed">
+              <img
+                src={d.heroImage}
+                alt={d.title}
+                onClick={() => openLightbox([{ type: 'image', src: d.heroImage, caption: d.title }], 0)}
+              />
+            </div>
+          );
+        }
+        return null;
+      })()}
+      {(project.devLog || project.figmaUrl || project.documentation) && (() => {
+        const dev = project.devLog;
+        const links = [
+          /* Deck replaces the Figma link here; the Figma prototype stays
+             accessible via its own embed section below. */
+          ...(project.deckUrl
+            ? [{ label: lang === 'de' ? 'Präsentation öffnen' : 'Open presentation', href: project.deckUrl }]
+            : (project.figmaUrl ? [{ label: (project.figmaLabel && project.figmaLabel[lang]) || (lang === 'de' ? 'Figma öffnen' : 'Open Figma'), href: project.figmaUrl }] : [])),
+          ...((dev?.links || []).filter(l => l.href && l.href !== '#').map(l => ({ label: l.label, href: l.href }))),
+        ];
+        return (
+          <div className="case-meta-strip">
+            {dev?.stack?.length > 0 && (
+              <>
+                <div className="case-meta-label">{lang === 'de' ? 'Stack' : 'Stack'}</div>
+                <div className="case-meta-value">{dev.stack.join(' · ')}</div>
+              </>
+            )}
+            {(d.role || dev?.role) && (
+              <>
+                <div className="case-meta-label">{lang === 'de' ? 'Rolle' : 'Role'}</div>
+                <div className="case-meta-value">{d.role || dev.role}</div>
+              </>
+            )}
+            {links.length > 0 && (
+              <>
+                <div className="case-meta-label">{lang === 'de' ? 'Links' : 'Links'}</div>
+                <div className="case-meta-links">
+                  {links.map((l, i) => (
+                    <a key={i} className="case-meta-link" href={l.href} target="_blank" rel="noreferrer">→ {l.label}</a>
+                  ))}
+                </div>
+              </>
+            )}
+            <div className="case-meta-label">{lang === 'de' ? 'Doku' : 'Docs'}</div>
+            <div className="case-meta-value">
+              {project.documentation ? (
+                <a className="case-meta-link" href={project.documentation} target="_blank" rel="noreferrer">
+                  → {lang === 'de' ? 'Gesamte Dokumentation (PDF)' : 'Full documentation (PDF)'}
+                </a>
+              ) : (
+                <span className="case-meta-doc-empty">
+                  {lang === 'de' ? '[Dokumentation folgt]' : '[Documentation TBD]'}
+                </span>
+              )}
+            </div>
+          </div>
+        );
+      })()}
+    </>
+  );
+
+  /* ── TAB 1: Research & Problem ─────────────────────────────────── */
+  const researchPanel = (
+    <div className="tab-content">
+      {d.context && (
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Kontext' : 'Context'}</h2>
+          <p>{d.context}</p>
+        </section>
+      )}
+      {/* THE PROBLEM — when a gallery is provided: Buffer-style sticky text +
+          scrolling images (like "The Solution"). Otherwise the classic 40/60 row.
+          Hidden for soulsphere (chatbot persona — no separate problem section). */}
+      {project.id !== 'soulsphere' && (d.problemGallery?.length > 0 ? (
+        <section className="case-section case-sticky-scroll">
+          <div className="sticky-scroll-text">
+            <h2>{lang === 'de' ? 'Das Problem' : 'The Problem'}</h2>
+            <p>{d.problemStatement || d.problemShort}</p>
+            {d.problemContext && d.problemContext !== (d.problemStatement || d.problemShort) && (
+              <p>{d.problemContext}</p>
+            )}
+          </div>
+          <div className="sticky-scroll-media">
+            {d.problemGallery.map((img, i) => (
+              <figure
+                key={i}
+                className={img.bare ? 'bare' : undefined}
+                onClick={() => openLightbox(
+                  d.problemGallery.map(it => ({ type: 'image', src: it.src, caption: it.caption || '' })),
+                  i
+                )}
+              >
+                <img src={img.src} alt={img.caption || ''} loading="lazy" />
+                {img.caption && <figcaption>{img.caption}</figcaption>}
+              </figure>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="case-section">
+          <div className="case-row">
+            <div className="case-row-text">
+              <h2>{lang === 'de' ? 'Das Problem' : 'The Problem'}</h2>
+              <p>{d.problemStatement || d.problemShort}</p>
+              {d.problemContext && d.problemContext !== (d.problemStatement || d.problemShort) && (
+                <p>{d.problemContext}</p>
+              )}
+            </div>
+            <div className="case-row-media">
+              {d.problemImage ? (
+                <img
+                  src={d.problemImage}
+                  alt={lang === 'de' ? 'Problem-Kontext' : 'Problem context'}
+                  className="case-row-img-zoom"
+                  onClick={() => openLightbox([{ type: 'image', src: d.problemImage, caption: d.problemStatement || d.problemShort }], 0)}
+                />
+              ) : (
+                <Placeholder caption={lang === 'de' ? 'Problem-Visual folgt' : 'Problem visual TBD'} h={280} />
+              )}
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* HOW MIGHT WE — right after the problem */}
+      {d.hmw?.length > 0 && (
+        <section className="case-section">
+          <h3>{t.hmw_label}</h3>
+          <div className="hmw-box">
+            {d.hmw.map((h, idx) => <p key={idx}>↳ {h}</p>)}
+          </div>
+        </section>
+      )}
+
+      {/* KEY INSIGHT — single pulled-quote callout, only if present */}
+      {d.keyInsight && (
+        <section className="case-section">
+          <blockquote className="case-insight-quote">
+            {d.keyInsight}
+          </blockquote>
+        </section>
+      )}
+
+      {/* RESEARCH — when a gallery is present: sticky methods (stacked) + images
+          scrolling past (like "The Solution"). Otherwise methods grid + image. */}
+      {d.research?.length > 0 && (() => {
+        const icons = ['👥', '🚶', '💭', '📊', '🎯', '📱', '🧪', '🗺️'];
+        const sticky = d.researchGallery?.length > 0;
+        const methodCards = (
+          <div className={'research-methods-grid' + (sticky ? ' research-methods-stack' : '')}>
+            {d.research.map((method, i) => {
+              const [name, ...rest] = method.split(' — ');
+              const desc = rest.join(' — ');
+              return (
+                <div key={i} className="research-method-card">
+                  <div className="research-method-head">
+                    <span className="research-method-icon" aria-hidden="true">{icons[i % icons.length]}</span>
+                    <span className="research-method-num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div className="research-method-name">{name}</div>
+                  {desc && <div className="research-method-desc">{desc}</div>}
+                </div>
+              );
+            })}
+          </div>
+        );
+        if (sticky) {
+          return (
+            <section className="case-section research-split">
+              {project.id !== 'soulsphere' && <h2>{t.research_label}</h2>}
+              {d.researchContext && <p>{d.researchContext}</p>}
+              <div className="research-split-cols">
+                <div className="research-split-methods">
+                  {methodCards}
+                </div>
+                <div className="research-split-media">
+                  {d.researchGallery.map((img, i) => (
+                    <figure
+                      key={i}
+                      onClick={() => openLightbox(
+                        d.researchGallery.map(it => ({ type: 'image', src: it.src, caption: it.caption || '' })),
+                        i
+                      )}
+                    >
+                      <img src={img.src} alt={img.caption || ''} loading="lazy" />
+                      {img.caption && <figcaption>{img.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+        return (
+          <section className="case-section">
+            {project.id !== 'soulsphere' && <h2>{t.research_label}</h2>}
+            {d.researchContext && <p>{d.researchContext}</p>}
+            {methodCards}
+            {d.researchImage && (
+              <img
+                src={d.researchImage}
+                alt={lang === 'de' ? 'Research-Prozess' : 'Research process'}
+                style={{ cursor: 'zoom-in' }}
+                onClick={() => openLightbox([{ type: 'image', src: d.researchImage, caption: lang === 'de' ? 'Research' : 'Research' }], 0)}
+              />
+            )}
+          </section>
+        );
+      })()}
+
+      {/* KEY INSIGHTS — right after the research methods. */}
+      {d.insights?.length > 0 && (
+        <section className="case-section">
+          <h2>{t.insights_label}</h2>
+          <div className="insights-cards-grid">
+            {d.insights.map((insight, idx) => (
+              <div key={idx} className="insight-card-large">
+                <div className="insight-card-number">{String(idx + 1).padStart(2, '0')}</div>
+                <div className="insight-card-content"><p>{insight}</p></div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* TEAM PRESENTATION — deck embed removed; linked at the top ("Links"). */}
+
+      {/* Narrative scenario + image-break between chapter 01 and 02 (skipped for munichapp) */}
+      {project.id !== 'munichapp' && project.id !== 'soulsphere' && (
+        <div className={'case-scenario' + (d.problemScenario ? '' : ' case-scenario-placeholder')} data-lang={lang}>
+          {d.problemScenario || (lang === 'de'
+            ? '[Szenario folgt — eine kurze narrative Geschichte einer konkreten Nutzerin, die das Problem lebendig macht. 3–5 Sätze.]'
+            : '[Scenario goes here — a brief narrative of a specific user that makes the problem feel real. 3–5 sentences.]')}
+        </div>
+      )}
+      {project.id !== 'munichapp' && (() => {
+        const breakImg = (d.media || []).filter(m => m.type === 'image' && m.src)[1];
+        if (!breakImg) return null;
+        return (
+          <div className="case-section-break">
+            <img
+              src={breakImg.src}
+              alt={breakImg.caption || ''}
+              onClick={() => openLightbox([{ type: 'image', src: breakImg.src, caption: breakImg.caption || '' }], 0)}
+            />
+            {breakImg.caption && <div className="case-section-break-caption">{breakImg.caption}</div>}
+          </div>
+        );
+      })()}
+    </div>
+  );
+
+  /* ── TAB 2: Design & Solution ──────────────────────────────────── */
+  const designPanel = (
+    <div className="tab-content">
+      {/* THE SOLUTION — Buffer-style: sticky title + description, images scroll past.
+          Without a carousel, drop the 2-col grid so the text spans full width (cohesive). */}
+      {(d.solutionStatement || d.concept || d.designCarousel?.length > 0) && (
+        <section className={'case-section' + (d.designCarousel?.length > 0 ? ' case-sticky-scroll' : '')}>
+          <div className="sticky-scroll-text">
+            <h2>{project.id === 'soulsphere' ? (lang === 'de' ? 'Der Bot' : 'The Bot') : (lang === 'de' ? 'Die Lösung' : 'The Solution')}</h2>
+            {d.solutionStatement && <p><strong>{d.solutionStatement}</strong></p>}
+            {(d.solutionContext || d.concept) && <p>{d.solutionContext || d.concept}</p>}
+          </div>
+          {d.designCarousel?.length > 0 && (
+            <div className="sticky-scroll-media">
+              {d.designCarousel.map((img, i) => (
+                <figure
+                  key={i}
+                  className={img.bare ? 'bare' : undefined}
+                  onClick={() => openLightbox(
+                    d.designCarousel.map(it => ({ type: 'image', src: it.src, caption: it.caption || '' })),
+                    i
+                  )}
+                >
+                  <img src={img.src} alt={img.caption || ''} loading="lazy" />
+                  {img.caption && <figcaption>{img.caption}</figcaption>}
+                </figure>
+              ))}
+            </div>
+          )}
+        </section>
+      )}
+
+      {/* BRAND GUIDE QR — scannable code that opens the full brand & language guide. */}
+      {d.brandQr?.src && (
+        <section className="case-section case-brand-qr">
+          <h2>{lang === 'de' ? 'Brand Guide scannen' : 'Scan the brand guide'}</h2>
+          <p>{lang === 'de'
+            ? 'Der vollständige Brand- & Language-Guide — QR-Code mit dem Handy scannen oder antippen zum Öffnen.'
+            : 'The full brand & language guide — scan the QR code with your phone or tap it to open.'}</p>
+          <a
+            className="case-brand-qr-code"
+            href={d.brandQr.link || d.brandQr.src}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={d.brandQr.src} alt={lang === 'de' ? 'QR-Code zum Brand Guide' : 'QR code to the brand guide'} />
+          </a>
+        </section>
+      )}
+
+      {/* SYSTEM JOURNEY — winding map route: images as stops, rose pins, a
+          hand-drawn dashed trail weaving between them. */}
+      {d.systemSlider?.images?.length > 0 && (
+        <SystemJourney
+          title={d.systemSlider.title}
+          intro={d.systemSlider.intro}
+          images={d.systemSlider.images}
+          hub={d.systemSlider.hub || 'assets/Portfolio_Content/Echoes_of_Moosburg/identity/rose_logo.png'}
+          openLightbox={openLightbox}
+        />
+      )}
+
+      {/* BEFORE / AFTER — supports both legacy d.beforeAfterMedia and new d.beforeImage/d.afterImage */}
+      {((d.beforeImage && d.afterImage) || (d.beforeAfterMedia && (d.beforeAfterMedia.before || d.beforeAfterMedia.after))) && (
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Vorher / Nachher' : 'Before / After'}</h2>
+          <div className="before-after-grid">
+            <div>
+              <h3>{lang === 'de' ? 'Vorher' : 'Before'}</h3>
+              <img
+                src={d.beforeImage || d.beforeAfterMedia?.before}
+                alt={lang === 'de' ? 'Vorher' : 'Before'}
+                onClick={() => openLightbox([{ type: 'image', src: d.beforeImage || d.beforeAfterMedia?.before, caption: lang === 'de' ? 'Vorher' : 'Before' }], 0)}
+              />
+            </div>
+            <div>
+              <h3>{lang === 'de' ? 'Nachher' : 'After'}</h3>
+              <img
+                src={d.afterImage || d.beforeAfterMedia?.after}
+                alt={lang === 'de' ? 'Nachher' : 'After'}
+                onClick={() => openLightbox([{ type: 'image', src: d.afterImage || d.beforeAfterMedia?.after, caption: lang === 'de' ? 'Nachher' : 'After' }], 0)}
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* DESIGN SCREENS — hero + 2-up grid; skipped when a Figma embed replaces it. */}
+      {d.designScreens?.length > 0 && !project.figmaEmbedUrl && (
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Design Screens' : 'Design Screens'}</h2>
+          <div className="design-screens-block">
+            {/* Hero screen — first one, big */}
+            {(() => {
+              const hero = d.designScreens[0];
+              return (
+                <div className="design-screens-hero">
+                  {hero.image ? (
+                    <img
+                      src={hero.image}
+                      alt={hero.name}
+                      onClick={() => openLightbox([{ type: 'image', src: hero.image, caption: hero.name }], 0)}
+                    />
+                  ) : (
+                    <Placeholder caption={hero.name} h={320} />
+                  )}
+                  <div className="design-screens-hero-caption">
+                    <span className="design-screens-hero-name">{hero.name}</span>
+                    <span className="design-screens-hero-desc">{hero.description}</span>
+                  </div>
+                </div>
+              );
+            })()}
+            {/* Remaining screens — 2-up grid */}
+            {d.designScreens.length > 1 && (
+              <div className="design-screens-grid">
+                {d.designScreens.slice(1).map((screen, i) => (
+                  <div key={i} className="design-screen-card">
+                    {screen.image ? (
+                      <img
+                        src={screen.image}
+                        alt={screen.name}
+                        onClick={() => openLightbox([{ type: 'image', src: screen.image, caption: screen.name }], 0)}
+                      />
+                    ) : (
+                      <Placeholder caption={screen.name} h={220} />
+                    )}
+                    <div className="design-screen-card-name">{screen.name}</div>
+                    <div className="design-screen-card-desc">{screen.description}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+      {/* Solution intro scenario — sets up the protagonist (hidden for soulsphere) */}
+      {project.id !== 'soulsphere' && (
+        <div className={'case-scenario' + (d.solutionScenario ? '' : ' case-scenario-placeholder')} data-lang={lang}>
+          {d.solutionScenario || (lang === 'de'
+            ? '[Szenario folgt — wie die Lösung im Alltag funktioniert. Konkrete Person, konkreter Moment, 3–5 Sätze.]'
+            : '[Scenario goes here — how the solution lands in real life. A specific person, a specific moment, 3–5 sentences.]')}
+        </div>
+      )}
+      {/* Screen sequence — each image paired with its own scenario step */}
+      {(d.solutionScenarioImages || (d.solutionScenarioImage ? [{ src: d.solutionScenarioImage, caption: d.solutionScenarioCaption }] : [])).map((img, i, arr) => (
+        <div key={i} className="case-scenario-step">
+          <div className="case-section-break">
+            <img
+              src={img.src}
+              alt={img.caption || ''}
+              onClick={() => openLightbox(arr.map(it => ({ type: 'image', src: it.src, caption: it.caption || '' })), i)}
+            />
+            {img.caption && <div className="case-section-break-caption">{img.caption}</div>}
+          </div>
+          {img.scenario && <div className="case-scenario" data-lang={lang}>{img.scenario}</div>}
+        </div>
+      ))}
+      {project.figmaEmbedUrl && (
+        <section className="case-section case-section-figma">
+          <h2>{t.figma_section}</h2>
+          <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
+          {d.figmaNote && <p style={{ fontSize: 19, fontWeight: 700, margin: '10px 0 16px', color: 'var(--ink)' }}> {d.figmaNote}</p>}
+          <div className="figma-embed">
+            <iframe src={project.figmaEmbedUrl} title={`${d.title} — Figma`} allowFullScreen loading="lazy" />
+          </div>
+          {project.figmaUrl && (
+            <a className="btn-primary" href={project.figmaUrl} target="_blank" rel="noreferrer">
+              → {t.figma_cta}
+            </a>
+          )}
+        </section>
+      )}
+    </div>
+  );
+
+  /* ── TAB 3: Results & Reflection ───────────────────────────────── */
+  const dev = project.devLog;
+  const devNotes = dev ? (dev[`notes_${lang}`] || dev.notes_de || []) : [];
+
+  /* Reflection — clean prose "Learnings & Retrospective" (like amandawallgren
+     buffer): no box, just a heading and flowing paragraphs, each with a bold
+     lead-in (the key statement) followed by the elaboration. */
+  const hasRetro = d.reflection || d.wouldChange?.length > 0;
+  const leadParagraph = (text, key) => {
+    const [lead, rest] = splitLead(text);
+    return (
+      <p key={key}><strong>{lead}</strong>{rest ? ' ' + rest : ''}</p>
+    );
+  };
+  const reflectionBlocks = (d.learnings?.length > 0 || hasRetro) && (
+    <section className="case-section reflection-prose">
+      <h2 className="reflection-prose-title">Learnings &amp; Retrospective</h2>
+      {d.learnings?.map((l, i) => leadParagraph(l, 'l' + i))}
+      {d.reflection && leadParagraph(d.reflection, 'refl')}
+      {d.wouldChange?.map((c, i) => leadParagraph(c, 'w' + i))}
+    </section>
+  );
+  const closingBlock = (
+    <section className="case-section case-closing">
+      <p className="case-closing-kicker">{lang === 'de' ? "That's all." : "That's all."}</p>
+      <h2 className="case-closing-title">{lang === 'de' ? 'Wanna get in touch?' : 'Wanna get in touch?'}</h2>
+      <div className="case-closing-arrow" aria-hidden="true">↓</div>
+      <div className="case-closing-links">
+        <a className="case-closing-link" href={`mailto:${NURIA.email}`}>✉ {NURIA.email}</a>
+        <a className="case-closing-link" href="assets/Nuria_Kurrle_CV.pdf" download>⬇ CV (PDF)</a>
+        <a className="case-closing-link" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">in {NURIA.linkedin}</a>
+      </div>
+      <p className="case-closing-copyright">© {NURIA.name} 2026</p>
+    </section>
+  );
+  const reflectionPanel = (
+    <div className="tab-content">{reflectionBlocks}{closingBlock}</div>
+  );
+
+  const resultsPanel = (
+    <div className="tab-content">
+      {d.outcome && (
+        <section className="case-section">
+          <div className="case-row">
+            <div className="case-row-text">
+              <h2>{lang === 'de' ? 'Ergebnis' : 'Outcome'}</h2>
+              <p>{d.outcome}</p>
+            </div>
+            <div className="case-row-media">
+              {(() => {
+                /* Atolls uses its video as hero, so skip it here to avoid duplication */
+                const heroVideo = project.id !== 'atolls' ? d.media?.find(m => m.type === 'video' && m.src) : null;
+                if (heroVideo) {
+                  return (
+                    <video controls preload="metadata" poster={d.heroImage || undefined} className="case-row-video">
+                      <source src={heroVideo.src} type="video/mp4" />
+                    </video>
+                  );
+                }
+                /* Outcome 40/60 right-column fall-through */
+                if (d.resultsImage) {
+                  return (
+                    <img
+                      src={d.resultsImage}
+                      alt={lang === 'de' ? 'Ergebnis' : 'Outcome'}
+                      className="case-row-img-zoom"
+                      onClick={() => openLightbox([{ type: 'image', src: d.resultsImage, caption: lang === 'de' ? 'Ergebnis' : 'Outcome' }], 0)}
+                    />
+                  );
+                }
+                return <Placeholder caption={lang === 'de' ? 'Ergebnis-Visual folgt' : 'Outcome visual TBD'} h={280} />;
+              })()}
+            </div>
+          </div>
+          {project.id !== 'soulsphere' && (
+            <div className={'case-scenario' + (d.outcomeScenario ? '' : ' case-scenario-placeholder')} data-lang={lang}>
+              {d.outcomeScenario || (lang === 'de'
+                ? '[Szenario folgt — schreib hier deine Geschichte rein. Wer hat das Ergebnis erlebt, wann, wo, mit welchem Effekt?]'
+                : '[Scenario goes here — write your story. Who experienced the outcome, when, where, with what effect?]')}
+            </div>
+          )}
+          {project.id === 'echoes' && (
+            <>
+              <img
+                className="case-echoes-img"
+                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/baracken_tafel.png"
+                alt={lang === 'de' ? 'Baracken-Tafel' : 'Baracken sign'}
+              />
+              <p className="case-echoes-note">
+                {d.outcomeNote || (lang === 'de'
+                  ? '[Kurzer Erklärungstext folgt — wie die Themen-Tafel und der QR-Code zusammenspielen.]'
+                  : '[Short explanation goes here — how the themed sign and the QR code work together.]')}
+              </p>
+              <img
+                className="case-echoes-img"
+                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/QR_code_scan.png"
+                alt={lang === 'de' ? 'QR-Code Scan' : 'QR-code scan'}
+              />
+            </>
+          )}
+        </section>
+      )}
+    </div>
+  );
+
+
+  /* ── PROJECT-SPECIFIC: Vinted Rewind (Brand / Design / System / Marketing) ─── */
+  const vintedRewindTabs = project.customTabs === 'vinted-rewind' ? (() => {
+    const vi = d.visualIdentity || {};
+    const bs = d.brandSystem || {};
+    const gm = d.gamification || {};
+    const ph = d.physical || {};
+    const dev = project.devLog;
+    const devNotes = dev ? (dev[`notes_${lang}`] || dev.notes_de || []) : [];
+
+    const conceptPanel = (
+      <div className="tab-content vinted-rewind">
+        <section className="case-section">
+          <h2>{lang === 'de' ? '📋 Aufgabe & Konzept' : '📋 Brief & Concept'}</h2>
+          {d.brief && (
+            <div className="brief-box">
+              <h3>{lang === 'de' ? 'Die Aufgabe' : 'The Brief'}</h3>
+              <p>{d.brief}</p>
+              {d.coreInsight && <p><strong>{lang === 'de' ? 'Insight: ' : 'Insight: '}</strong>{d.coreInsight}</p>}
+              {bs.coreMessage && <p><strong>Vinted Rewind:</strong> {bs.coreMessage}</p>}
+            </div>
+          )}
+        </section>
+
+        {d.strategy && (
+          <section className="case-section">
+            <h3>{lang === 'de' ? '🎯 Strategie' : '🎯 Strategy'}</h3>
+            <p>{d.strategy}</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12, marginTop: 14 }}>
+              {[
+                { src: 'assets/Portfolio_Content/VInted_Rebranding/Moodboard.png', cap: 'Moodboard' },
+                { src: 'assets/Portfolio_Content/VInted_Rebranding/arbeitsprozess.png', cap: lang === 'de' ? 'Arbeitsprozess' : 'Process' },
+              ].map((m, i, arr) => (
+                <img key={i} src={m.src} alt={m.cap} style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in' }}
+                  onClick={() => openLightbox(arr.map(x => ({ type: 'image', src: x.src, caption: x.cap })), i)} />
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    );
+
+    const identityPanel = (
+      <div className="tab-content vinted-rewind">
+        <section className="case-section">
+          <h2>{lang === 'de' ? '🎨 Visual Identity' : '🎨 Visual Identity'}</h2>
+        </section>
+
+        <section className="case-section">
+          <h3>{lang === 'de' ? 'Visual Identity System' : 'Visual Identity System'}</h3>
+          <div className="identity-grid">
+            <div className="identity-item">
+              <h4>🎮 Logo</h4>
+              <p>{vi.logoLabel}</p>
+              <p className="small">{vi.logoNote}</p>
+              {vi.logoImage && (
+                <img
+                  src={vi.logoImage}
+                  alt="Logo"
+                  style={{ cursor: 'zoom-in' }}
+                  onClick={() => openLightbox([{ type: 'image', src: vi.logoImage, caption: vi.logoLabel }], 0)}
+                />
+              )}
+            </div>
+
+            <div className="identity-item">
+              <h4>🌈 {lang === 'de' ? 'Farbpalette' : 'Color Palette'}</h4>
+              <div className="color-swatches">
+                {(vi.colorPalette || []).map(c => (
+                  <div key={c.hex} style={{ background: c.hex }} className="swatch">
+                    <p>{c.hex}</p>
+                    <p>{c.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="identity-item">
+              <h4>✍️ {lang === 'de' ? 'Typografie' : 'Typography'}</h4>
+              <p><strong>{lang === 'de' ? 'Headlines' : 'Headlines'}:</strong> {vi.typography?.headlines}</p>
+              <p className="rewind-sample">{vi.typography?.sample}</p>
+              <p><strong>Body:</strong> {vi.typography?.body}</p>
+            </div>
+
+            <div className="identity-item">
+              <h4>🎨 {lang === 'de' ? 'Bildsprache' : 'Imagery'}</h4>
+              {(vi.imagery || []).map((line, i) => <p key={i}>{line}</p>)}
+              {vi.style && <p className="small"><em>{vi.style}</em></p>}
+            </div>
+          </div>
+        </section>
+
+        <section className="case-section">
+          <h3>{lang === 'de' ? '🛠 Logo-Evolution & Maskottchen' : '🛠 Logo Evolution & Mascot'}</h3>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
+            {[
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_logo.png', cap: lang === 'de' ? 'Vorher' : 'Before' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/logo_skizze.png', cap: lang === 'de' ? 'Skizze' : 'Sketch' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/Logo.png', cap: lang === 'de' ? 'Final' : 'Final' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinti.png', cap: lang === 'de' ? 'Maskottchen „Vinti"' : 'Mascot "Vinti"' },
+            ].map((m, i, arr) => (
+              <figure key={i} style={{ margin: 0, flex: '1 1 140px', textAlign: 'center' }}>
+                <img src={m.src} alt={m.cap} style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in' }}
+                  onClick={() => openLightbox(arr.map(x => ({ type: 'image', src: x.src, caption: x.cap })), i)} />
+                <figcaption className="small" style={{ marginTop: 6 }}>{m.cap}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
+        {d.personality && (
+          <section className="case-section">
+            <h3>{lang === 'de' ? 'Brand Personality' : 'Brand Personality'}</h3>
+            <div className="gamification-flow">
+              <p><strong>{lang === 'de' ? 'Tonalität' : 'Tone'}:</strong> {d.personality.tone}</p>
+              <p><strong>{lang === 'de' ? 'Werte' : 'Values'}:</strong> {(d.personality.values || []).join(' · ')}</p>
+              <p><strong>{lang === 'de' ? 'Archetyp' : 'Archetype'}:</strong> {d.personality.archetype}</p>
+            </div>
+          </section>
+        )}
+
+      </div>
+    );
+
+    const designSystemPanel = (
+      <div className="tab-content vinted-rewind">
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Website & App Design System' : 'Website & App Design System'}</h2>
+        </section>
+
+        {d.websiteFlow?.length > 0 && (
+          <section className="case-section">
+            <h3>🌐 {lang === 'de' ? 'Website: How It Works' : 'Website: How It Works'}</h3>
+            <div className="showcase-box">
+              {d.websiteFlow.flatMap((step, idx) => {
+                const stepNode = (
+                  <div className="showcase-step" key={`step-${idx}`}>
+                    <div className="number">{step.num}</div>
+                    <h4>{step.title}</h4>
+                    <p>{step.body}</p>
+                    {step.image && (
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        style={{ cursor: 'zoom-in' }}
+                        onClick={() => openLightbox([{ type: 'image', src: step.image, caption: step.title }], 0)}
+                      />
+                    )}
+                  </div>
+                );
+                if (idx < d.websiteFlow.length - 1) {
+                  return [stepNode, <div className="arrow" key={`arr-${idx}`}>→</div>];
+                }
+                return [stepNode];
+              })}
+            </div>
+          </section>
+        )}
+
+        {d.appScreens?.length > 0 && (
+          <section className="case-section">
+            <h3>📱 {lang === 'de' ? 'Mobile App: Gamification' : 'Mobile App: Gamification'}</h3>
+            <div className="app-showcase">
+              {d.appScreens.map((screen, i) => (
+                <div key={i} className="app-screen">
+                  <h4>{screen.title}</h4>
+                  <p>{screen.body}</p>
+                  {screen.image && (
+                    <img
+                      src={screen.image}
+                      alt={screen.title}
+                      style={{ cursor: 'zoom-in' }}
+                      onClick={() => openLightbox([{ type: 'image', src: screen.image, caption: screen.title }], 0)}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {d.rewardLevels?.length > 0 && (
+          <section className="case-section">
+            <h3>🎯 {lang === 'de' ? 'Reward System: Points to Prizes' : 'Reward System: Points to Prizes'}</h3>
+            <div className="rewards-grid">
+              {d.rewardLevels.map((r, i) => (
+                <div key={i} className="reward">
+                  <h4>{r.emoji} {r.title}</h4>
+                  <p>{r.xp}</p>
+                  <p className="small"><strong>{r.perk}</strong></p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {project.figmaEmbedUrl && (
+          <section className="case-section case-section-figma">
+            <h3>{t.figma_section}</h3>
+            <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
+            {d.figmaNote && <p style={{ fontSize: 19, fontWeight: 700, margin: '10px 0 16px', color: 'var(--ink)' }}>⚡ {d.figmaNote}</p>}
+            <div className="figma-embed">
+              <iframe src={project.figmaEmbedUrl} title={`${d.title} — Figma`} allowFullScreen loading="lazy" />
+            </div>
+            {project.figmaUrl && (
+              <a className="btn-primary" href={project.figmaUrl} target="_blank" rel="noreferrer">
+                → {t.figma_cta}
+              </a>
+            )}
+          </section>
+        )}
+      </div>
+    );
+
+    const gamificationPanel = (
+      <div className="tab-content vinted-rewind">
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Gamification & Ecosystem' : 'Gamification & Ecosystem'}</h2>
+          {gm.intro && (
+            <div className="gamification-flow">
+              <p>{gm.intro}</p>
+            </div>
+          )}
+        </section>
+
+        {gm.earning?.length > 0 && (
+          <section className="case-section">
+            <h3>💰 {lang === 'de' ? 'Punkte-System' : 'Points System'}</h3>
+            <div className="point-grid">
+              {gm.earning.map((e, i) => (
+                <div key={i} className="point-card">
+                  <p className="points">{e.points}</p>
+                  <h4>{e.action}</h4>
+                  <p>{e.body}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {gm.rewards?.length > 0 && (
+          <section className="case-section">
+            <h3>🛒 {lang === 'de' ? 'Redeem: Was du dir holen kannst' : 'Redeem: What You Can Get'}</h3>
+            <div className="rewards-grid">
+              {gm.rewards.map((r, i) => (
+                <div key={i} className="reward">
+                  <h4>{r.name}</h4>
+                  <p className="small">{r.cost}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {ph.shopTitle && (
+          <section className="case-section">
+            <h3>🏪 {lang === 'de' ? 'Physical Touchpoints: Repair Shops' : 'Physical Touchpoints: Repair Shops'}</h3>
+            <div className="physical-box">
+              <h4>{ph.shopTitle}</h4>
+              <p><strong>{lang === 'de' ? 'Konzept' : 'Concept'}:</strong> {ph.shopConcept}</p>
+              <p><strong>{lang === 'de' ? 'Was passiert dort' : 'What happens there'}:</strong></p>
+              <ul>
+                {(ph.shopBullets || []).map((b, i) => <li key={i}>✅ {b}</li>)}
+              </ul>
+              {ph.shopBranding && <p><strong>Branding:</strong> {ph.shopBranding}</p>}
+              {ph.shopImage && (
+                <img
+                  src={ph.shopImage}
+                  alt={ph.shopTitle}
+                  style={{ cursor: 'zoom-in' }}
+                  onClick={() => openLightbox([{ type: 'image', src: ph.shopImage, caption: ph.shopTitle }], 0)}
+                />
+              )}
+            </div>
+          </section>
+        )}
+
+        {ph.packagingTitle && (
+          <section className="case-section">
+            <h3>📦 {ph.packagingTitle}</h3>
+            <div className="packaging-box">
+              <p>{ph.packagingBody}</p>
+              {ph.packagingImage && (
+                <img
+                  src={ph.packagingImage}
+                  alt={ph.packagingTitle}
+                  style={{ cursor: 'zoom-in' }}
+                  onClick={() => openLightbox([{ type: 'image', src: ph.packagingImage, caption: ph.packagingTitle }], 0)}
+                />
+              )}
+            </div>
+          </section>
+        )}
+
+        <section className="case-section">
+          <h3>{lang === 'de' ? '🧢 Merch & Details' : '🧢 Merch & Details'}</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+            {[
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/merch.png', cap: 'Merch' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/etiquette.png', cap: lang === 'de' ? 'Etikett' : 'Tag' },
+            ].map((m, i, arr) => (
+              <img key={i} src={m.src} alt={m.cap} style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in' }}
+                onClick={() => openLightbox(arr.map(x => ({ type: 'image', src: x.src, caption: x.cap })), i)} />
+            ))}
+          </div>
+        </section>
+
+        {project.gamificationFigmaEmbedUrl && (
+          <section className="case-section case-section-figma">
+            <h3>{lang === 'de' ? '🎮 Gamification-Prototyp (Figma)' : '🎮 Gamification prototype (Figma)'}</h3>
+            <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
+            <div className="figma-embed">
+              <iframe src={project.gamificationFigmaEmbedUrl} title={`${d.title} — Gamification Figma`} allowFullScreen loading="lazy" />
+            </div>
+            {project.gamificationFigmaUrl && (
+              <a className="btn-primary" href={project.gamificationFigmaUrl} target="_blank" rel="noreferrer">
+                → {t.figma_cta}
+              </a>
+            )}
+          </section>
+        )}
+      </div>
+    );
+
+    const marketingPanel = (
+      <div className="tab-content vinted-rewind">
+        <section className="case-section">
+          <h2>{lang === 'de' ? 'Social Media & Video Strategy' : 'Social Media & Video Strategy'}</h2>
+        </section>
+
+        {d.social?.length > 0 && (
+          <section className="case-section">
+            <h3>📱 {lang === 'de' ? 'Instagram: Visual Storytelling' : 'Instagram: Visual Storytelling'}</h3>
+            <div className="social-grid">
+              {d.social.map((s, i) => (
+                <div key={i} className="social-card">
+                  <h4>{s.title}</h4>
+                  <p>{s.body}</p>
+                  {s.image && (
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      style={{ cursor: 'zoom-in' }}
+                      onClick={() => openLightbox([{ type: 'image', src: s.image, caption: s.title }], 0)}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {d.videos?.length > 0 && (
+          <section className="case-section">
+            <h3>🎬 {lang === 'de' ? 'Video Marketing' : 'Video Marketing'}</h3>
+            <div className="video-grid">
+              {d.videos.map((v, i) => (
+                <div key={i} className="video-card">
+                  <h4>{v.title}</h4>
+                  {v.tagline && <p><em>{v.tagline}</em></p>}
+                  <p>{v.body}</p>
+                  {v.src && (
+                    <video width="100%" controls>
+                      <source src={v.src} type="video/mp4" />
+                    </video>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {closingBlock}
+      </div>
+    );
+
+    return [
+      { id: 'concept',   label: (lang === 'de' ? '📋 Aufgabe & Konzept' : '📋 Brief & Concept'),   panel: conceptPanel },
+      { id: 'identity',  label: (lang === 'de' ? '🎨 Visual Identity'   : '🎨 Visual Identity'),   panel: <>{identityPanel}{designSystemPanel}</> },
+      { id: 'system',    label: (lang === 'de' ? '🎮 Gamification'     : '🎮 Gamification'),      panel: gamificationPanel },
+      { id: 'marketing', label: (lang === 'de' ? '🎬 Social & Video'   : '🎬 Social & Video'),    panel: marketingPanel },
+    ];
+  })() : null;
+
+  return (
+    <div className="case-study-wrapper has-scroll-layout">
+      {/* Main Case Study */}
+      <div className="case-study-container">
+        {vintedRewindTabs ? (
+          <CaseScrollLayout
+            prevProj={prevProj}
+            nextProj={nextProj}
+            openWindow={openWindow}
+            lang={lang}
+            miniTitle={d.title}
+            miniDek={d.description || d.problemShort}
+            introBlock={introBlock}
+            sections={vintedRewindTabs.map(tab => ({
+              id: tab.id,
+              label: tab.label.replace(/^\p{Emoji}+\s*/u, '').toLowerCase(),
+              chapterTitle: tab.label.replace(/^\p{Emoji}+\s*/u, ''),
+              content: tab.panel,
+            }))}
+          />
+        ) : (
+          <CaseScrollLayout
+            prevProj={prevProj}
+            nextProj={nextProj}
+            openWindow={openWindow}
+            lang={lang}
+            miniTitle={d.title}
+            miniDek={d.description || d.problemShort}
+            introBlock={introBlock}
+            sections={(project.id === 'soulsphere'
+              /* Small first-semester chatbot build — merge Identity & Design with Outcome. */
+              ? [
+                {
+                  id: 'results',
+                  label: 'design & outcome',
+                  chapterTitle: lang === 'de' ? 'Design & Ergebnis' : 'Design & Outcome',
+                  content: <>{designPanel}{resultsPanel}</>,
+                },
+                {
+                  id: 'research',
+                  label: 'process',
+                  chapterTitle: 'Research & Testing',
+                  content: researchPanel,
+                },
+                {
+                  id: 'reflection',
+                  label: 'reflection',
+                  chapterTitle: '',
+                  content: reflectionPanel,
+                },
+              ]
+              : [
+                {
+                  id: 'results',
+                  label: 'outcome',
+                  chapterTitle: project.id === 'echoes' ? 'The Echoes Zone' : 'Outcome & Impact',
+                  content: resultsPanel,
+                },
+                {
+                  id: 'design',
+                  label: 'identity & design',
+                  chapterTitle: 'Identity & Design',
+                  content: designPanel,
+                },
+                {
+                  id: 'research',
+                  label: 'process',
+                  chapterTitle: lang === 'de' ? 'Process & Research' : 'Process & Research',
+                  content: researchPanel,
+                },
+                {
+                  id: 'reflection',
+                  label: 'reflection',
+                  chapterTitle: '',   /* heading lives inside the lilac field instead */
+                  content: reflectionPanel,
+                },
+              ])}
+          />
+        )}
+      </div>
+
+      {/* Bottom pager removed — prev/next now lives in CaseScrollLayout's sticky bottom nav. */}
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   PROJECTS OVERVIEW (folder)
+═════════════════════════════════════════════════════════════════════ */
+/* ProjectsOverview — Projects.exe. Now hosts the skill→project mapping
+   that used to float on the desktop, as a filter chip row. Two-mode:
+     · HOVER chip → matching projects highlighted, others dim
+     · CLICK chip → opens that <Skill>.exe detail window
+     · Shift+CLICK → pin the filter (sticky) */
+function ProjectsOverview({ t, lang, openProject }) {
+  /* All visible projects: completed first (in array order), then WIPs. */
+  const projects = PROJECTS.filter(p => p.status === 'completed' || p.status === 'wip');
+  const completed = projects.filter(p => p.status === 'completed');
+  const wips = projects.filter(p => p.status === 'wip');
+  const ordered = [...completed, ...wips];
+
+  return (
+    <div className="projects-content">
+      <div className="projects-header">
+        <h2 className="projects-title">
+          {lang === 'de' ? '📁 Meine Projekte' : '📁 My Projects'}
+        </h2>
+        <p className="projects-subtitle">
+          {lang === 'de'
+            ? `${projects.length} Projekte · Doppelklick um zu öffnen`
+            : `${projects.length} projects · Double-click to open`}
+        </p>
+      </div>
+
+      <div className="projects-simple-grid">
+        {ordered.map(project => {
+          const d = project[lang];
+          const isWip = project.status === 'wip';
+          return (
+            <div
+              key={project.id}
+              className={`project-grid-item ${isWip ? 'project-grid-item--wip' : ''}`}
+              role="button"
+              tabIndex={0}
+              onClick={() => openProject(project.id)}
+              onDoubleClick={() => openProject(project.id)}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openProject(project.id); } }}
+              title={d.title}
+            >
+              <div className="project-grid-icon" aria-hidden="true">{project.emoji}</div>
+              <p className="project-grid-name">{d.title}</p>
+              {d.roleChips?.length > 0 && (
+                <div className="project-grid-chips">
+                  {d.roleChips.slice(0, 2).map((chip, i) => (
+                    <span key={i} className="project-grid-chip">{chip}</span>
+                  ))}
+                </div>
+              )}
+              {isWip && (
+                <span className="project-grid-wip-badge">
+                  🔄 {lang === 'de' ? 'In Arbeit' : 'In Progress'}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="projects-footer">
+        <small>
+          {lang === 'de'
+            ? 'Klick oder Doppelklick um eine Case Study zu öffnen'
+            : 'Click or double-click to open a case study'}
+        </small>
+      </div>
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   SKILLS WINDOW
+═════════════════════════════════════════════════════════════════════ */
+function SkillsContent({ t, lang }) {
+  const s = t.skills;
+  return (
+    <div className="content">
+      <h1>{t.skills_section}</h1>
+      <p className="mono">{lang === 'de' ? 'Was ich auf dem Tisch habe — kein Skill-Slop, nur ehrlich gewichtet.' : 'What I actually bring — no skill slop, honestly weighted.'}</p>
+
+      <h2>{lang === 'de' ? 'Selbsteinschätzung' : 'Self-assessment'}</h2>
+      {t.skill_bars.map((b,i) => (
+        <div key={i} className="skill-row">
+          <div>{b.label}</div>
+          <div className="bar"><div style={{ width: `${b.pct}%` }} /></div>
+          <div style={{ textAlign: 'right' }}>{b.pct}</div>
+        </div>
+      ))}
+
+      <h2>{t.methods}</h2>
+      <div className="tag-row">{s.methods.map(x => <span key={x} className="chip">{x}</span>)}</div>
+
+      <h2>{t.tools}</h2>
+      <div className="tag-row">{s.tools.map(x => <span key={x} className="chip blue">{x}</span>)}</div>
+
+      <h2>{t.languages}</h2>
+      <ul>{s.langs.map((x,i) => <li key={i}>{x}</li>)}</ul>
+
+      <h2>{t.soft_skills}</h2>
+      <div className="tag-row">{s.soft.map(x => <span key={x} className="chip pink">{x}</span>)}</div>
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   CV / TIMELINE WINDOW
+═════════════════════════════════════════════════════════════════════ */
+function CVContent({ t, lang, onDownload }) {
+  return (
+    <div className="content">
+      <h1>{t.cv_section}</h1>
+      <div style={{ display:'flex', gap:8, marginBottom: 10, flexWrap:'wrap' }}>
+        <button className="pix-btn primary" onClick={onDownload}>⬇ {t.download_cv}</button>
+        <a className="pix-btn" href={`mailto:${NURIA.email}`}>✉ {NURIA.email}</a>
+      </div>
+      {t.timeline_items.map((it, i) => (
+        <div key={i} className="cv-row">
+          <div className="cv-year">{it.year}</div>
+          <div className="cv-body">
+            <strong>{it.title}</strong>
+            <p>{it.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   ABOUT / INTRO WINDOW
+═════════════════════════════════════════════════════════════════════ */
+/* Skill bar percentages — read from t.skill_bars by matching the label
+   text to a SKILL_CATALOG key. Skills without a bar entry render without
+   the progress strip (we don't fake numbers). */
+function pctFor(skillKey, t) {
+  const map = {
+    figma:    /^Figma$/i,
+    research: /User Research/i,
+    service:  /Service Design/i,
+    react:    /TypeScript\s*\/\s*React|React/i,
+    n8n:      /n8n/i,
+  };
+  const rx = map[skillKey];
+  if (!rx) return null;
+  return (t.skill_bars || []).find(b => rx.test(b.label))?.pct ?? null;
+}
+
+/* Categorise a timeline item from its title — keeps data.jsx untouched */
+function timelineCat(title) {
+  if (/Colegio|Spanien|Andalusien|exchange|Auslandsj/i.test(title)) return 'ausland';
+  if (/B\.Sc|Abitur|Hochschule|Bachelor|Therese|Klasse|Computer Science|Informatik/i.test(title)) return 'studium';
+  return 'job';
+}
+
+const LANGS = [
+  { code: 'ES', flag: '🇪🇸', label_de: 'Spanisch',     label_en: 'Spanish',  level_de: 'Muttersprache', level_en: 'native',  pct: 100 },
+  { code: 'DE', flag: '🇩🇪', label_de: 'Deutsch',       label_en: 'German',   level_de: 'Fließend',      level_en: 'fluent',  pct: 95 },
+  { code: 'EN', flag: '🇬🇧', label_de: 'Englisch',      label_en: 'English',  level_de: 'B2',            level_en: 'B2',      pct: 70 },
+  { code: 'IT', flag: '🇮🇹', label_de: 'Italienisch',   label_en: 'Italian',  level_de: 'A1',            level_en: 'A1',      pct: 25 },
+];
+
+function AboutContent({ t, lang, openWindow }) {
+  /* About_Me.txt — warm, personal page split into 4 tabs:
+       Profil   → who I am + how I work + fun facts
+       Skills   → 3-col badge wall (Design / Tech / Languages), click → .exe
+       CV       → Werdegang timeline with category filter chips
+       Kontakt  → email/LinkedIn/phone + message form */
+
+  const [cvFilter, setCvFilter] = useStateW('all');
+  const timelineFiltered = cvFilter === 'all'
+    ? t.timeline_items
+    : t.timeline_items.filter(it => timelineCat(it.title) === cvFilter);
+
+  /* Group SKILL_CATALOG into Design vs Tech for the Skills tab */
+  const designKeys = ['research', 'service', 'figma', 'testing'];
+  const techKeys   = ['react', 'js', 'html', 'n8n'];
+  const byKey = Object.fromEntries(SKILL_CATALOG.map(s => [s.key, s]));
+  const designSkills = designKeys.map(k => byKey[k]).filter(Boolean);
+  const techSkills   = techKeys.map(k => byKey[k]).filter(Boolean);
+
+  const renderBadge = (s) => {
+    const pct = pctFor(s.key, t);
+    return (
+      <button
+        key={s.key}
+        type="button"
+        className="skill-badge"
+        onClick={() => openWindow?.(s.key)}
+        aria-label={s[lang]}
+      >
+        <span className="skill-badge-icon" style={{ background: s.color }}>{s.icon}</span>
+        <div className="skill-badge-info">
+          <span className="skill-badge-label">{s[lang]}</span>
+          {pct != null && (
+            <div className="skill-badge-bar" aria-label={`${s[lang]} ${pct}%`}>
+              <div style={{ width: `${pct}%` }} />
+            </div>
+          )}
+        </div>
+      </button>
+    );
+  };
+
+  const renderLang = (l) => (
+    <div key={l.code} className="lang-badge">
+      <span className="lang-badge-flag" aria-hidden="true">{l.flag}</span>
+      <div className="lang-badge-info">
+        <span className="lang-badge-label">{l[`label_${lang}`]}</span>
+        <span className="lang-badge-level">{l[`level_${lang}`]}</span>
+      </div>
+      <div className="lang-badge-bar" aria-label={`${l[`label_${lang}`]} ${l.pct}%`}>
+        <div style={{ width: `${l.pct}%` }} />
+      </div>
+    </div>
+  );
+
+  /* ── Buffer-style intro for About: photo + h1 + tagline + meta-pills */
+  const aboutIntroBlock = (
+    <>
+      <div className="case-intro-block">
+        <h1 className="case-intro-title">
+          {lang === 'de' ? `Hallo, ich bin ${NURIA.name}` : `Hi, I'm ${NURIA.name}`}
+        </h1>
+        <p className="case-intro-desc">{t.tagline}</p>
+        <div className="case-intro-tags">
+          <span className="case-intro-tag">📍 {NURIA.location}</span>
+          <span className="case-intro-tag">📅 {lang === 'de' ? 'WS 26/27' : 'WS 26/27'}</span>
+          <span className="case-intro-tag">UX/UI</span>
+          <span className="case-intro-tag">Service Design</span>
+          <span className="case-intro-tag">B.Sc. HM München</span>
+        </div>
+      </div>
+      <div className="case-hero-bleed">
+        <img src={NURIA.pixelPhoto || NURIA.photo} alt={NURIA.name} />
+      </div>
+    </>
+  );
+
+  /* ── Profile panel — Why Design pull-quote + Approach + Looking-meta + Fun Fact */
+  const profilPanel = (
+    <div className="tab-content">
+      {/* WHY DESIGN — big editorial pull-quote */}
+      <blockquote className="case-insight-quote">
+        {lang === 'de'
+          ? 'Ich liebe es, durch echte Forschung echte Probleme zu verstehen. Design ist die Brücke zwischen menschlichen Bedürfnissen und eleganten Lösungen.'
+          : "I love understanding real problems through genuine research. Design is the bridge between human needs and elegant solutions."}
+      </blockquote>
+
+      {/* MY APPROACH — kept the 3-step flow (move #5 skipped per request) */}
+      <section className="case-section">
+        <h2>{lang === 'de' ? 'Mein Ansatz' : 'My Approach'}</h2>
+        <div className="about-approach-flow">
+          <div className="approach-step">
+            <div className="approach-number">01</div>
+            <h3>{lang === 'de' ? 'Research' : 'Research'}</h3>
+            <p>
+              {lang === 'de'
+                ? 'Interviews, Personas, Journey Maps. Ich verstehe die Menschen, nicht nur die Briefs.'
+                : 'Interviews, personas, journey maps. I understand people, not just briefs.'}
+            </p>
+          </div>
+          <div className="approach-arrow" aria-hidden="true">→</div>
+          <div className="approach-step">
+            <div className="approach-number">02</div>
+            <h3>{lang === 'de' ? 'Design' : 'Design'}</h3>
+            <p>
+              {lang === 'de'
+                ? 'Figma-Prototypen, Usability-Tests. Iterativ, bis es sich richtig anfühlt.'
+                : 'Figma prototypes, usability tests. Iterative until it feels right.'}
+            </p>
+          </div>
+          <div className="approach-arrow" aria-hidden="true">→</div>
+          <div className="approach-step">
+            <div className="approach-number">03</div>
+            <h3>{lang === 'de' ? 'Code' : 'Code'}</h3>
+            <p>
+              {lang === 'de'
+                ? 'React, TypeScript, lebende Prototypen. Umsetzung mit Sorgfalt.'
+                : 'React, TypeScript, live prototypes. Implementation with care.'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT I'M LOOKING FOR — compact meta-strip (Buffer/Stack-Role-style) */}
+      <section className="case-section">
+        <h2>{lang === 'de' ? 'Was ich suche' : "What I'm Looking For"}</h2>
+        <div className="case-meta-strip">
+          <div className="case-meta-label">{lang === 'de' ? 'Position' : 'Position'}</div>
+          <div className="case-meta-value">
+            {lang === 'de'
+              ? 'Praxissemester oder Werkstudium im UX / Service Design'
+              : 'Practical semester or working-student role in UX / Service Design'}
+          </div>
+          <div className="case-meta-label">{lang === 'de' ? 'Team' : 'Team'}</div>
+          <div className="case-meta-value">
+            {lang === 'de'
+              ? 'Research-first Mindset. Lernen + beitragen.'
+              : 'Research-first mindset. Learn + contribute.'}
+          </div>
+          <div className="case-meta-label">{lang === 'de' ? 'Zeit' : 'Time'}</div>
+          <div className="case-meta-value">
+            {lang === 'de'
+              ? 'WS 26/27 oder später · Vollzeit oder 20+ h / Woche'
+              : 'WS 26/27 or later · Full-time or 20+ hrs / week'}
+          </div>
+          <div className="case-meta-label">{lang === 'de' ? 'Ort' : 'Location'}</div>
+          <div className="case-meta-value">
+            {lang === 'de'
+              ? 'München / Ottobrunn bevorzugt · Remote verhandelbar'
+              : 'Munich / Ottobrunn preferred · Remote negotiable'}
+          </div>
+        </div>
+      </section>
+
+      {/* FUN FACT — kept warm */}
+      <section className="case-section">
+        <h2>{lang === 'de' ? 'Fun Fact' : 'Fun Fact'}</h2>
+        <p style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--ink)' }}>
+          {lang === 'de'
+            ? 'Ich bin in Spanien aufgewachsen, sammle alte Computer und bin besessen von Y2K-Design. Dieses Portfolio ist ein Liebesbrief an Retro-Ästhetik — meine Arbeit darin ist trotzdem 100 % modern und research-getrieben. Best of both worlds.'
+            : "I grew up in Spain, collect vintage computers, and I'm obsessed with Y2K design. This portfolio is a love letter to retro aesthetics — but the work inside is 100 % modern and research-driven. Best of both worlds."}
+        </p>
+      </section>
+    </div>
+  );
+
+  /* ── Skills panel — badge wall, 3 columns (Design · Tech · Languages) */
+  const skillsPanel = (
+    <div className="tab-content">
+      <p className="mono" style={{ margin: '0 0 12px', color: 'var(--ink-soft)' }}>
+        {lang === 'de'
+          ? '↓ Klick auf eine Badge öffnet das Skill-Fenster mit Projekt-Beispielen.'
+          : '↓ Click a badge to open the skill window with project examples.'}
+      </p>
+      <div className="skills-grid">
+        <section className="skills-col">
+          <h3 className="skills-col-h">{lang === 'de' ? 'Design' : 'Design'}</h3>
+          <div className="skills-col-list">{designSkills.map(renderBadge)}</div>
+        </section>
+        <section className="skills-col">
+          <h3 className="skills-col-h">{lang === 'de' ? 'Tech' : 'Tech'}</h3>
+          <div className="skills-col-list">{techSkills.map(renderBadge)}</div>
+        </section>
+        <section className="skills-col">
+          <h3 className="skills-col-h">{lang === 'de' ? 'Sprachen' : 'Languages'}</h3>
+          <div className="skills-col-list">{LANGS.map(renderLang)}</div>
+        </section>
+      </div>
+
+      <h2 style={{ marginTop: 20 }}>{t.soft_skills}</h2>
+      <div className="tag-row">{t.skills.soft.map(x => <span key={x} className="chip pink">{x}</span>)}</div>
+    </div>
+  );
+
+  /* ── CV panel — timeline + filter chips */
+  const CV_FILTERS = [
+    { id: 'all',     label_de: 'Alle',     label_en: 'All' },
+    { id: 'studium', label_de: '🎓 Studium', label_en: '🎓 Studies' },
+    { id: 'job',     label_de: '💼 Job',     label_en: '💼 Work' },
+    { id: 'ausland', label_de: '✈ Ausland', label_en: '✈ Abroad' },
+  ];
+  const cvPanel = (
+    <div className="tab-content">
+      <div className="cv-toolbar">
+        <a className="pix-btn primary" href="assets/Nuria_Kurrle_CV.pdf" download>
+          ⬇ {t.download_cv}
+        </a>
+        <div className="cv-filters" role="toolbar" aria-label={lang === 'de' ? 'Filter' : 'Filter'}>
+          {CV_FILTERS.map(f => (
+            <button
+              key={f.id}
+              type="button"
+              className={`cv-filter-chip ${cvFilter === f.id ? 'on' : ''}`}
+              onClick={() => setCvFilter(f.id)}
+              aria-pressed={cvFilter === f.id}
+            >
+              {f[`label_${lang}`]}
+            </button>
+          ))}
+        </div>
+      </div>
+      {timelineFiltered.length === 0 && (
+        <p className="mono" style={{ opacity: 0.7 }}>
+          {lang === 'de' ? 'Keine Einträge in dieser Kategorie.' : 'No entries in this category.'}
+        </p>
+      )}
+      {timelineFiltered.map((it, i) => (
+        <div key={i} className="cv-row" data-cat={timelineCat(it.title)}>
+          <div className="cv-year">{it.year}</div>
+          <div className="cv-body">
+            <strong>{it.title}</strong>
+            <p>{it.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  /* ── Kontakt panel */
+  const kontaktPanel = (
+    <div className="tab-content">
+      <div className="callout">
+        <div className="mono" style={{ fontSize: 16, lineHeight: 1.8 }}>
+          ✉ <a href={`mailto:${NURIA.email}`}>{NURIA.email}</a><br />
+          in <a href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">{NURIA.linkedin}</a><br />
+          {NURIA.phone && <>📞 <a href={`tel:${NURIA.phone.replace(/\s+/g,'')}`}>{NURIA.phone}</a><br /></>}
+          📍 {NURIA.location}
+        </div>
+        <div style={{ marginTop: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          <a className="pix-btn primary" href={`mailto:${NURIA.email}`}>✉ {t.contact_cta}</a>
+          <a className="pix-btn" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">in {t.linkedin_cta}</a>
+        </div>
+      </div>
+
+      <h2>{lang === 'de' ? 'Oder: kurz hier hinterlassen' : 'Or: drop a quick note here'}</h2>
+      <div className="inset">
+        <input style={inputCSS} placeholder={lang==='de'?'Dein Name':'Your name'} />
+        <input style={inputCSS} placeholder={lang==='de'?'Deine E-Mail':'Your email'} />
+        <textarea style={{...inputCSS, height: 90, resize:'none'}} placeholder={lang==='de'?'Worum geht es?':'What is it about?'} />
+        <button className="pix-btn primary" style={{ marginTop: 6 }} type="button" onClick={() => alert(lang==='de'?'Formular ist Mockup — schreib mir per Mail.':'Form is a mockup — please email me.')}>
+          {lang==='de'?'Senden':'Send'}
+        </button>
+      </div>
+
+      {openWindow && (
+        <div style={{ marginTop: 14, display: 'flex', justifyContent: 'flex-end' }}>
+          <button className="pix-btn primary" onClick={() => openWindow('recruiter')}>
+            {lang === 'de' ? 'Projekte ansehen' : 'See projects'} →
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  return (
+    <div className="case-study-wrapper has-scroll-layout">
+      <div className="case-study-container">
+        <CaseScrollLayout
+          noProjectNav
+          openWindow={openWindow}
+          lang={lang}
+          miniTitle={lang === 'de' ? 'about_me' : 'about_me'}
+          miniDek={lang === 'de' ? 'UX/UI & Service Design Studentin · HM München' : 'UX/UI & Service Design student · HM Munich'}
+          introBlock={aboutIntroBlock}
+          sections={[
+            { id: 'profile',    label: lang === 'de' ? 'profil'    : 'profile',    chapterTitle: lang === 'de' ? 'Profil'    : 'Profile',    content: profilPanel },
+            { id: 'skills',     label: lang === 'de' ? 'skills'    : 'skills',     chapterTitle: lang === 'de' ? 'Skills & Tools' : 'Skills & Tools', content: skillsPanel },
+            { id: 'background', label: lang === 'de' ? 'werdegang' : 'background', chapterTitle: lang === 'de' ? 'Werdegang' : 'Background', content: cvPanel },
+            { id: 'contact',    label: lang === 'de' ? 'kontakt'   : 'contact',    chapterTitle: lang === 'de' ? 'Kontakt'   : 'Contact',    content: kontaktPanel },
+          ]}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   CONTACT WINDOW
+═════════════════════════════════════════════════════════════════════ */
+function ContactContent({ t, lang }) {
+  const [sent, setSent] = useStateW(false);
+  return (
+    <div className="content">
+      <h1>{t.contact_section}</h1>
+      <p>{lang === 'de'
+        ? 'Schreib mir gern — Praktikum, Coffee Chat oder einfach Hi sagen.'
+        : 'Drop me a line — internship, coffee chat or just hi.'}</p>
+
+      <div className="callout">
+        <div className="mono" style={{ fontSize: 17 }}>
+          ✉  {NURIA.email}<br/>
+          in {NURIA.linkedin}<br/>
+          {NURIA.phone && <>📞 {NURIA.phone}<br/></>}
+          📍 {NURIA.location}
+        </div>
+        <div style={{ marginTop: 10, display:'flex', gap: 6, flexWrap:'wrap' }}>
+          <a className="pix-btn primary" href={`mailto:${NURIA.email}`}>{t.contact_cta}</a>
+          <a className="pix-btn" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">{t.linkedin_cta}</a>
+        </div>
+      </div>
+
+      <h2>{lang === 'de' ? 'Oder: Nachricht hier lassen' : 'Or: leave a note here'}</h2>
+      <div className="inset">
+        <input style={inputCSS} placeholder={lang==='de'?'Dein Name':'Your name'} />
+        <input style={inputCSS} placeholder={lang==='de'?'Deine E-Mail':'Your email'} />
+        <textarea style={{...inputCSS, height: 90, resize:'none'}} placeholder={lang==='de'?'Worum geht es?':'What is it about?'} />
+        <button className="pix-btn primary" style={{ marginTop: 6 }} onClick={() => setSent(true)}>
+          {sent ? (lang==='de'?'✓ Versendet (so tun als ob)':'✓ Sent (pretend)') : (lang==='de'?'Senden':'Send')}
+        </button>
+      </div>
+    </div>
+  );
+}
+const inputCSS = {
+  display: 'block', width: '100%', marginBottom: 6, padding: '6px 8px',
+  background: '#fff', border: '1.5px solid #828294', boxShadow: 'inset 1.5px 1.5px 0 #b0b0c0',
+  fontFamily: 'var(--font-mono)', fontSize: 15, color: 'var(--ink)',
+};
+
+/* ═════════════════════════════════════════════════════════════════════
+   DASHBOARD.EXE — single hub window for Calm mode
+   ─────────────────────────────────────────────────────────────────────
+   Replaces the desktop + Recruiter+About cascade with ONE navigator
+   window. Four tabs: Profile · Projects · Experience · Contact.
+   Each tab is the calm distillation of the equivalent playful surface.
+═════════════════════════════════════════════════════════════════════ */
+function DashProfile({ t, lang }) {
+  return (
+    <>
+      <section className="dash-profile-hero">
+        <div className="dash-profile-photo">
+          <img src={NURIA.photo} alt={NURIA.name} />
+        </div>
+        <div className="dash-profile-text">
+          <h1>{NURIA.name}</h1>
+          <div className="dash-profile-tag mono">{t.role}</div>
+          <div className="dash-pill-row">
+            <span className="dash-pill dash-pill-mint">● {t.availability}</span>
+            <span className="dash-pill">📍 {NURIA.location}</span>
+            <span className="dash-pill">🌐 ES · DE · EN · IT</span>
+          </div>
+        </div>
+      </section>
+      <h2>{lang === 'de' ? 'Wer ich bin' : 'Who I am'}</h2>
+      <p>{t.recruiter_intro}</p>
+      <p style={{ fontStyle: 'italic', color: 'var(--ink-soft)' }}>{t.tagline}</p>
+      <h2>{t.why_me}</h2>
+      <ul>{t.why_bullets.map((b, i) => <li key={i}>{b}</li>)}</ul>
+    </>
+  );
+}
+
+function DashProjects({ t, lang, openWindow }) {
+  return (
+    <>
+      <p className="mono" style={{ margin: '0 0 14px', color: 'var(--ink-soft)' }}>
+        {lang === 'de'
+          ? `${PROJECTS.length} Case Studies — klick öffnet Vollansicht.`
+          : `${PROJECTS.length} case studies — click to open full view.`}
+      </p>
+      <div className="project-list">
+        {PROJECTS.map((p, i) => {
+          const d = p[lang];
+          const stack = (p.devLog?.stack || d.tools || []).slice(0, 4).join(' · ');
+          return (
+            <button key={p.id} className="project-row" onClick={() => openWindow(p.id)}>
+              <span className="project-row-id">{String(i + 1).padStart(2, '0')}</span>
+              <div className="project-row-body">
+                <h3>{p.emoji} {d.title}</h3>
+                <p>{d.solutionShort || d.problemShort}</p>
+                <div className="project-row-meta mono">
+                  {d.duration} · {d.role}{stack ? ` · ${stack}` : ''}
+                </div>
+              </div>
+              <span className="project-row-arrow">→</span>
+            </button>
+          );
+        })}
+      </div>
+    </>
+  );
+}
+
+function DashExperience({ t, lang, onDownloadCV }) {
+  const [cvFilter, setCvFilter] = useStateW('all');
+  const CV_FILTERS = [
+    { id: 'all',     label_de: 'Alle',       label_en: 'All' },
+    { id: 'studium', label_de: '🎓 Studium', label_en: '🎓 Studies' },
+    { id: 'job',     label_de: '💼 Job',     label_en: '💼 Work' },
+    { id: 'ausland', label_de: '✈ Ausland',  label_en: '✈ Abroad' },
+  ];
+  const items = cvFilter === 'all'
+    ? t.timeline_items
+    : t.timeline_items.filter(it => timelineCat(it.title) === cvFilter);
+
+  return (
+    <>
+      <div className="cv-toolbar">
+        <button className="pix-btn primary" onClick={onDownloadCV}>⬇ {t.download_cv}</button>
+        <div className="cv-filters">
+          {CV_FILTERS.map(f => (
+            <button
+              key={f.id}
+              type="button"
+              className={`cv-filter-chip ${cvFilter === f.id ? 'on' : ''}`}
+              onClick={() => setCvFilter(f.id)}
+            >
+              {f[`label_${lang}`]}
+            </button>
+          ))}
+        </div>
+      </div>
+      {items.length === 0 && (
+        <p className="mono" style={{ opacity: 0.7 }}>
+          {lang === 'de' ? 'Keine Einträge.' : 'No entries.'}
+        </p>
+      )}
+      {items.map((it, i) => (
+        <div key={i} className="cv-row" data-cat={timelineCat(it.title)}>
+          <div className="cv-year">{it.year}</div>
+          <div className="cv-body">
+            <strong>{it.title}</strong>
+            <p>{it.body}</p>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+}
+
+function DashContact({ t, lang, onDownloadCV, openWindow }) {
+  return (
+    <>
+      <div className="callout">
+        <div className="mono" style={{ fontSize: 16, lineHeight: 1.8 }}>
+          ✉ <a href={`mailto:${NURIA.email}`}>{NURIA.email}</a><br />
+          in <a href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">{NURIA.linkedin}</a><br />
+          {NURIA.phone && <>📞 <a href={`tel:${NURIA.phone.replace(/\s+/g,'')}`}>{NURIA.phone}</a><br /></>}
+          📍 {NURIA.location}
+        </div>
+        <div style={{ marginTop: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+          <a className="pix-btn primary" href={`mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27 — Nuria Kurrle' : 'Internship Fall 26 / Spring 27 — Nuria Kurrle')}`}>✉ {t.contact_cta}</a>
+          <a className="pix-btn" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">in {t.linkedin_cta}</a>
+          <button className="pix-btn warn" onClick={onDownloadCV}>⬇ {t.download_cv}</button>
+          <button className="pix-btn" onClick={() => openWindow?.('quickpitch')}>🎯 {lang === 'de' ? '60-Sek-Pitch' : '60-sec pitch'}</button>
+        </div>
+      </div>
+      <div className="callout mint" style={{ marginTop: 14 }}>
+        <strong>{lang === 'de' ? 'Verfügbar für Praxissemester · WS 26/27' : 'Available for practical semester · Fall 26 / Spring 27'}</strong>
+        <p style={{ marginTop: 4 }}>{lang === 'de'
+          ? 'Nur München. Fokus: UX, Service Design, Research.'
+          : 'Munich only. Focus: UX, service design, research.'}</p>
+      </div>
+    </>
+  );
+}
+
+function DashboardContent({ t, lang, openWindow, onDownloadCV, openLightbox }) {
+  return (
+    <div className="content content-tabbed dashboard-content">
+      <Tabs
+        idPrefix="dash"
+        defaultId="profile"
+        tabs={[
+          { id: 'profile',    label: (lang === 'de' ? '👤 Profil'      : '👤 Profile'),    panel: <DashProfile    t={t} lang={lang} /> },
+          { id: 'projects',   label: (lang === 'de' ? '📂 Projekte'    : '📂 Projects'),   panel: <DashProjects   t={t} lang={lang} openWindow={openWindow} /> },
+          { id: 'experience', label: (lang === 'de' ? '🕘 Werdegang'   : '🕘 Experience'), panel: <DashExperience t={t} lang={lang} onDownloadCV={onDownloadCV} /> },
+          { id: 'contact',    label: (lang === 'de' ? '✉ Kontakt'      : '✉ Contact'),    panel: <DashContact    t={t} lang={lang} onDownloadCV={onDownloadCV} openWindow={openWindow} /> },
+        ]}
+      />
+    </div>
+  );
+}
+
+/* ═════════════════════════════════════════════════════════════════════
+   WIP LOADING MODAL — Win95-style dialog for in-progress projects
+   ─────────────────────────────────────────────────────────────────────
+   Shown when a recruiter clicks Clarity, Don Bosco, or any other
+   project with status === 'wip'. Replaces the full case-study window:
+   honest, fun, Win95-authentic, animated progress bar.
+═════════════════════════════════════════════════════════════════════ */
+function WIPLoadingModal({ project, lang, onClose }) {
+  const d = project[lang] || project.de;
+  const target = Number.isFinite(d.wipProgress) ? d.wipProgress : (project.progress || 50);
+  const [progress, setProgress] = useStateW(0);
+
+  /* Tick from 0 → target with a tiny random jitter for that authentic
+     "installer is doing something" feel. Caps at target. */
+  React.useEffect(() => {
+    let raf;
+    const id = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= target) { clearInterval(id); return target; }
+        return Math.min(target, prev + 1 + Math.random() * 6);
+      });
+    }, 220);
+    return () => { clearInterval(id); cancelAnimationFrame(raf); };
+  }, [target]);
+
+  /* Close on Esc */
+  React.useEffect(() => {
+    const handler = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  const shortName = (d.title || '').split('—')[0].trim() || d.title;
+  const concept = d.wipShortConcept || d.problemShort || '';
+  const description = d.wipDescription || d.problemShort || '';
+  const phase = d.wipPhase || d.phase || (lang === 'de' ? 'In Arbeit' : 'In progress');
+  const eta = d.wipETA || (lang === 'de' ? 'Bald' : 'Soon');
+
+  return (
+    <div className="wip-modal-overlay" onClick={onClose} role="dialog" aria-modal="true" aria-label={shortName}>
+      <div className="wip-modal-window" onClick={e => e.stopPropagation()}>
+        <div className="wip-title-bar">
+          <div className="wip-title-text">
+            ⏳ {shortName} — {lang === 'de' ? 'Lädt…' : 'Loading…'}
+          </div>
+          <button className="wip-close-btn" onClick={onClose} aria-label={lang === 'de' ? 'Schließen' : 'Close'}>✕</button>
+        </div>
+
+        <div className="wip-content">
+          <div className="wip-header">
+            <span className="wip-emoji" aria-hidden="true">{project.emoji}</span>
+            <h2 className="wip-concept">{concept}</h2>
+          </div>
+
+          <p className="wip-description">{description}</p>
+
+          <div className="wip-status">
+            <span className="wip-status-badge">🔄 {phase}</span>
+          </div>
+
+          <div className="wip-progress-container">
+            <div className="wip-progress-bar" role="progressbar" aria-valuenow={Math.round(progress)} aria-valuemin="0" aria-valuemax="100">
+              <div className="wip-progress-fill" style={{ width: `${progress}%` }}></div>
+            </div>
+            <span className="wip-progress-text">{Math.round(progress)}%</span>
+          </div>
+
+          <div className="wip-eta">
+            <p className="wip-eta-blink">⏳ {lang === 'de' ? 'Kommt bald…' : 'Coming soon…'}</p>
+            <p className="wip-eta-date">
+              {lang === 'de' ? 'Geplant: ' : 'Planned: '}<strong>{eta}</strong>
+            </p>
+          </div>
+        </div>
+
+        <div className="wip-footer">
+          <button className="wip-ok-btn" onClick={onClose} autoFocus>OK</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+window.RecruiterContent = RecruiterContent;
+window.ProjectContent = ProjectContent;
+window.ProjectsOverview = ProjectsOverview;
+window.SkillsContent = SkillsContent;
+window.CVContent = CVContent;
+window.AboutContent = AboutContent;
+window.ContactContent = ContactContent;
+window.DashboardContent = DashboardContent;
+window.WIPLoadingModal = WIPLoadingModal;
