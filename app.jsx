@@ -48,79 +48,79 @@ const ACCENT_OPTIONS = [
 const KLIPPI_MESSAGES = {
   desktop: {
     de: [
-      '👋 Willkommen! Doppelklick auf die Icons — oder öffne direkt 📂 Recruiter.exe für den Überblick.',
-      '🔮 Die Logos rechts sind meine Skills — du kannst sie herumziehen und anklicken!',
+      '👋 Willkommen! Doppelklick auf die Icons, oder öffne direkt 📂 Recruiter.exe für den Überblick.',
+      '🔮 Die Logos rechts sind meine Skills, du kannst sie herumziehen und anklicken!',
       '🌟 Tipp: hover über einen Skill und die passenden Projekte leuchten auf der linken Seite.',
-      '🎨 Alles im Y2K-Vibe — enjoy the ride.',
-      '🖼️ Tipp: unten rechts kannst du den Hintergrund wechseln — 🟦 seriöses Blau oder 🌄 Pixel-Welt.',
-      '💬 Fragen? Klick 💬 NuriaBot.aim — oder schreib mir eine Mail.',
+      '🎨 Alles im Y2K-Vibe, enjoy the ride.',
+      '🖼️ Tipp: unten rechts kannst du den Hintergrund wechseln, 🟦 seriöses Blau oder 🌄 Pixel-Welt.',
+      '💬 Fragen? Klick 💬 NuriaBot.aim, oder schreib mir eine Mail.',
     ],
     en: [
-      '👋 Welcome! Double-click the icons — or jump straight into 📂 Recruiter.exe for the overview.',
-      '🔮 The logos on the right are my skills — drag them around and click them!',
+      '👋 Welcome! Double-click the icons, or jump straight into 📂 Recruiter.exe for the overview.',
+      '🔮 The logos on the right are my skills, drag them around and click them!',
       '🌟 Tip: hover a skill sticker and the matching project icons light up on the left.',
-      '🎨 Everything\'s in Y2K vibes — enjoy the ride.',
-      '🖼️ Tip: switch the background bottom-right — 🟦 serious blue or 🌄 pixel world.',
-      '💬 Questions? Click 💬 NuriaBot.aim — or just email me.',
+      '🎨 Everything\'s in Y2K vibes, enjoy the ride.',
+      '🖼️ Tip: switch the background bottom-right, 🟦 serious blue or 🌄 pixel world.',
+      '💬 Questions? Click 💬 NuriaBot.aim, or just email me.',
     ],
   },
   recruiter: {
     de: [
-      '🔍 Meine ausgewählten Projekte — jedes hat eine komplette Case Study mit Research, Design und Ergebnissen.',
-      '📧 Mail, in LinkedIn oder ⬇ CV — wähle was dir am besten passt.',
+      '🔍 Meine ausgewählten Projekte, jedes hat eine komplette Case Study mit Research, Design und Ergebnissen.',
+      '📧 Mail, in LinkedIn oder ⬇ CV, wähle was dir am besten passt.',
       '🎯 Meine Arbeitsweise: Research zuerst, dann Design, dann Code.',
       '👇 Klick auf "→ Case Study" um in ein Projekt einzutauchen.',
-      '🪟 Zu eng? Doppelklick auf die Titelleiste — oder ▢ oben rechts — und das Fenster wird groß.',
+      '🪟 Zu eng? Doppelklick auf die Titelleiste, oder ▢ oben rechts, und das Fenster wird groß.',
     ],
     en: [
-      '🔍 My selected projects — each one has a full case study with research, design and results.',
-      '📧 Mail, in LinkedIn or ⬇ CV — pick whichever works best for you.',
+      '🔍 My selected projects, each one has a full case study with research, design and results.',
+      '📧 Mail, in LinkedIn or ⬇ CV, pick whichever works best for you.',
       '🎯 How I work: research first, then design, then code.',
       '👇 Hit "→ Case Study" to dive into a project.',
-      '🪟 Feels cramped? Double-click the title bar — or hit ▢ top-right — to make the window bigger.',
+      '🪟 Feels cramped? Double-click the title bar, or hit ▢ top-right, to make the window bigger.',
     ],
   },
   about: {
     de: [
       '📝 Hier erfährst du wer ich bin und wie ich ticke.',
       '✨ Fair warning: ich liebe gutes Research und ehrliche Reflexion.',
-      '🎓 HM München, 4. Semester — Praxissemester WS 26/27 in München.',
+      '🎓 HM München, 4. Semester, Praxissemester WS 26/27 in München.',
       '🌍 Aus Argentinien, jetzt in Ottobrunn bei München.',
     ],
     en: [
       '📝 Find out who I am and how I work.',
       '✨ Fair warning: I love research and honest reflection.',
-      '🎓 HM Munich, 4th semester — looking for a fall 26/27 internship in Munich.',
+      '🎓 HM Munich, 4th semester, looking for a fall 26/27 internship in Munich.',
       '🌍 From Argentina, now in Ottobrunn near Munich.',
     ],
   },
   projects: {
     de: [
-      '📂 Alle 7 Projekte — 5 fertig, 2 in Arbeit.',
+      '📂 Alle 7 Projekte, 5 fertig, 2 in Arbeit.',
       '🎯 Klick eines an, um die vollständige Case Study zu öffnen.',
       '💡 Oder zurück zu Recruiter.exe für den schnellen Überblick.',
     ],
     en: [
-      '📂 All 7 projects — 5 complete, 2 in progress.',
+      '📂 All 7 projects, 5 complete, 2 in progress.',
       '🎯 Click one to open its full case study.',
       '💡 Or head back to Recruiter.exe for the quick overview.',
     ],
   },
   projectOpen: {
     de: [
-      '🪟 Tipp zum Start: Doppelklick auf die Titelleiste — oder ▢ oben rechts — macht das Fenster groß.',
-      '📖 Einfach scrollen: Outcome · Identity & Design · Process · Reflection — oder klick die Pills unten.',
+      '🪟 Tipp zum Start: Doppelklick auf die Titelleiste, oder ▢ oben rechts, macht das Fenster groß.',
+      '📖 Einfach scrollen: Outcome · Identity & Design · Process · Reflection, oder klick die Pills unten.',
       '📊 Outcome zuerst: das Ergebnis und der Impact des Projekts.',
-      '🎨 Identity & Design: was ich gebaut habe — und warum.',
+      '🎨 Identity & Design: was ich gebaut habe, und warum.',
       '🔍 Process: wie ich das Problem verstanden und erforscht habe.',
       '💭 Reflection: meine Learnings aus dem Projekt.',
       '🧪 Oben in der Meta-Zeile siehst du Stack, Rolle und Links.',
     ],
     en: [
-      '🪟 Quick tip: Double-click the title bar — or hit ▢ top-right — to make the window bigger.',
-      '📖 Just scroll: Outcome · Identity & Design · Process · Reflection — or click the pills at the bottom.',
+      '🪟 Quick tip: Double-click the title bar, or hit ▢ top-right, to make the window bigger.',
+      '📖 Just scroll: Outcome · Identity & Design · Process · Reflection, or click the pills at the bottom.',
       '📊 Outcome first: the project\'s result and impact.',
-      '🎨 Identity & Design: what I built — and why.',
+      '🎨 Identity & Design: what I built, and why.',
       '🔍 Process: how I understood and researched the problem.',
       '💭 Reflection: my takeaways from the project.',
       '🧪 The meta bar up top shows the stack, role and links.',
@@ -128,16 +128,16 @@ const KLIPPI_MESSAGES = {
   },
   click: {
     de: [
-      'Ouch! Klick auf 📄 About_Me.txt — nicht auf mich — um Nuria besser kennenzulernen 😅',
-      'Hey hey — ich bin nur Klippi! Nuria findest du in About_Me.txt 📄',
+      'Ouch! Klick auf 📄 About_Me.txt, nicht auf mich, um Nuria besser kennenzulernen 😅',
+      'Hey hey, ich bin nur Klippi! Nuria findest du in About_Me.txt 📄',
       'Du kennst das doch von früher: Klippi ist da um zu helfen, nicht zum Anklicken 😉',
-      '🙅 Nicht ich! Doppelklick auf die Icons links — die sind die Stars.',
+      '🙅 Nicht ich! Doppelklick auf die Icons links, die sind die Stars.',
     ],
     en: [
-      'Ouch! Click 📄 About_Me.txt — not me — if you want to get to know Nuria 😅',
-      'Hey hey — I\'m just Klippi! You\'ll find Nuria over in About_Me.txt 📄',
+      'Ouch! Click 📄 About_Me.txt, not me, if you want to get to know Nuria 😅',
+      'Hey hey, I\'m just Klippi! You\'ll find Nuria over in About_Me.txt 📄',
       'You know the drill: Klippi is here to help, not to be clicked 😉',
-      '🙅 Not me! Double-click the icons on the left — they\'re the stars.',
+      '🙅 Not me! Double-click the icons on the left, they\'re the stars.',
     ],
   },
 };
@@ -233,7 +233,7 @@ const WINDOW_DEFS = {
   chat:      { icon: '💬', w: 640, h: 520, x: 290, y: 70, label: 'NuriaBot', titlebarVariant: 'chat' },
   /* Quick Pitch — 60-second elevator console for time-pressed recruiters */
   quickpitch:{ icon: '🎯', w: 540, h: 460, x: 380, y: 100, label: 'Quick_Pitch.txt' },
-  project:   { icon: '📁', w: 1100, h: 780, x: 60, y: 30, label: 'Project — Case Study', noMenubar: true, noStatusbar: true },
+  project:   { icon: '📁', w: 1100, h: 780, x: 60, y: 30, label: 'Project: Case Study', noMenubar: true, noStatusbar: true },
 };
 
 /* ═════════════════════════════════════════════════════════════════════
@@ -244,7 +244,7 @@ const WINDOW_DEFS = {
 ═════════════════════════════════════════════════════════════════════ */
 function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
   const lines = lang === 'de' ? [
-    '> Nuria Kurrle — UX & Service Design',
+    '> Nuria Kurrle, UX & Service Design',
     '> verfügbar: WS 26/27 · München · 5–6 Monate · Vollzeit',
     '> Studium: B.Sc. Informatik & Design, HM München, 4. Sem.',
     '> Stack:  React · TypeScript · Figma · n8n · HTML/CSS',
@@ -256,7 +256,7 @@ function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
     '> Sprachen: ES · DE · EN · IT',
     '> 8 Sekunden gelesen? Perfekt. Hier deine Optionen:',
   ] : [
-    '> Nuria Kurrle — UX & Service Design',
+    '> Nuria Kurrle, UX & Service Design',
     '> available: Fall 26 / Spring 27 · Munich · 5–6 months · full-time',
     '> studies: B.Sc. Computer Science & Design, HM Munich, 4th sem.',
     '> stack:  React · TypeScript · Figma · n8n · HTML/CSS',
@@ -273,7 +273,7 @@ function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
       <div className="quickpitch-terminal">
         <div className="quickpitch-bar">
           <span className="quickpitch-dot" />
-          <span>quick_pitch.txt — {lang === 'de' ? '60 Sekunden' : '60 seconds'}</span>
+          <span>quick_pitch.txt: {lang === 'de' ? '60 Sekunden' : '60 seconds'}</span>
           <span style={{ marginLeft: 'auto', opacity: 0.7 }}>cat /portfolio/pitch</span>
         </div>
         <div className="quickpitch-body">
@@ -286,7 +286,7 @@ function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
         </div>
       </div>
       <div className="quickpitch-cta-row">
-        <a className="pix-btn primary" href={`mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27 — Nuria Kurrle' : 'Internship Fall 26 / Spring 27 — Nuria Kurrle')}`}>
+        <a className="pix-btn primary" href={`mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27, Nuria Kurrle' : 'Internship Fall 26 / Spring 27, Nuria Kurrle')}`}>
           ✉ {lang === 'de' ? 'Mail mich' : 'Email me'}
         </a>
         <a className="pix-btn" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">
@@ -766,15 +766,15 @@ function App() {
       if (p) return p[lang].windowTitle;
       return lang === 'de' ? 'Case Study' : 'Case Study';
     }
-    if (id === 'dashboard') return lang === 'de' ? 'Dashboard.exe — Übersicht' : 'Dashboard.exe — Overview';
-    if (id === 'recruiter') return lang === 'de' ? 'Recruiter.exe — für dich gepackt ✨' : 'Recruiter.exe — packed for you ✨';
-    if (id === 'about')     return 'About_Me.txt — Editor';
-    if (id === 'projects')  return lang === 'de' ? 'Projekte — Explorer' : 'Projects — Explorer';
-    if (id === 'skills')    return 'Skills.cpl — Control Panel';
-    if (id === 'cv')        return lang === 'de' ? 'Lebenslauf.doc — Editor' : 'Resume.doc — Editor';
+    if (id === 'dashboard') return lang === 'de' ? 'Dashboard.exe: Übersicht' : 'Dashboard.exe: Overview';
+    if (id === 'recruiter') return lang === 'de' ? 'Recruiter.exe: für dich gepackt ✨' : 'Recruiter.exe: packed for you ✨';
+    if (id === 'about')     return 'About_Me.txt: Editor';
+    if (id === 'projects')  return lang === 'de' ? 'Projekte: Explorer' : 'Projects: Explorer';
+    if (id === 'skills')    return 'Skills.cpl: Control Panel';
+    if (id === 'cv')        return lang === 'de' ? 'Lebenslauf.doc: Editor' : 'Resume.doc: Editor';
     if (id === 'contact')   return 'Contact.exe';
-    if (id === 'chat')       return lang==='de'?'NuriaBot — Instant Message':'NuriaBot — Instant Message';
-    if (id === 'quickpitch') return lang==='de'?'Quick_Pitch.txt — Notepad':'Quick_Pitch.txt — Notepad';
+    if (id === 'chat')       return lang==='de'?'NuriaBot: Instant Message':'NuriaBot: Instant Message';
+    if (id === 'quickpitch') return lang==='de'?'Quick_Pitch.txt: Notepad':'Quick_Pitch.txt: Notepad';
     const proj = PROJECTS.find(p => p.id === id);
     if (proj) return proj[lang].windowTitle;
     return id;
@@ -999,7 +999,7 @@ function App() {
               label={lang === 'de' ? 'Mail an Nuria' : 'Email Nuria'}
               hot
               onClick={() => {
-                window.location.href = `mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27 — Anfrage' : 'Internship Fall 26 / Spring 27 — Inquiry')}`;
+                window.location.href = `mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27, Anfrage' : 'Internship Fall 26 / Spring 27, Inquiry')}`;
               }}
             />
             <div className="start-divider" />
@@ -1028,7 +1028,7 @@ function App() {
               else minimizeWindow(w.id);
             }}
           >
-            <span>{w.icon}</span><span>{getTitle(w.id).replace(/ — .*$/, '')}</span>
+            <span>{w.icon}</span><span>{getTitle(w.id).replace(/[—:].*$/, '')}</span>
           </button>
         ))}
         <div className="tray">

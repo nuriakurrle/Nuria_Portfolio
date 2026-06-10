@@ -129,7 +129,7 @@ function DeskIcon({ id, label, emoji, badge, attention, selected, dimmed, matche
       onBlur={() => setHoverBoth(false)}
       role="button"
       tabIndex={0}
-      aria-label={`${label}${badge ? ' — ' + badge : ''}${tooltip ? ' — ' + tooltip : ''}`}
+      aria-label={`${label}${badge ? ', ' + badge : ''}${tooltip ? ', ' + tooltip : ''}`}
       aria-disabled={dimmed || undefined}
     >
       {matched && <span className="ico-sparkle" aria-hidden="true">✦</span>}
@@ -339,7 +339,7 @@ function Lightbox({ items, index, onClose, onPrev, onNext, lang }) {
     >
       <div className="frame" onClick={e => e.stopPropagation()} style={{ width: '88vw', height: '82vh' }}>
         <div className="lb-titlebar">
-          <span>🔍 {m.caption || (m.type === 'video' ? 'Video' : 'Image')} — Preview</span>
+          <span>🔍 {m.caption || (m.type === 'video' ? 'Video' : 'Image')}, Preview</span>
           <button className="x" onClick={onClose} aria-label={lang === 'de' ? 'Schließen' : 'Close'}>✕</button>
         </div>
         <div className="lb-body">

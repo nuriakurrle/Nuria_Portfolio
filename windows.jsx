@@ -193,7 +193,7 @@ function RecruiterContent({ t, lang, openProject, openWindow, closeWindow, onDow
 
                 {/* Title & Description */}
                 <div className="recruiter-card-content">
-                  <h3 className="recruiter-card-title">{d.title.split('—')[0].trim()}</h3>
+                  <h3 className="recruiter-card-title">{d.title.split(/[—:]/)[0].trim()}</h3>
                   <p className="recruiter-card-desc">{d.problemShort}</p>
 
                   {/* Quick meta */}
@@ -227,8 +227,8 @@ function RecruiterContent({ t, lang, openProject, openWindow, closeWindow, onDow
           </h3>
           <p className="recruiter-section-sub mono">
             {lang === 'de'
-              ? 'Aktive Projekte — Einblick, nicht das Endprodukt.'
-              : 'Active projects — a peek, not the finished story.'}
+              ? 'Aktive Projekte, Einblick, nicht das Endprodukt.'
+              : 'Active projects, a peek, not the finished story.'}
           </p>
 
           <div className="recruiter-wip-grid">
@@ -389,14 +389,14 @@ function CaseScrollLayout({ sections, prevProj, nextProj, openWindow, lang, mini
     };
   }, [sections]);
 
-  const shortTitle = (p) => (p?.[lang]?.title || '').split('—')[0].trim();
+  const shortTitle = (p) => (p?.[lang]?.title || '').split(/[—:]/)[0].trim();
 
   return (
     <div className="case-scroll-layout" ref={rootRef}>
       {(miniTitle || miniDek) && (
         <header className="case-mini-header">
           {miniTitle && <strong>{miniTitle}</strong>}
-          {miniDek && <span className="case-mini-header-dek">— {miniDek}</span>}
+          {miniDek && <span className="case-mini-header-dek">{miniDek}</span>}
         </header>
       )}
       {introBlock && <div className="tab-content case-intro-wrap">{introBlock}</div>}
@@ -605,7 +605,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
                 <div className="bar" style={{ height: 18 }}>
                   <div style={{ width: `${project.progress}%` }} />
                 </div>
-                <div className="mono" style={{ marginTop: 4 }}>{project.progress}% — {t.progress}</div>
+                <div className="mono" style={{ marginTop: 4 }}>{project.progress}%, {t.progress}</div>
               </div>
             )}
           </div>
@@ -952,8 +952,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
         <section className="case-section case-brand-qr">
           <h2>{lang === 'de' ? 'Brand Guide scannen' : 'Scan the brand guide'}</h2>
           <p>{lang === 'de'
-            ? 'Der vollständige Brand- & Language-Guide — QR-Code mit dem Handy scannen oder antippen zum Öffnen.'
-            : 'The full brand & language guide — scan the QR code with your phone or tap it to open.'}</p>
+            ? 'Der vollständige Brand- & Language-Guide, QR-Code mit dem Handy scannen oder antippen zum Öffnen.'
+            : 'The full brand & language guide, scan the QR code with your phone or tap it to open.'}</p>
           <a
             className="case-brand-qr-code"
             href={d.brandQr.link || d.brandQr.src}
@@ -1080,7 +1080,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
           {d.figmaNote && <p style={{ fontSize: 19, fontWeight: 700, margin: '10px 0 16px', color: 'var(--ink)' }}> {d.figmaNote}</p>}
           <div className="figma-embed">
-            <iframe src={project.figmaEmbedUrl} title={`${d.title} — Figma`} allowFullScreen loading="lazy" />
+            <iframe src={project.figmaEmbedUrl} title={`${d.title}, Figma`} allowFullScreen loading="lazy" />
           </div>
           {project.figmaUrl && (
             <a className="btn-primary" href={project.figmaUrl} target="_blank" rel="noreferrer">
@@ -1196,8 +1196,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
               />
               <p className="case-echoes-note">
                 {d.outcomeNote || (lang === 'de'
-                  ? '[Kurzer Erklärungstext folgt — wie die Themen-Tafel und der QR-Code zusammenspielen.]'
-                  : '[Short explanation goes here — how the themed sign and the QR code work together.]')}
+                  ? '[Kurzer Erklärungstext folgt, wie die Themen-Tafel und der QR-Code zusammenspielen.]'
+                  : '[Short explanation goes here, how the themed sign and the QR code work together.]')}
               </p>
               <img
                 className="case-echoes-img"
@@ -1222,8 +1222,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
         <section className="case-section">
           <p>
             {lang === 'de'
-              ? 'Die Aufgabe für das Semester war das Rebranding einer bestehenden Marke. Meine Gruppe und ich haben uns für Vinted entschieden — eine Plattform, auf der gebrauchte Kleidung und Objekte verkauft werden.'
-              : 'The semester brief was to rebrand an existing brand. My group and I chose Vinted — a platform where people sell second-hand clothing and objects.'}
+              ? 'Die Aufgabe für das Semester war das Rebranding einer bestehenden Marke. Meine Gruppe und ich haben uns für Vinted entschieden, eine Plattform, auf der gebrauchte Kleidung und Objekte verkauft werden.'
+              : 'The semester brief was to rebrand an existing brand. My group and I chose Vinted, a platform where people sell second-hand clothing and objects.'}
           </p>
           <p>
             {lang === 'de'
@@ -1238,8 +1238,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '🔍 Ausgangslage' : '🔍 Starting Point'}</h3>
             <p>
               {lang === 'de'
-                ? 'So sah Vinted vorher aus — das alte Logo und die alte Website als Ausgangspunkt für unser Rebranding.'
-                : 'This is how Vinted looked before — the old logo and the old website as the starting point for our rebrand.'}
+                ? 'So sah Vinted vorher aus, das alte Logo und die alte Website als Ausgangspunkt für unser Rebranding.'
+                : 'This is how Vinted looked before, the old logo and the old website as the starting point for our rebrand.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1271,8 +1271,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '🧭 Moodboard & Arbeitsprozess' : '🧭 Moodboard & Process'}</h3>
             <p>
               {lang === 'de'
-                ? 'Unser Ziel: ein Konzept für alle Altersgruppen — ein nostalgisches, spielerisches Gefühl, das alle anspricht und Generationen verbindet. Gerade junge Menschen wollen heute wieder analog gehen, das Handy weglegen und zurück in eine einfachere Zeit. Genau dieses Lebensgefühl haben wir auf einem Moodboard gesammelt — 80s/90s-Arcade, Pixel-Art, CRT-Glow, knallige Farben — und Schritt für Schritt zur visuellen Richtung verdichtet: Pixel-Logo, Vier-Farben-Palette und ein klarer Type-Stack.'
-                : 'Our goal: a concept for every age group — a nostalgic, playful feeling that speaks to everyone and connects generations. Young people especially want to go analog again today, put the phone down and return to a simpler time. We gathered exactly that mood on a moodboard — 80s/90s arcade, pixel art, CRT glow, bold colours — and step by step distilled it into a visual direction: pixel logo, four-colour palette and a clear type stack.'}
+                ? 'Unser Ziel: ein Konzept für alle Altersgruppen, ein nostalgisches, spielerisches Gefühl, das alle anspricht und Generationen verbindet. Gerade junge Menschen wollen heute wieder analog gehen, das Handy weglegen und zurück in eine einfachere Zeit. Genau dieses Lebensgefühl haben wir auf einem Moodboard gesammelt, 80s/90s-Arcade, Pixel-Art, CRT-Glow, knallige Farben, und Schritt für Schritt zur visuellen Richtung verdichtet: Pixel-Logo, Vier-Farben-Palette und ein klarer Type-Stack.'
+                : 'Our goal: a concept for every age group, a nostalgic, playful feeling that speaks to everyone and connects generations. Young people especially want to go analog again today, put the phone down and return to a simpler time. We gathered exactly that mood on a moodboard, 80s/90s arcade, pixel art, CRT glow, bold colours, and step by step distilled it into a visual direction: pixel logo, four-colour palette and a clear type stack.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1353,8 +1353,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '♻️ Repair-Ecosystem' : '♻️ Repair Ecosystem'}</h3>
             <p>
               {lang === 'de'
-                ? 'Vinted Rewind ist kein einzelnes Produkt, sondern ein geschlossener Kreislauf — online wie offline. Im Hub gibt man Geräte zur Reparatur, tauscht oder verkauft sie; der „Submit · Match · Ship"-Flow macht jeden Schritt so leicht und spielerisch wie ein Level. Physische Arcade-Repair-Shops holen das Erlebnis in die echte Welt, und die wiederverwendbare Retro-Game-Box ersetzt Wegwerf-Verpackung. Reparieren wird so zum Spiel statt zur lästigen Pflicht. Vinted Rewind ist der Ort, an dem deine Geräte ein zweites Zuhause finden — und an dem du dich ein Stück weit wieder zuhause fühlst: nostalgisch, nachhaltig und generationenverbindend.'
-                : 'Vinted Rewind isn\'t a single product but a closed loop — online and offline. In the hub you send devices in for repair, swap or sell them; the "Submit · Match · Ship" flow makes every step as easy and playful as a level. Physical arcade repair shops bring the experience into the real world, and the reusable retro-game-box replaces throwaway packaging. Repair becomes play instead of a chore. Vinted Rewind is the place where your devices find a second home — and where you feel a little at home again: nostalgic, sustainable and generation-spanning.'}
+                ? 'Vinted Rewind ist kein einzelnes Produkt, sondern ein geschlossener Kreislauf, online wie offline. Im Hub gibt man Geräte zur Reparatur, tauscht oder verkauft sie; der „Submit · Match · Ship"-Flow macht jeden Schritt so leicht und spielerisch wie ein Level. Physische Arcade-Repair-Shops holen das Erlebnis in die echte Welt, und die wiederverwendbare Retro-Game-Box ersetzt Wegwerf-Verpackung. Reparieren wird so zum Spiel statt zur lästigen Pflicht. Vinted Rewind ist der Ort, an dem deine Geräte ein zweites Zuhause finden, und an dem du dich ein Stück weit wieder zuhause fühlst: nostalgisch, nachhaltig und generationenverbindend.'
+                : 'Vinted Rewind isn\'t a single product but a closed loop, online and offline. In the hub you send devices in for repair, swap or sell them; the "Submit · Match · Ship" flow makes every step as easy and playful as a level. Physical arcade repair shops bring the experience into the real world, and the reusable retro-game-box replaces throwaway packaging. Repair becomes play instead of a chore. Vinted Rewind is the place where your devices find a second home, and where you feel a little at home again: nostalgic, sustainable and generation-spanning.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1388,7 +1388,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             </p>
             <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
             <div className="figma-embed">
-              <iframe src={project.figmaEmbedUrl} title={`${d.title} — Figma`} allowFullScreen loading="lazy" />
+              <iframe src={project.figmaEmbedUrl} title={`${d.title}, Figma`} allowFullScreen loading="lazy" />
             </div>
             {project.figmaUrl && (
               <a className="btn-primary" href={project.figmaUrl} target="_blank" rel="noreferrer">
@@ -1424,8 +1424,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '🕹 Spielablauf' : '🕹 Game Flow'}</h3>
             <p>
               {lang === 'de'
-                ? 'Jede nachhaltige Aktion — reparieren, tauschen, recyceln — bringt Punkte. Damit schaltet man Retro-Mini-Games frei, sammelt Rewards und steigt durch drei Level: vom Rookie über Master bis Legend. Im Verlauf sieht man jederzeit, wie viel man schon bewegt hat, und ab einer bestimmten Punktzahl schaltet man seinen eigenen Avatar frei — das persönliche Gesicht des Fortschritts. So fühlt sich Nachhaltigkeit nicht nach Verzicht an, sondern nach Highscore.'
-                : 'Every sustainable action — repair, swap, recycle — earns points. You spend them to unlock retro mini-games, collect rewards and climb through three levels: from Rookie to Master to Legend. The history view shows how much you\'ve already moved, and once you hit a certain point threshold you unlock your own avatar — the personal face of your progress. Sustainability doesn\'t feel like giving something up — it feels like a high score.'}
+                ? 'Jede nachhaltige Aktion, reparieren, tauschen, recyceln, bringt Punkte. Damit schaltet man Retro-Mini-Games frei, sammelt Rewards und steigt durch drei Level: vom Rookie über Master bis Legend. Im Verlauf sieht man jederzeit, wie viel man schon bewegt hat, und ab einer bestimmten Punktzahl schaltet man seinen eigenen Avatar frei, das persönliche Gesicht des Fortschritts. So fühlt sich Nachhaltigkeit nicht nach Verzicht an, sondern nach Highscore.'
+                : 'Every sustainable action, repair, swap, recycle, earns points. You spend them to unlock retro mini-games, collect rewards and climb through three levels: from Rookie to Master to Legend. The history view shows how much you\'ve already moved, and once you hit a certain point threshold you unlock your own avatar, the personal face of your progress. Sustainability doesn\'t feel like giving something up, it feels like a high score.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1433,7 +1433,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
               { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_mini_game.webp', cap: lang === 'de' ? 'Mini-Game' : 'Mini-game', bare: true },
               { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_rewards.webp', cap: 'Rewards', bare: true },
               { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_verlauf.webp', cap: lang === 'de' ? 'Verlauf' : 'History', bare: true },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/reward_figur.webp', cap: lang === 'de' ? 'Nutzer-Avatar — ab bestimmter Punktzahl' : 'User avatar — unlocked with points' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/reward_figur.webp', cap: lang === 'de' ? 'Nutzer-Avatar, ab bestimmter Punktzahl' : 'User avatar, unlocked with points' },
             ].map((img, i, arr) => (
               <figure
                 key={i}
@@ -1455,7 +1455,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '🎮 Gamification-Prototyp (Figma)' : '🎮 Gamification prototype (Figma)'}</h3>
             <p className="mono" style={{ fontSize: 12, opacity: 0.8 }}>{t.figma_hint}</p>
             <div className="figma-embed">
-              <iframe src={project.gamificationFigmaEmbedUrl} title={`${d.title} — Gamification Figma`} allowFullScreen loading="lazy" />
+              <iframe src={project.gamificationFigmaEmbedUrl} title={`${d.title}, Gamification Figma`} allowFullScreen loading="lazy" />
             </div>
             {project.gamificationFigmaUrl && (
               <a className="btn-primary" href={project.gamificationFigmaUrl} target="_blank" rel="noreferrer">
@@ -1488,13 +1488,13 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '📱 Social Media' : '📱 Social Media'}</h3>
             <p>
               {lang === 'de'
-                ? 'Auf Instagram wird die Marke zur Community: Feed-Posts erzählen Before/After-Repair-Stories mit Pixel-Art-Overlays, Creator zeigen ihre eigenen reparierten Schätze, und kurze Insta-Werbung bringt den Retro-Vibe in die Timeline. Statt erhobenem Zeigefinger entsteht ein Feed, der Lust aufs Reparieren macht — und Generationen über gemeinsame Nostalgie zusammenbringt.'
-                : 'On Instagram the brand becomes a community: feed posts tell before/after repair stories with pixel-art overlays, creators show off their own fixed-up treasures, and short Insta ads bring the retro vibe into the timeline. Instead of wagging a finger, it\'s a feed that makes you want to repair — connecting generations through shared nostalgia.'}
+                ? 'Auf Instagram wird die Marke zur Community: Feed-Posts erzählen Before/After-Repair-Stories mit Pixel-Art-Overlays, Creator zeigen ihre eigenen reparierten Schätze, und kurze Insta-Werbung bringt den Retro-Vibe in die Timeline. Statt erhobenem Zeigefinger entsteht ein Feed, der Lust aufs Reparieren macht, und Generationen über gemeinsame Nostalgie zusammenbringt.'
+                : 'On Instagram the brand becomes a community: feed posts tell before/after repair stories with pixel-art overlays, creators show off their own fixed-up treasures, and short Insta ads bring the retro vibe into the timeline. Instead of wagging a finger, it\'s a feed that makes you want to repair, connecting generations through shared nostalgia.'}
             </p>
             <p className="small">
               {lang === 'de'
-                ? '🎮 Idee: wöchentliche Mini-Games in der Story halten Follower aktiv im Kontakt mit dem Account. Eine solche Spiel-Story haben wir gebaut — ansehen kannst du sie im Figma-Embed.'
-                : '🎮 Idea: weekly mini-games in the story keep followers actively engaged with the account. We built one such game story — you can view it in the Figma embed.'}
+                ? '🎮 Idee: wöchentliche Mini-Games in der Story halten Follower aktiv im Kontakt mit dem Account. Eine solche Spiel-Story haben wir gebaut, ansehen kannst du sie im Figma-Embed.'
+                : '🎮 Idea: weekly mini-games in the story keep followers actively engaged with the account. We built one such game story, you can view it in the Figma embed.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1521,8 +1521,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <h3>{lang === 'de' ? '🪧 Out-of-Home & Print' : '🪧 Out-of-Home & Print'}</h3>
             <p>
               {lang === 'de'
-                ? 'Damit die Marke nicht nur im Screen lebt, haben wir sie in den öffentlichen Raum geholt: ein von 90er-Magazinen inspiriertes Cover samt Spread, Poster und Plakate — alle als realitätsnahe Mockups inszeniert. Der Retro-Look funktioniert auch groß und gedruckt: Pixel-Logo, knallige Palette und klare Typo bleiben sofort wiedererkennbar, ob am Kiosk oder an der Bushaltestelle.'
-                : 'To make sure the brand doesn\'t only live on screen, we took it into public space: a 90s-magazine-inspired cover and spread, posters and billboards — all staged as realistic mockups. The retro look holds up large and in print: pixel logo, bold palette and clear type stay instantly recognisable, whether at the kiosk or the bus stop.'}
+                ? 'Damit die Marke nicht nur im Screen lebt, haben wir sie in den öffentlichen Raum geholt: ein von 90er-Magazinen inspiriertes Cover samt Spread, Poster und Plakate, alle als realitätsnahe Mockups inszeniert. Der Retro-Look funktioniert auch groß und gedruckt: Pixel-Logo, knallige Palette und klare Typo bleiben sofort wiedererkennbar, ob am Kiosk oder an der Bushaltestelle.'
+                : 'To make sure the brand doesn\'t only live on screen, we took it into public space: a 90s-magazine-inspired cover and spread, posters and billboards, all staged as realistic mockups. The retro look holds up large and in print: pixel logo, bold palette and clear type stay instantly recognisable, whether at the kiosk or the bus stop.'}
             </p>
           </div>
           <div className="sticky-scroll-media">
@@ -1719,7 +1719,7 @@ function SkillsContent({ t, lang }) {
   return (
     <div className="content">
       <h1>{t.skills_section}</h1>
-      <p className="mono">{lang === 'de' ? 'Was ich auf dem Tisch habe — kein Skill-Slop, nur ehrlich gewichtet.' : 'What I actually bring — no skill slop, honestly weighted.'}</p>
+      <p className="mono">{lang === 'de' ? 'Was ich auf dem Tisch habe, kein Skill-Slop, nur ehrlich gewichtet.' : 'What I actually bring, no skill slop, honestly weighted.'}</p>
 
       <h2>{lang === 'de' ? 'Selbsteinschätzung' : 'Self-assessment'}</h2>
       {t.skill_bars.map((b,i) => (
@@ -2073,7 +2073,7 @@ function TouchContactPanel({ t, lang, cols = 28 }) {
           </div>
           <p className="touch-copied" aria-live="polite">
             {copied
-              ? (lang === 'de' ? '✓ E-Mail kopiert — füg sie in dein Mailprogramm ein' : '✓ Email copied — paste it into your mail app')
+              ? (lang === 'de' ? '✓ E-Mail kopiert, füg sie in dein Mailprogramm ein' : '✓ Email copied, paste it into your mail app')
               : ''}
           </p>
         </div>
@@ -2098,8 +2098,8 @@ function AboutContactPanel({ t, lang, onProjects }) {
     <div className="about-contact">
       <p className="about-lede">
         {lang === 'de'
-          ? 'Lust auf Zusammenarbeit? Ob Praxissemester, ein gemeinsames Service-Design-Projekt oder der Einstieg in euer Team — schreib mir gern. Ich antworte schnell und freue mich darauf, mit euch etwas aufzubauen.'
-          : "Want to work together? Whether it's a practical semester, a joint service-design project or joining your team — drop me a line. I reply fast and would love to build something with you."}
+          ? 'Lust auf Zusammenarbeit? Ob Praxissemester, ein gemeinsames Service-Design-Projekt oder der Einstieg in euer Team, schreib mir gern. Ich antworte schnell und freue mich darauf, mit euch etwas aufzubauen.'
+          : "Want to work together? Whether it's a practical semester, a joint service-design project or joining your team, drop me a line. I reply fast and would love to build something with you."}
       </p>
 
       <div className="about-block">
@@ -2138,7 +2138,7 @@ function AboutContactPanel({ t, lang, onProjects }) {
       </div>
       <p className="about-contact-copied" aria-live="polite">
         {copied
-          ? (lang === 'de' ? '✓ E-Mail kopiert — füg sie in dein Mailprogramm ein' : '✓ Email copied — paste it into your mail app')
+          ? (lang === 'de' ? '✓ E-Mail kopiert, füg sie in dein Mailprogramm ein' : '✓ Email copied, paste it into your mail app')
           : ''}
       </p>
     </div>
@@ -2162,8 +2162,8 @@ function AboutContent({ t, lang, openWindow, closeWindow }) {
     <div className="tab-content about-profile">
       <p className="about-lede">
         {lang === 'de'
-          ? 'Informatik- & Design-Studentin an der Hochschule München mit großem Interesse an UX, Service Design & Research — aus Argentinien, heute in München zuhause. Mehrsprachig und neugierig: Ich verstehe echte Probleme durch echte Forschung und übersetze sie in klare, menschliche Lösungen — von der ersten Journey Map bis zum lebenden Prototyp im Code.'
-          : "Computer science & design student at Munich UAS with a strong interest in UX, service design & research — from Argentina, now at home in Munich. Multilingual and curious: I understand real problems through genuine research and turn them into clear, human solutions — from the first journey map to a living prototype in code."}
+          ? 'Informatik- & Design-Studentin an der Hochschule München mit großem Interesse an UX, Service Design & Research, aus Argentinien, heute in München zuhause. Mehrsprachig und neugierig: Ich verstehe echte Probleme durch echte Forschung und übersetze sie in klare, menschliche Lösungen, von der ersten Journey Map bis zum lebenden Prototyp im Code.'
+          : "Computer science & design student at Munich UAS with a strong interest in UX, service design & research, from Argentina, now at home in Munich. Multilingual and curious: I understand real problems through genuine research and turn them into clear, human solutions, from the first journey map to a living prototype in code."}
       </p>
 
       <div className="about-block">
@@ -2357,8 +2357,8 @@ function DashProjects({ t, lang, openWindow }) {
     <>
       <p className="mono" style={{ margin: '0 0 14px', color: 'var(--ink-soft)' }}>
         {lang === 'de'
-          ? `${PROJECTS.length} Case Studies — klick öffnet Vollansicht.`
-          : `${PROJECTS.length} case studies — click to open full view.`}
+          ? `${PROJECTS.length} Case Studies, klick öffnet Vollansicht.`
+          : `${PROJECTS.length} case studies, click to open full view.`}
       </p>
       <div className="project-list">
         {PROJECTS.map((p, i) => {
@@ -2441,7 +2441,7 @@ function DashContact({ t, lang, onDownloadCV, openWindow }) {
           📍 {NURIA.location}
         </div>
         <div style={{ marginTop: 12, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-          <a className="pix-btn primary" href={`mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27 — Nuria Kurrle' : 'Internship Fall 26 / Spring 27 — Nuria Kurrle')}`}>✉ {t.contact_cta}</a>
+          <a className="pix-btn primary" href={`mailto:${NURIA.email}?subject=${encodeURIComponent(lang==='de' ? 'Praxissemester WS 26/27, Nuria Kurrle' : 'Internship Fall 26 / Spring 27, Nuria Kurrle')}`}>✉ {t.contact_cta}</a>
           <a className="pix-btn" href={`https://${NURIA.linkedin}`} target="_blank" rel="noreferrer">in {t.linkedin_cta}</a>
           <button className="pix-btn warn" onClick={onDownloadCV}>⬇ {t.download_cv}</button>
           <button className="pix-btn" onClick={() => openWindow?.('quickpitch')}>🎯 {lang === 'de' ? '60-Sek-Pitch' : '60-sec pitch'}</button>
@@ -2506,7 +2506,7 @@ function WIPLoadingModal({ project, lang, onClose }) {
     return () => window.removeEventListener('keydown', handler);
   }, [onClose]);
 
-  const shortName = (d.title || '').split('—')[0].trim() || d.title;
+  const shortName = (d.title || '').split(/[—:]/)[0].trim() || d.title;
   const concept = d.wipShortConcept || d.problemShort || '';
   const description = d.wipDescription || d.problemShort || '';
   const phase = d.wipPhase || d.phase || (lang === 'de' ? 'In Arbeit' : 'In progress');
@@ -2517,7 +2517,7 @@ function WIPLoadingModal({ project, lang, onClose }) {
       <div className="wip-modal-window" onClick={e => e.stopPropagation()}>
         <div className="wip-title-bar">
           <div className="wip-title-text">
-            ⏳ {shortName} — {lang === 'de' ? 'Lädt…' : 'Loading…'}
+            ⏳ {shortName}, {lang === 'de' ? 'Lädt…' : 'Loading…'}
           </div>
           <button className="wip-close-btn" onClick={onClose} aria-label={lang === 'de' ? 'Schließen' : 'Close'}>✕</button>
         </div>

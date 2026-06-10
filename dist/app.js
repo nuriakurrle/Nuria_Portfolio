@@ -35,79 +35,79 @@ const ACCENT_OPTIONS = [
 const KLIPPI_MESSAGES = {
   desktop: {
     de: [
-      "\u{1F44B} Willkommen! Doppelklick auf die Icons \u2014 oder \xF6ffne direkt \u{1F4C2} Recruiter.exe f\xFCr den \xDCberblick.",
-      "\u{1F52E} Die Logos rechts sind meine Skills \u2014 du kannst sie herumziehen und anklicken!",
+      "\u{1F44B} Willkommen! Doppelklick auf die Icons, oder \xF6ffne direkt \u{1F4C2} Recruiter.exe f\xFCr den \xDCberblick.",
+      "\u{1F52E} Die Logos rechts sind meine Skills, du kannst sie herumziehen und anklicken!",
       "\u{1F31F} Tipp: hover \xFCber einen Skill und die passenden Projekte leuchten auf der linken Seite.",
-      "\u{1F3A8} Alles im Y2K-Vibe \u2014 enjoy the ride.",
-      "\u{1F5BC}\uFE0F Tipp: unten rechts kannst du den Hintergrund wechseln \u2014 \u{1F7E6} seri\xF6ses Blau oder \u{1F304} Pixel-Welt.",
-      "\u{1F4AC} Fragen? Klick \u{1F4AC} NuriaBot.aim \u2014 oder schreib mir eine Mail."
+      "\u{1F3A8} Alles im Y2K-Vibe, enjoy the ride.",
+      "\u{1F5BC}\uFE0F Tipp: unten rechts kannst du den Hintergrund wechseln, \u{1F7E6} seri\xF6ses Blau oder \u{1F304} Pixel-Welt.",
+      "\u{1F4AC} Fragen? Klick \u{1F4AC} NuriaBot.aim, oder schreib mir eine Mail."
     ],
     en: [
-      "\u{1F44B} Welcome! Double-click the icons \u2014 or jump straight into \u{1F4C2} Recruiter.exe for the overview.",
-      "\u{1F52E} The logos on the right are my skills \u2014 drag them around and click them!",
+      "\u{1F44B} Welcome! Double-click the icons, or jump straight into \u{1F4C2} Recruiter.exe for the overview.",
+      "\u{1F52E} The logos on the right are my skills, drag them around and click them!",
       "\u{1F31F} Tip: hover a skill sticker and the matching project icons light up on the left.",
-      "\u{1F3A8} Everything's in Y2K vibes \u2014 enjoy the ride.",
-      "\u{1F5BC}\uFE0F Tip: switch the background bottom-right \u2014 \u{1F7E6} serious blue or \u{1F304} pixel world.",
-      "\u{1F4AC} Questions? Click \u{1F4AC} NuriaBot.aim \u2014 or just email me."
+      "\u{1F3A8} Everything's in Y2K vibes, enjoy the ride.",
+      "\u{1F5BC}\uFE0F Tip: switch the background bottom-right, \u{1F7E6} serious blue or \u{1F304} pixel world.",
+      "\u{1F4AC} Questions? Click \u{1F4AC} NuriaBot.aim, or just email me."
     ]
   },
   recruiter: {
     de: [
-      "\u{1F50D} Meine ausgew\xE4hlten Projekte \u2014 jedes hat eine komplette Case Study mit Research, Design und Ergebnissen.",
-      "\u{1F4E7} Mail, in LinkedIn oder \u2B07 CV \u2014 w\xE4hle was dir am besten passt.",
+      "\u{1F50D} Meine ausgew\xE4hlten Projekte, jedes hat eine komplette Case Study mit Research, Design und Ergebnissen.",
+      "\u{1F4E7} Mail, in LinkedIn oder \u2B07 CV, w\xE4hle was dir am besten passt.",
       "\u{1F3AF} Meine Arbeitsweise: Research zuerst, dann Design, dann Code.",
       '\u{1F447} Klick auf "\u2192 Case Study" um in ein Projekt einzutauchen.',
-      "\u{1FA9F} Zu eng? Doppelklick auf die Titelleiste \u2014 oder \u25A2 oben rechts \u2014 und das Fenster wird gro\xDF."
+      "\u{1FA9F} Zu eng? Doppelklick auf die Titelleiste, oder \u25A2 oben rechts, und das Fenster wird gro\xDF."
     ],
     en: [
-      "\u{1F50D} My selected projects \u2014 each one has a full case study with research, design and results.",
-      "\u{1F4E7} Mail, in LinkedIn or \u2B07 CV \u2014 pick whichever works best for you.",
+      "\u{1F50D} My selected projects, each one has a full case study with research, design and results.",
+      "\u{1F4E7} Mail, in LinkedIn or \u2B07 CV, pick whichever works best for you.",
       "\u{1F3AF} How I work: research first, then design, then code.",
       '\u{1F447} Hit "\u2192 Case Study" to dive into a project.',
-      "\u{1FA9F} Feels cramped? Double-click the title bar \u2014 or hit \u25A2 top-right \u2014 to make the window bigger."
+      "\u{1FA9F} Feels cramped? Double-click the title bar, or hit \u25A2 top-right, to make the window bigger."
     ]
   },
   about: {
     de: [
       "\u{1F4DD} Hier erf\xE4hrst du wer ich bin und wie ich ticke.",
       "\u2728 Fair warning: ich liebe gutes Research und ehrliche Reflexion.",
-      "\u{1F393} HM M\xFCnchen, 4. Semester \u2014 Praxissemester WS 26/27 in M\xFCnchen.",
+      "\u{1F393} HM M\xFCnchen, 4. Semester, Praxissemester WS 26/27 in M\xFCnchen.",
       "\u{1F30D} Aus Argentinien, jetzt in Ottobrunn bei M\xFCnchen."
     ],
     en: [
       "\u{1F4DD} Find out who I am and how I work.",
       "\u2728 Fair warning: I love research and honest reflection.",
-      "\u{1F393} HM Munich, 4th semester \u2014 looking for a fall 26/27 internship in Munich.",
+      "\u{1F393} HM Munich, 4th semester, looking for a fall 26/27 internship in Munich.",
       "\u{1F30D} From Argentina, now in Ottobrunn near Munich."
     ]
   },
   projects: {
     de: [
-      "\u{1F4C2} Alle 7 Projekte \u2014 5 fertig, 2 in Arbeit.",
+      "\u{1F4C2} Alle 7 Projekte, 5 fertig, 2 in Arbeit.",
       "\u{1F3AF} Klick eines an, um die vollst\xE4ndige Case Study zu \xF6ffnen.",
       "\u{1F4A1} Oder zur\xFCck zu Recruiter.exe f\xFCr den schnellen \xDCberblick."
     ],
     en: [
-      "\u{1F4C2} All 7 projects \u2014 5 complete, 2 in progress.",
+      "\u{1F4C2} All 7 projects, 5 complete, 2 in progress.",
       "\u{1F3AF} Click one to open its full case study.",
       "\u{1F4A1} Or head back to Recruiter.exe for the quick overview."
     ]
   },
   projectOpen: {
     de: [
-      "\u{1FA9F} Tipp zum Start: Doppelklick auf die Titelleiste \u2014 oder \u25A2 oben rechts \u2014 macht das Fenster gro\xDF.",
-      "\u{1F4D6} Einfach scrollen: Outcome \xB7 Identity & Design \xB7 Process \xB7 Reflection \u2014 oder klick die Pills unten.",
+      "\u{1FA9F} Tipp zum Start: Doppelklick auf die Titelleiste, oder \u25A2 oben rechts, macht das Fenster gro\xDF.",
+      "\u{1F4D6} Einfach scrollen: Outcome \xB7 Identity & Design \xB7 Process \xB7 Reflection, oder klick die Pills unten.",
       "\u{1F4CA} Outcome zuerst: das Ergebnis und der Impact des Projekts.",
-      "\u{1F3A8} Identity & Design: was ich gebaut habe \u2014 und warum.",
+      "\u{1F3A8} Identity & Design: was ich gebaut habe, und warum.",
       "\u{1F50D} Process: wie ich das Problem verstanden und erforscht habe.",
       "\u{1F4AD} Reflection: meine Learnings aus dem Projekt.",
       "\u{1F9EA} Oben in der Meta-Zeile siehst du Stack, Rolle und Links."
     ],
     en: [
-      "\u{1FA9F} Quick tip: Double-click the title bar \u2014 or hit \u25A2 top-right \u2014 to make the window bigger.",
-      "\u{1F4D6} Just scroll: Outcome \xB7 Identity & Design \xB7 Process \xB7 Reflection \u2014 or click the pills at the bottom.",
+      "\u{1FA9F} Quick tip: Double-click the title bar, or hit \u25A2 top-right, to make the window bigger.",
+      "\u{1F4D6} Just scroll: Outcome \xB7 Identity & Design \xB7 Process \xB7 Reflection, or click the pills at the bottom.",
       "\u{1F4CA} Outcome first: the project's result and impact.",
-      "\u{1F3A8} Identity & Design: what I built \u2014 and why.",
+      "\u{1F3A8} Identity & Design: what I built, and why.",
       "\u{1F50D} Process: how I understood and researched the problem.",
       "\u{1F4AD} Reflection: my takeaways from the project.",
       "\u{1F9EA} The meta bar up top shows the stack, role and links."
@@ -115,16 +115,16 @@ const KLIPPI_MESSAGES = {
   },
   click: {
     de: [
-      "Ouch! Klick auf \u{1F4C4} About_Me.txt \u2014 nicht auf mich \u2014 um Nuria besser kennenzulernen \u{1F605}",
-      "Hey hey \u2014 ich bin nur Klippi! Nuria findest du in About_Me.txt \u{1F4C4}",
+      "Ouch! Klick auf \u{1F4C4} About_Me.txt, nicht auf mich, um Nuria besser kennenzulernen \u{1F605}",
+      "Hey hey, ich bin nur Klippi! Nuria findest du in About_Me.txt \u{1F4C4}",
       "Du kennst das doch von fr\xFCher: Klippi ist da um zu helfen, nicht zum Anklicken \u{1F609}",
-      "\u{1F645} Nicht ich! Doppelklick auf die Icons links \u2014 die sind die Stars."
+      "\u{1F645} Nicht ich! Doppelklick auf die Icons links, die sind die Stars."
     ],
     en: [
-      "Ouch! Click \u{1F4C4} About_Me.txt \u2014 not me \u2014 if you want to get to know Nuria \u{1F605}",
-      "Hey hey \u2014 I'm just Klippi! You'll find Nuria over in About_Me.txt \u{1F4C4}",
+      "Ouch! Click \u{1F4C4} About_Me.txt, not me, if you want to get to know Nuria \u{1F605}",
+      "Hey hey, I'm just Klippi! You'll find Nuria over in About_Me.txt \u{1F4C4}",
       "You know the drill: Klippi is here to help, not to be clicked \u{1F609}",
-      "\u{1F645} Not me! Double-click the icons on the left \u2014 they're the stars."
+      "\u{1F645} Not me! Double-click the icons on the left, they're the stars."
     ]
   }
 };
@@ -310,11 +310,11 @@ const WINDOW_DEFS = {
   chat: { icon: "\u{1F4AC}", w: 640, h: 520, x: 290, y: 70, label: "NuriaBot", titlebarVariant: "chat" },
   /* Quick Pitch — 60-second elevator console for time-pressed recruiters */
   quickpitch: { icon: "\u{1F3AF}", w: 540, h: 460, x: 380, y: 100, label: "Quick_Pitch.txt" },
-  project: { icon: "\u{1F4C1}", w: 1100, h: 780, x: 60, y: 30, label: "Project \u2014 Case Study", noMenubar: true, noStatusbar: true }
+  project: { icon: "\u{1F4C1}", w: 1100, h: 780, x: 60, y: 30, label: "Project: Case Study", noMenubar: true, noStatusbar: true }
 };
 function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
   const lines = lang === "de" ? [
-    "> Nuria Kurrle \u2014 UX & Service Design",
+    "> Nuria Kurrle, UX & Service Design",
     "> verf\xFCgbar: WS 26/27 \xB7 M\xFCnchen \xB7 5\u20136 Monate \xB7 Vollzeit",
     "> Studium: B.Sc. Informatik & Design, HM M\xFCnchen, 4. Sem.",
     "> Stack:  React \xB7 TypeScript \xB7 Figma \xB7 n8n \xB7 HTML/CSS",
@@ -326,7 +326,7 @@ function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
     "> Sprachen: ES \xB7 DE \xB7 EN \xB7 IT",
     "> 8 Sekunden gelesen? Perfekt. Hier deine Optionen:"
   ] : [
-    "> Nuria Kurrle \u2014 UX & Service Design",
+    "> Nuria Kurrle, UX & Service Design",
     "> available: Fall 26 / Spring 27 \xB7 Munich \xB7 5\u20136 months \xB7 full-time",
     "> studies: B.Sc. Computer Science & Design, HM Munich, 4th sem.",
     "> stack:  React \xB7 TypeScript \xB7 Figma \xB7 n8n \xB7 HTML/CSS",
@@ -338,7 +338,7 @@ function QuickPitchContent({ lang, openWindow, onDownloadCV }) {
     "> languages: ES \xB7 DE \xB7 EN \xB7 IT",
     "> 8 seconds read? Perfect. Here are your options:"
   ];
-  return /* @__PURE__ */ React.createElement("div", { className: "content quickpitch-content" }, /* @__PURE__ */ React.createElement("div", { className: "quickpitch-terminal" }, /* @__PURE__ */ React.createElement("div", { className: "quickpitch-bar" }, /* @__PURE__ */ React.createElement("span", { className: "quickpitch-dot" }), /* @__PURE__ */ React.createElement("span", null, "quick_pitch.txt \u2014 ", lang === "de" ? "60 Sekunden" : "60 seconds"), /* @__PURE__ */ React.createElement("span", { style: { marginLeft: "auto", opacity: 0.7 } }, "cat /portfolio/pitch")), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-body" }, lines.map((line, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "quickpitch-line" }, line)), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-line quickpitch-cursor" }, /* @__PURE__ */ React.createElement("span", { className: "devlog-cursor" }, "_")))), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-cta-row" }, /* @__PURE__ */ React.createElement("a", { className: "pix-btn primary", href: `mailto:${NURIA.email}?subject=${encodeURIComponent(lang === "de" ? "Praxissemester WS 26/27 \u2014 Nuria Kurrle" : "Internship Fall 26 / Spring 27 \u2014 Nuria Kurrle")}` }, "\u2709 ", lang === "de" ? "Mail mich" : "Email me"), /* @__PURE__ */ React.createElement("a", { className: "pix-btn", href: `https://${NURIA.linkedin}`, target: "_blank", rel: "noreferrer" }, "in LinkedIn"), /* @__PURE__ */ React.createElement("button", { className: "pix-btn warn", type: "button", onClick: onDownloadCV }, "\u2B07 CV \xB7 PDF"), /* @__PURE__ */ React.createElement("button", { className: "pix-btn", type: "button", onClick: () => openWindow("recruiter") }, "\u{1F4C2} ", lang === "de" ? "Recruiter.exe" : "Recruiter.exe")));
+  return /* @__PURE__ */ React.createElement("div", { className: "content quickpitch-content" }, /* @__PURE__ */ React.createElement("div", { className: "quickpitch-terminal" }, /* @__PURE__ */ React.createElement("div", { className: "quickpitch-bar" }, /* @__PURE__ */ React.createElement("span", { className: "quickpitch-dot" }), /* @__PURE__ */ React.createElement("span", null, "quick_pitch.txt: ", lang === "de" ? "60 Sekunden" : "60 seconds"), /* @__PURE__ */ React.createElement("span", { style: { marginLeft: "auto", opacity: 0.7 } }, "cat /portfolio/pitch")), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-body" }, lines.map((line, i) => /* @__PURE__ */ React.createElement("div", { key: i, className: "quickpitch-line" }, line)), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-line quickpitch-cursor" }, /* @__PURE__ */ React.createElement("span", { className: "devlog-cursor" }, "_")))), /* @__PURE__ */ React.createElement("div", { className: "quickpitch-cta-row" }, /* @__PURE__ */ React.createElement("a", { className: "pix-btn primary", href: `mailto:${NURIA.email}?subject=${encodeURIComponent(lang === "de" ? "Praxissemester WS 26/27, Nuria Kurrle" : "Internship Fall 26 / Spring 27, Nuria Kurrle")}` }, "\u2709 ", lang === "de" ? "Mail mich" : "Email me"), /* @__PURE__ */ React.createElement("a", { className: "pix-btn", href: `https://${NURIA.linkedin}`, target: "_blank", rel: "noreferrer" }, "in LinkedIn"), /* @__PURE__ */ React.createElement("button", { className: "pix-btn warn", type: "button", onClick: onDownloadCV }, "\u2B07 CV \xB7 PDF"), /* @__PURE__ */ React.createElement("button", { className: "pix-btn", type: "button", onClick: () => openWindow("recruiter") }, "\u{1F4C2} ", lang === "de" ? "Recruiter.exe" : "Recruiter.exe")));
 }
 function WelcomeDialog({ lang, onAction }) {
   const [visible, setVisible] = useState(true);
@@ -663,15 +663,15 @@ function App() {
       if (p) return p[lang].windowTitle;
       return lang === "de" ? "Case Study" : "Case Study";
     }
-    if (id === "dashboard") return lang === "de" ? "Dashboard.exe \u2014 \xDCbersicht" : "Dashboard.exe \u2014 Overview";
-    if (id === "recruiter") return lang === "de" ? "Recruiter.exe \u2014 f\xFCr dich gepackt \u2728" : "Recruiter.exe \u2014 packed for you \u2728";
-    if (id === "about") return "About_Me.txt \u2014 Editor";
-    if (id === "projects") return lang === "de" ? "Projekte \u2014 Explorer" : "Projects \u2014 Explorer";
-    if (id === "skills") return "Skills.cpl \u2014 Control Panel";
-    if (id === "cv") return lang === "de" ? "Lebenslauf.doc \u2014 Editor" : "Resume.doc \u2014 Editor";
+    if (id === "dashboard") return lang === "de" ? "Dashboard.exe: \xDCbersicht" : "Dashboard.exe: Overview";
+    if (id === "recruiter") return lang === "de" ? "Recruiter.exe: f\xFCr dich gepackt \u2728" : "Recruiter.exe: packed for you \u2728";
+    if (id === "about") return "About_Me.txt: Editor";
+    if (id === "projects") return lang === "de" ? "Projekte: Explorer" : "Projects: Explorer";
+    if (id === "skills") return "Skills.cpl: Control Panel";
+    if (id === "cv") return lang === "de" ? "Lebenslauf.doc: Editor" : "Resume.doc: Editor";
     if (id === "contact") return "Contact.exe";
-    if (id === "chat") return lang === "de" ? "NuriaBot \u2014 Instant Message" : "NuriaBot \u2014 Instant Message";
-    if (id === "quickpitch") return lang === "de" ? "Quick_Pitch.txt \u2014 Notepad" : "Quick_Pitch.txt \u2014 Notepad";
+    if (id === "chat") return lang === "de" ? "NuriaBot: Instant Message" : "NuriaBot: Instant Message";
+    if (id === "quickpitch") return lang === "de" ? "Quick_Pitch.txt: Notepad" : "Quick_Pitch.txt: Notepad";
     const proj = PROJECTS.find((p) => p.id === id);
     if (proj) return proj[lang].windowTitle;
     return id;
@@ -845,7 +845,7 @@ function App() {
       label: lang === "de" ? "Mail an Nuria" : "Email Nuria",
       hot: true,
       onClick: () => {
-        window.location.href = `mailto:${NURIA.email}?subject=${encodeURIComponent(lang === "de" ? "Praxissemester WS 26/27 \u2014 Anfrage" : "Internship Fall 26 / Spring 27 \u2014 Inquiry")}`;
+        window.location.href = `mailto:${NURIA.email}?subject=${encodeURIComponent(lang === "de" ? "Praxissemester WS 26/27, Anfrage" : "Internship Fall 26 / Spring 27, Inquiry")}`;
       }
     }
   ), /* @__PURE__ */ React.createElement("div", { className: "start-divider" }), /* @__PURE__ */ React.createElement("div", { className: "start-section-label" }, lang === "de" ? "\u{1F5C2} Programme" : "\u{1F5C2} Programs"), /* @__PURE__ */ React.createElement(StartItem, { glyph: "\u{1F9D1}\u200D\u{1F4BC}", label: "Recruiter.exe", onClick: () => openWindow("recruiter") }), /* @__PURE__ */ React.createElement(StartItem, { glyph: "\u{1F4C2}", label: lang === "de" ? "Projekte" : "Projects", onClick: () => openWindow("projects") }), /* @__PURE__ */ React.createElement(StartItem, { glyph: "\u{1F4C4}", label: lang === "de" ? "About_Me.txt" : "About_Me.txt", onClick: () => openWindow("about") }), /* @__PURE__ */ React.createElement(StartItem, { glyph: "\u2709\uFE0F", label: "Contact.exe", onClick: () => openWindow("contact") }), /* @__PURE__ */ React.createElement(StartItem, { glyph: "\u{1F4AC}", label: "NuriaBot (chat)", onClick: () => openWindow("chat") }))), /* @__PURE__ */ React.createElement("div", { className: "taskbar" }, /* @__PURE__ */ React.createElement("button", { className: `start-btn ${startOpen ? "open" : ""}`, onClick: () => {
@@ -862,7 +862,7 @@ function App() {
       }
     },
     /* @__PURE__ */ React.createElement("span", null, w.icon),
-    /* @__PURE__ */ React.createElement("span", null, getTitle(w.id).replace(/ — .*$/, ""))
+    /* @__PURE__ */ React.createElement("span", null, getTitle(w.id).replace(/[—:].*$/, ""))
   )), /* @__PURE__ */ React.createElement("div", { className: "tray" }, /* @__PURE__ */ React.createElement("div", { className: "lang-toggle wp-toggle", title: lang === "de" ? "Hintergrund wechseln" : "Switch background" }, /* @__PURE__ */ React.createElement("button", { className: tweaks.wallpaper === "slate-blue" ? "on" : "", onClick: () => setTweak("wallpaper", "slate-blue"), "aria-label": lang === "de" ? "Blauer Hintergrund" : "Blue background" }, "\u{1F7E6}"), /* @__PURE__ */ React.createElement("button", { className: tweaks.wallpaper === "pixel-land" ? "on" : "", onClick: () => setTweak("wallpaper", "pixel-land"), "aria-label": lang === "de" ? "Pixel-Hintergrund" : "Pixel background" }, "\u{1F304}")), /* @__PURE__ */ React.createElement("div", { className: "lang-toggle" }, /* @__PURE__ */ React.createElement("button", { className: lang === "de" ? "on" : "", onClick: () => setLang("de") }, "DE"), /* @__PURE__ */ React.createElement("button", { className: lang === "en" ? "on" : "", onClick: () => setLang("en") }, "EN")), /* @__PURE__ */ React.createElement("span", { className: "tray-icon", title: "Mood: focused" }, "\u{1F319}"), /* @__PURE__ */ React.createElement(Clock, null))), lightbox && /* @__PURE__ */ React.createElement(Lightbox, { items: lightbox.items, index: lightbox.index, onClose: closeLightbox, onPrev: lbPrev, onNext: lbNext, lang }), wipModal && WIPLoadingModal && /* @__PURE__ */ React.createElement(
     WIPLoadingModal,
     {

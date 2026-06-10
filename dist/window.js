@@ -94,7 +94,7 @@ function DeskIcon({ id, label, emoji, badge, attention, selected, dimmed, matche
       onBlur: () => setHoverBoth(false),
       role: "button",
       tabIndex: 0,
-      "aria-label": `${label}${badge ? " \u2014 " + badge : ""}${tooltip ? " \u2014 " + tooltip : ""}`,
+      "aria-label": `${label}${badge ? ", " + badge : ""}${tooltip ? ", " + tooltip : ""}`,
       "aria-disabled": dimmed || void 0
     },
     matched && /* @__PURE__ */ React.createElement("span", { className: "ico-sparkle", "aria-hidden": "true" }, "\u2726"),
@@ -232,7 +232,7 @@ function Lightbox({ items, index, onClose, onPrev, onNext, lang }) {
       "aria-modal": "true",
       "aria-label": m.caption || (m.type === "video" ? "Video preview" : "Image preview")
     },
-    /* @__PURE__ */ React.createElement("div", { className: "frame", onClick: (e) => e.stopPropagation(), style: { width: "88vw", height: "82vh" } }, /* @__PURE__ */ React.createElement("div", { className: "lb-titlebar" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F50D} ", m.caption || (m.type === "video" ? "Video" : "Image"), " \u2014 Preview"), /* @__PURE__ */ React.createElement("button", { className: "x", onClick: onClose, "aria-label": lang === "de" ? "Schlie\xDFen" : "Close" }, "\u2715")), /* @__PURE__ */ React.createElement("div", { className: "lb-body" }, /* @__PURE__ */ React.createElement("div", { className: "lb-media" }, m.type === "video" ? m.src ? (
+    /* @__PURE__ */ React.createElement("div", { className: "frame", onClick: (e) => e.stopPropagation(), style: { width: "88vw", height: "82vh" } }, /* @__PURE__ */ React.createElement("div", { className: "lb-titlebar" }, /* @__PURE__ */ React.createElement("span", null, "\u{1F50D} ", m.caption || (m.type === "video" ? "Video" : "Image"), ", Preview"), /* @__PURE__ */ React.createElement("button", { className: "x", onClick: onClose, "aria-label": lang === "de" ? "Schlie\xDFen" : "Close" }, "\u2715")), /* @__PURE__ */ React.createElement("div", { className: "lb-body" }, /* @__PURE__ */ React.createElement("div", { className: "lb-media" }, m.type === "video" ? m.src ? (
       /* Real video — actually playable, fills the lightbox frame */
       /* @__PURE__ */ React.createElement("div", { className: "big-video big-video-real", style: { background: "#000" } }, /* @__PURE__ */ React.createElement(
         "video",

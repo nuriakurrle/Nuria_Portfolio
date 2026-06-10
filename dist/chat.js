@@ -47,10 +47,10 @@ SKILLS:
   p += `
 TIMELINE:
 `;
-  t.timeline_items.forEach((it) => p += `- ${it.year}: ${it.title} \u2014 ${it.body}
+  t.timeline_items.forEach((it) => p += `- ${it.year}: ${it.title}, ${it.body}
 `);
   p += `
-If asked about salary, availability dates, or hiring \u2014 confirm WS 26/27 internship and direct to email. Never invent specific dates beyond that. Never invent project metrics not listed above.`;
+If asked about salary, availability dates, or hiring, confirm WS 26/27 internship and direct to email. Never invent specific dates beyond that. Never invent project metrics not listed above.`;
   return p;
 }
 const SUGGESTIONS = {
@@ -74,7 +74,7 @@ function ChatContent({ lang }) {
   const [online, setOnline] = useChatState(true);
   const bodyRef = useChatRef(null);
   useChatEffect(() => {
-    const greet = lang === "de" ? `Hi! ich bin NuriaBot \u273F \u2014 frag mich was \xFCber meine Projekte, Skills oder Verf\xFCgbarkeit. (Tipp: ich plaudere am liebsten \xFCber UX-Research!)` : `Hi! i'm NuriaBot \u273F \u2014 ask me anything about my projects, skills, or availability. (psst: i love nerding out about UX research!)`;
+    const greet = lang === "de" ? `Hi! ich bin NuriaBot \u273F, frag mich was \xFCber meine Projekte, Skills oder Verf\xFCgbarkeit. (Tipp: ich plaudere am liebsten \xFCber UX-Research!)` : `Hi! i'm NuriaBot \u273F, ask me anything about my projects, skills, or availability. (psst: i love nerding out about UX research!)`;
     setMessages([{ who: "bot", text: greet, time: nowStamp() }]);
   }, [lang]);
   useChatEffect(() => {
@@ -104,7 +104,7 @@ function ChatContent({ lang }) {
       const replyText = typeof reply === "string" ? reply : (reply == null ? void 0 : reply.content) || String(reply);
       setMessages((m) => [...m, { who: "bot", text: replyText, time: nowStamp() }]);
     } catch (err) {
-      const errText = lang === "de" ? `\u{1F50C} verbindung gest\xF6rt. probier nochmal \u2014 oder schreib mir direkt: ${NURIA.email}` : `\u{1F50C} connection glitched. try again \u2014 or email me direct: ${NURIA.email}`;
+      const errText = lang === "de" ? `\u{1F50C} verbindung gest\xF6rt. probier nochmal, oder schreib mir direkt: ${NURIA.email}` : `\u{1F50C} connection glitched. try again, or email me direct: ${NURIA.email}`;
       setMessages((m) => [...m, { who: "bot", text: errText, time: nowStamp() }]);
     } finally {
       setTyping(false);

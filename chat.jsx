@@ -25,8 +25,8 @@ function buildSystemPrompt(lang) {
     }
   });
   p += `\nTIMELINE:\n`;
-  t.timeline_items.forEach(it => p += `- ${it.year}: ${it.title} — ${it.body}\n`);
-  p += `\nIf asked about salary, availability dates, or hiring — confirm WS 26/27 internship and direct to email. Never invent specific dates beyond that. Never invent project metrics not listed above.`;
+  t.timeline_items.forEach(it => p += `- ${it.year}: ${it.title}, ${it.body}\n`);
+  p += `\nIf asked about salary, availability dates, or hiring, confirm WS 26/27 internship and direct to email. Never invent specific dates beyond that. Never invent project metrics not listed above.`;
   return p;
 }
 
@@ -55,8 +55,8 @@ function ChatContent({ lang }) {
   /* Greeting on first open / language change */
   useChatEffect(() => {
     const greet = lang === 'de'
-      ? `Hi! ich bin NuriaBot ✿ — frag mich was über meine Projekte, Skills oder Verfügbarkeit. (Tipp: ich plaudere am liebsten über UX-Research!)`
-      : `Hi! i'm NuriaBot ✿ — ask me anything about my projects, skills, or availability. (psst: i love nerding out about UX research!)`;
+      ? `Hi! ich bin NuriaBot ✿, frag mich was über meine Projekte, Skills oder Verfügbarkeit. (Tipp: ich plaudere am liebsten über UX-Research!)`
+      : `Hi! i'm NuriaBot ✿, ask me anything about my projects, skills, or availability. (psst: i love nerding out about UX research!)`;
     setMessages([{ who: 'bot', text: greet, time: nowStamp() }]);
   }, [lang]);
 
@@ -92,8 +92,8 @@ function ChatContent({ lang }) {
       setMessages(m => [...m, { who: 'bot', text: replyText, time: nowStamp() }]);
     } catch (err) {
       const errText = lang === 'de'
-        ? `🔌 verbindung gestört. probier nochmal — oder schreib mir direkt: ${NURIA.email}`
-        : `🔌 connection glitched. try again — or email me direct: ${NURIA.email}`;
+        ? `🔌 verbindung gestört. probier nochmal, oder schreib mir direkt: ${NURIA.email}`
+        : `🔌 connection glitched. try again, or email me direct: ${NURIA.email}`;
       setMessages(m => [...m, { who: 'bot', text: errText, time: nowStamp() }]);
     } finally {
       setTyping(false);
