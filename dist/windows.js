@@ -334,7 +334,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       return /* @__PURE__ */ React.createElement("div", { className: "case-hero-bleed" }, /* @__PURE__ */ React.createElement("video", { controls: true, preload: "metadata", poster: d.heroImage || void 0, style: { width: "100%", display: "block" } }, /* @__PURE__ */ React.createElement("source", { src: heroVideo.src, type: "video/mp4" })));
     }
     if (project.id === "vinted") {
-      const vintedHero = "assets/Portfolio_Content/VInted_Rebranding/magazine1.png";
+      const vintedHero = "assets/Portfolio_Content/VInted_Rebranding/magazine1.webp";
       return /* @__PURE__ */ React.createElement("div", { className: "case-hero-bleed" }, /* @__PURE__ */ React.createElement(
         "img",
         {
@@ -457,7 +457,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       title: d.systemSlider.title,
       intro: d.systemSlider.intro,
       images: d.systemSlider.images,
-      hub: d.systemSlider.hub || "assets/Portfolio_Content/Echoes_of_Moosburg/identity/rose_logo.png",
+      hub: d.systemSlider.hub || "assets/Portfolio_Content/Echoes_of_Moosburg/identity/rose_logo.webp",
       openLightbox
     }
   ), ((_k = d.systemSlider) == null ? void 0 : _k.scenario) && /* @__PURE__ */ React.createElement("div", { className: "case-scenario", "data-lang": lang }, d.systemSlider.scenario), (d.beforeImage && d.afterImage || d.beforeAfterMedia && (d.beforeAfterMedia.before || d.beforeAfterMedia.after)) && /* @__PURE__ */ React.createElement("section", { className: "case-section" }, /* @__PURE__ */ React.createElement("h2", null, lang === "de" ? "Vorher / Nachher" : "Before / After"), /* @__PURE__ */ React.createElement("div", { className: "before-after-grid" }, /* @__PURE__ */ React.createElement("div", null, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "Vorher" : "Before"), /* @__PURE__ */ React.createElement(
@@ -552,21 +552,21 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
     "img",
     {
       className: "case-echoes-img",
-      src: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/baracken_tafel.png",
+      src: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/baracken_tafel.webp",
       alt: lang === "de" ? "Baracken-Tafel" : "Baracken sign"
     }
   ), /* @__PURE__ */ React.createElement("p", { className: "case-echoes-note" }, d.outcomeNote || (lang === "de" ? "[Kurzer Erkl\xE4rungstext folgt \u2014 wie die Themen-Tafel und der QR-Code zusammenspielen.]" : "[Short explanation goes here \u2014 how the themed sign and the QR code work together.]")), /* @__PURE__ */ React.createElement(
     "img",
     {
       className: "case-echoes-img",
-      src: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/QR_code_scan.png",
+      src: "assets/Portfolio_Content/Echoes_of_Moosburg/outcome/QR_code_scan.webp",
       alt: lang === "de" ? "QR-Code Scan" : "QR-code scan"
     }
   ))));
   const vintedRewindTabs = project.customTabs === "vinted-rewind" ? (() => {
     const conceptPanel = /* @__PURE__ */ React.createElement("div", { className: "tab-content vinted-rewind" }, /* @__PURE__ */ React.createElement("section", { className: "case-section" }, /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Die Aufgabe f\xFCr das Semester war das Rebranding einer bestehenden Marke. Meine Gruppe und ich haben uns f\xFCr Vinted entschieden \u2014 eine Plattform, auf der gebrauchte Kleidung und Objekte verkauft werden." : "The semester brief was to rebrand an existing brand. My group and I chose Vinted \u2014 a platform where people sell second-hand clothing and objects."), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Ausgangspunkt war der bisherige Auftritt: das alte Logo und die alte Website. Diese haben wir analysiert, um daraus ein frisches, eigenst\xE4ndiges Konzept zu entwickeln." : "Our starting point was the existing presence: the old logo and the old website. We analysed both to develop a fresh, distinct concept from there.")), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F50D} Ausgangslage" : "\u{1F50D} Starting Point"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "So sah Vinted vorher aus \u2014 das alte Logo und die alte Website als Ausgangspunkt f\xFCr unser Rebranding." : "This is how Vinted looked before \u2014 the old logo and the old website as the starting point for our rebrand.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/old_logo.png", cap: lang === "de" ? "Original Logo" : "Old logo" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/old_website.png", cap: lang === "de" ? "Original Website" : "Old website" }
+      { src: "assets/Portfolio_Content/VInted_Rebranding/old_logo.webp", cap: lang === "de" ? "Original Logo" : "Old logo" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/old_website.webp", cap: lang === "de" ? "Original Website" : "Old website" }
     ].map((img, i, arr) => /* @__PURE__ */ React.createElement(
       "figure",
       {
@@ -580,8 +580,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       /* @__PURE__ */ React.createElement("figcaption", null, img.cap)
     )))));
     const identityPanel = /* @__PURE__ */ React.createElement("div", { className: "tab-content vinted-rewind" }, /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F9ED} Moodboard & Arbeitsprozess" : "\u{1F9ED} Moodboard & Process"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Unser Ziel: ein Konzept f\xFCr alle Altersgruppen \u2014 ein nostalgisches, spielerisches Gef\xFChl, das alle anspricht und Generationen verbindet. Gerade junge Menschen wollen heute wieder analog gehen, das Handy weglegen und zur\xFCck in eine einfachere Zeit. Genau dieses Lebensgef\xFChl haben wir auf einem Moodboard gesammelt \u2014 80s/90s-Arcade, Pixel-Art, CRT-Glow, knallige Farben \u2014 und Schritt f\xFCr Schritt zur visuellen Richtung verdichtet: Pixel-Logo, Vier-Farben-Palette und ein klarer Type-Stack." : "Our goal: a concept for every age group \u2014 a nostalgic, playful feeling that speaks to everyone and connects generations. Young people especially want to go analog again today, put the phone down and return to a simpler time. We gathered exactly that mood on a moodboard \u2014 80s/90s arcade, pixel art, CRT glow, bold colours \u2014 and step by step distilled it into a visual direction: pixel logo, four-colour palette and a clear type stack.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/Moodboard.png", cap: "Moodboard" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/arbeitsprozess.png", cap: lang === "de" ? "Arbeitsprozess" : "Process" }
+      { src: "assets/Portfolio_Content/VInted_Rebranding/Moodboard.webp", cap: "Moodboard" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/arbeitsprozess.webp", cap: lang === "de" ? "Arbeitsprozess" : "Process" }
     ].map((img, i, arr) => /* @__PURE__ */ React.createElement(
       "figure",
       {
@@ -594,10 +594,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       /* @__PURE__ */ React.createElement("img", { src: img.src, alt: img.cap, loading: "lazy" }),
       /* @__PURE__ */ React.createElement("figcaption", null, img.cap)
     )))), /* @__PURE__ */ React.createElement("section", { className: "case-section" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F6E0} Logo-Evolution & Maskottchen" : "\u{1F6E0} Logo Evolution & Mascot"), /* @__PURE__ */ React.createElement("div", { style: { display: "flex", gap: 12, flexWrap: "wrap", alignItems: "flex-end" } }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/old_logo.png", cap: lang === "de" ? "Vorher" : "Before" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/logo_skizze.png", cap: lang === "de" ? "Skizze" : "Sketch" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/Logo.png", cap: lang === "de" ? "Final" : "Final" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/vinti.png", cap: lang === "de" ? 'Maskottchen \u201EVinti"' : 'Mascot "Vinti"' }
+      { src: "assets/Portfolio_Content/VInted_Rebranding/old_logo.webp", cap: lang === "de" ? "Vorher" : "Before" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/logo_skizze.webp", cap: lang === "de" ? "Skizze" : "Sketch" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/Logo.webp", cap: lang === "de" ? "Final" : "Final" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/vinti.webp", cap: lang === "de" ? 'Maskottchen \u201EVinti"' : 'Mascot "Vinti"' }
     ].map((m, i, arr) => /* @__PURE__ */ React.createElement("figure", { key: i, className: "bare", style: { margin: 0, flex: "1 1 140px", textAlign: "center" } }, /* @__PURE__ */ React.createElement(
       "img",
       {
@@ -610,12 +610,12 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       "figure",
       {
         style: { margin: "12px 0 0" },
-        onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/palette.png", caption: lang === "de" ? "Farbpalette" : "Colour palette" }], 0)
+        onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/palette.webp", caption: lang === "de" ? "Farbpalette" : "Colour palette" }], 0)
       },
       /* @__PURE__ */ React.createElement(
         "img",
         {
-          src: "assets/Portfolio_Content/VInted_Rebranding/palette.png",
+          src: "assets/Portfolio_Content/VInted_Rebranding/palette.webp",
           alt: lang === "de" ? "Farbpalette" : "Colour palette",
           style: { width: "100%", borderRadius: 8, cursor: "zoom-in", display: "block" },
           loading: "lazy"
@@ -642,9 +642,9 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       ),
       /* @__PURE__ */ React.createElement("figcaption", { className: "small", style: { marginTop: 6 } }, lang === "de" ? "Neue Website" : "New website")
     )), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u267B\uFE0F Repair-Ecosystem" : "\u267B\uFE0F Repair Ecosystem"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? 'Vinted Rewind ist kein einzelnes Produkt, sondern ein geschlossener Kreislauf \u2014 online wie offline. Im Hub gibt man Ger\xE4te zur Reparatur, tauscht oder verkauft sie; der \u201ESubmit \xB7 Match \xB7 Ship"-Flow macht jeden Schritt so leicht und spielerisch wie ein Level. Physische Arcade-Repair-Shops holen das Erlebnis in die echte Welt, und die wiederverwendbare Retro-Game-Box ersetzt Wegwerf-Verpackung. Reparieren wird so zum Spiel statt zur l\xE4stigen Pflicht. Vinted Rewind ist der Ort, an dem deine Ger\xE4te ein zweites Zuhause finden \u2014 und an dem du dich ein St\xFCck weit wieder zuhause f\xFChlst: nostalgisch, nachhaltig und generationenverbindend.' : `Vinted Rewind isn't a single product but a closed loop \u2014 online and offline. In the hub you send devices in for repair, swap or sell them; the "Submit \xB7 Match \xB7 Ship" flow makes every step as easy and playful as a level. Physical arcade repair shops bring the experience into the real world, and the reusable retro-game-box replaces throwaway packaging. Repair becomes play instead of a chore. Vinted Rewind is the place where your devices find a second home \u2014 and where you feel a little at home again: nostalgic, sustainable and generation-spanning.`)), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_hub.png", cap: "Vinted Hub" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/repair_concept.png", cap: lang === "de" ? "Repair-Konzept" : "Repair concept", bg: "#032036" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/shipping_box.png", cap: lang === "de" ? "Versand-Box" : "Shipping box" }
+      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_hub.webp", cap: "Vinted Hub" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/repair_concept.webp", cap: lang === "de" ? "Repair-Konzept" : "Repair concept", bg: "#032036" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/shipping_box.webp", cap: lang === "de" ? "Versand-Box" : "Shipping box" }
     ].map((img, i, arr) => /* @__PURE__ */ React.createElement(
       "figure",
       {
@@ -663,12 +663,12 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       {
         className: "bare",
         style: { margin: "16px 0 0" },
-        onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/gamification_app.png", caption: lang === "de" ? "Gamification in der App" : "Gamification in the app" }], 0)
+        onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/gamification_app.webp", caption: lang === "de" ? "Gamification in der App" : "Gamification in the app" }], 0)
       },
       /* @__PURE__ */ React.createElement(
         "img",
         {
-          src: "assets/Portfolio_Content/VInted_Rebranding/gamification_app.png",
+          src: "assets/Portfolio_Content/VInted_Rebranding/gamification_app.webp",
           alt: lang === "de" ? "Gamification in der App" : "Gamification in the app",
           style: { width: "100%", borderRadius: 8, cursor: "zoom-in", display: "block" },
           loading: "lazy"
@@ -676,10 +676,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       ),
       /* @__PURE__ */ React.createElement("figcaption", { className: "small", style: { marginTop: 6 } }, lang === "de" ? "Gamification in der App" : "Gamification in the app")
     )), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F579} Spielablauf" : "\u{1F579} Game Flow"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Jede nachhaltige Aktion \u2014 reparieren, tauschen, recyceln \u2014 bringt Punkte. Damit schaltet man Retro-Mini-Games frei, sammelt Rewards und steigt durch drei Level: vom Rookie \xFCber Master bis Legend. Im Verlauf sieht man jederzeit, wie viel man schon bewegt hat, und ab einer bestimmten Punktzahl schaltet man seinen eigenen Avatar frei \u2014 das pers\xF6nliche Gesicht des Fortschritts. So f\xFChlt sich Nachhaltigkeit nicht nach Verzicht an, sondern nach Highscore." : "Every sustainable action \u2014 repair, swap, recycle \u2014 earns points. You spend them to unlock retro mini-games, collect rewards and climb through three levels: from Rookie to Master to Legend. The history view shows how much you've already moved, and once you hit a certain point threshold you unlock your own avatar \u2014 the personal face of your progress. Sustainability doesn't feel like giving something up \u2014 it feels like a high score.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_mini_game.png", cap: lang === "de" ? "Mini-Game" : "Mini-game", bare: true },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_rewards.png", cap: "Rewards", bare: true },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_verlauf.png", cap: lang === "de" ? "Verlauf" : "History", bare: true },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/reward_figur.png", cap: lang === "de" ? "Nutzer-Avatar \u2014 ab bestimmter Punktzahl" : "User avatar \u2014 unlocked with points" }
+      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_mini_game.webp", cap: lang === "de" ? "Mini-Game" : "Mini-game", bare: true },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_rewards.webp", cap: "Rewards", bare: true },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/vinted_verlauf.webp", cap: lang === "de" ? "Verlauf" : "History", bare: true },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/reward_figur.webp", cap: lang === "de" ? "Nutzer-Avatar \u2014 ab bestimmter Punktzahl" : "User avatar \u2014 unlocked with points" }
     ].map((img, i, arr) => /* @__PURE__ */ React.createElement(
       "figure",
       {
@@ -705,10 +705,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
         style: { width: "100%", maxWidth: 820, margin: "0 auto", display: "block", borderRadius: 8, border: "2px solid var(--ink, #000)" }
       },
       /* @__PURE__ */ React.createElement("source", { src: "assets/Portfolio_Content/VInted_Rebranding/commercial.mp4", type: "video/mp4" })
-    ), /* @__PURE__ */ React.createElement("p", { className: "small", style: { marginTop: 8, textAlign: "center" } }, lang === "de" ? "Vinted-Werbung im Retro-90er-Style" : "Vinted ad in retro 90s style")), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F4F1} Social Media" : "\u{1F4F1} Social Media"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Auf Instagram wird die Marke zur Community: Feed-Posts erz\xE4hlen Before/After-Repair-Stories mit Pixel-Art-Overlays, Creator zeigen ihre eigenen reparierten Sch\xE4tze, und kurze Insta-Werbung bringt den Retro-Vibe in die Timeline. Statt erhobenem Zeigefinger entsteht ein Feed, der Lust aufs Reparieren macht \u2014 und Generationen \xFCber gemeinsame Nostalgie zusammenbringt." : "On Instagram the brand becomes a community: feed posts tell before/after repair stories with pixel-art overlays, creators show off their own fixed-up treasures, and short Insta ads bring the retro vibe into the timeline. Instead of wagging a finger, it's a feed that makes you want to repair \u2014 connecting generations through shared nostalgia."), /* @__PURE__ */ React.createElement("p", { className: "small" }, lang === "de" ? "\u{1F3AE} Idee: w\xF6chentliche Mini-Games in der Story halten Follower aktiv im Kontakt mit dem Account. Eine solche Spiel-Story haben wir gebaut \u2014 ansehen kannst du sie im Figma-Embed." : "\u{1F3AE} Idea: weekly mini-games in the story keep followers actively engaged with the account. We built one such game story \u2014 you can view it in the Figma embed.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/insta.png", caption: "Instagram" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/insta.png", alt: "Instagram", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, "Instagram")), /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.png", caption: lang === "de" ? "Creator-Content" : "Creator content" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.png", alt: lang === "de" ? "Creator-Content" : "Creator content", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Creator-Content" : "Creator content")), /* @__PURE__ */ React.createElement("figure", { style: { cursor: "default" } }, /* @__PURE__ */ React.createElement("video", { controls: true, muted: true, preload: "metadata", style: { width: "100%", display: "block", border: "2px solid var(--ink, #000)", boxShadow: "4px 4px 0 var(--ink, #000)" } }, /* @__PURE__ */ React.createElement("source", { src: "assets/Portfolio_Content/VInted_Rebranding/insta_werbung.mp4", type: "video/mp4" })), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Insta-Werbung" : "Insta ad")))), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1FAA7} Out-of-Home & Print" : "\u{1FAA7} Out-of-Home & Print"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Damit die Marke nicht nur im Screen lebt, haben wir sie in den \xF6ffentlichen Raum geholt: ein von 90er-Magazinen inspiriertes Cover samt Spread, Poster und Plakate \u2014 alle als realit\xE4tsnahe Mockups inszeniert. Der Retro-Look funktioniert auch gro\xDF und gedruckt: Pixel-Logo, knallige Palette und klare Typo bleiben sofort wiedererkennbar, ob am Kiosk oder an der Bushaltestelle." : "To make sure the brand doesn't only live on screen, we took it into public space: a 90s-magazine-inspired cover and spread, posters and billboards \u2014 all staged as realistic mockups. The retro look holds up large and in print: pixel logo, bold palette and clear type stay instantly recognisable, whether at the kiosk or the bus stop.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
-      { src: "assets/Portfolio_Content/VInted_Rebranding/werbung_tafel.png", cap: lang === "de" ? "Plakat" : "Billboard" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/magazine2.png", cap: lang === "de" ? "Magazin (90er-inspiriert)" : "Magazine (90s-inspired)" },
-      { src: "assets/Portfolio_Content/VInted_Rebranding/etiquette.png", cap: lang === "de" ? "Etikett (Merch)" : "Tag (Merch)" }
+    ), /* @__PURE__ */ React.createElement("p", { className: "small", style: { marginTop: 8, textAlign: "center" } }, lang === "de" ? "Vinted-Werbung im Retro-90er-Style" : "Vinted ad in retro 90s style")), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F4F1} Social Media" : "\u{1F4F1} Social Media"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Auf Instagram wird die Marke zur Community: Feed-Posts erz\xE4hlen Before/After-Repair-Stories mit Pixel-Art-Overlays, Creator zeigen ihre eigenen reparierten Sch\xE4tze, und kurze Insta-Werbung bringt den Retro-Vibe in die Timeline. Statt erhobenem Zeigefinger entsteht ein Feed, der Lust aufs Reparieren macht \u2014 und Generationen \xFCber gemeinsame Nostalgie zusammenbringt." : "On Instagram the brand becomes a community: feed posts tell before/after repair stories with pixel-art overlays, creators show off their own fixed-up treasures, and short Insta ads bring the retro vibe into the timeline. Instead of wagging a finger, it's a feed that makes you want to repair \u2014 connecting generations through shared nostalgia."), /* @__PURE__ */ React.createElement("p", { className: "small" }, lang === "de" ? "\u{1F3AE} Idee: w\xF6chentliche Mini-Games in der Story halten Follower aktiv im Kontakt mit dem Account. Eine solche Spiel-Story haben wir gebaut \u2014 ansehen kannst du sie im Figma-Embed." : "\u{1F3AE} Idea: weekly mini-games in the story keep followers actively engaged with the account. We built one such game story \u2014 you can view it in the Figma embed.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/insta.webp", caption: "Instagram" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/insta.webp", alt: "Instagram", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, "Instagram")), /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp", caption: lang === "de" ? "Creator-Content" : "Creator content" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp", alt: lang === "de" ? "Creator-Content" : "Creator content", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Creator-Content" : "Creator content")), /* @__PURE__ */ React.createElement("figure", { style: { cursor: "default" } }, /* @__PURE__ */ React.createElement("video", { controls: true, muted: true, preload: "metadata", style: { width: "100%", display: "block", border: "2px solid var(--ink, #000)", boxShadow: "4px 4px 0 var(--ink, #000)" } }, /* @__PURE__ */ React.createElement("source", { src: "assets/Portfolio_Content/VInted_Rebranding/insta_werbung.mp4", type: "video/mp4" })), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Insta-Werbung" : "Insta ad")))), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1FAA7} Out-of-Home & Print" : "\u{1FAA7} Out-of-Home & Print"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Damit die Marke nicht nur im Screen lebt, haben wir sie in den \xF6ffentlichen Raum geholt: ein von 90er-Magazinen inspiriertes Cover samt Spread, Poster und Plakate \u2014 alle als realit\xE4tsnahe Mockups inszeniert. Der Retro-Look funktioniert auch gro\xDF und gedruckt: Pixel-Logo, knallige Palette und klare Typo bleiben sofort wiedererkennbar, ob am Kiosk oder an der Bushaltestelle." : "To make sure the brand doesn't only live on screen, we took it into public space: a 90s-magazine-inspired cover and spread, posters and billboards \u2014 all staged as realistic mockups. The retro look holds up large and in print: pixel logo, bold palette and clear type stay instantly recognisable, whether at the kiosk or the bus stop.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
+      { src: "assets/Portfolio_Content/VInted_Rebranding/werbung_tafel.webp", cap: lang === "de" ? "Plakat" : "Billboard" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/magazine2.webp", cap: lang === "de" ? "Magazin (90er-inspiriert)" : "Magazine (90s-inspired)" },
+      { src: "assets/Portfolio_Content/VInted_Rebranding/etiquette.webp", cap: lang === "de" ? "Etikett (Merch)" : "Tag (Merch)" }
     ].map((m, i, arr) => /* @__PURE__ */ React.createElement(
       "figure",
       {

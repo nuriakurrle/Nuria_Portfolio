@@ -617,7 +617,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           );
         }
         if (project.id === 'vinted') {
-          const vintedHero = 'assets/Portfolio_Content/VInted_Rebranding/magazine1.png';
+          const vintedHero = 'assets/Portfolio_Content/VInted_Rebranding/magazine1.webp';
           return (
             <div className="case-hero-bleed">
               <img
@@ -937,7 +937,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           title={d.systemSlider.title}
           intro={d.systemSlider.intro}
           images={d.systemSlider.images}
-          hub={d.systemSlider.hub || 'assets/Portfolio_Content/Echoes_of_Moosburg/identity/rose_logo.png'}
+          hub={d.systemSlider.hub || 'assets/Portfolio_Content/Echoes_of_Moosburg/identity/rose_logo.webp'}
           openLightbox={openLightbox}
         />
       )}
@@ -1159,7 +1159,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             <>
               <img
                 className="case-echoes-img"
-                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/baracken_tafel.png"
+                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/baracken_tafel.webp"
                 alt={lang === 'de' ? 'Baracken-Tafel' : 'Baracken sign'}
               />
               <p className="case-echoes-note">
@@ -1169,7 +1169,7 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
               </p>
               <img
                 className="case-echoes-img"
-                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/QR_code_scan.png"
+                src="assets/Portfolio_Content/Echoes_of_Moosburg/outcome/QR_code_scan.webp"
                 alt={lang === 'de' ? 'QR-Code Scan' : 'QR-code scan'}
               />
             </>
@@ -1212,8 +1212,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           </div>
           <div className="sticky-scroll-media">
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_logo.png', cap: lang === 'de' ? 'Original Logo' : 'Old logo' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_website.png', cap: lang === 'de' ? 'Original Website' : 'Old website' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_logo.webp', cap: lang === 'de' ? 'Original Logo' : 'Old logo' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_website.webp', cap: lang === 'de' ? 'Original Website' : 'Old website' },
             ].map((img, i, arr) => (
               <figure
                 key={i}
@@ -1245,8 +1245,8 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           </div>
           <div className="sticky-scroll-media">
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/Moodboard.png', cap: 'Moodboard' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/arbeitsprozess.png', cap: lang === 'de' ? 'Arbeitsprozess' : 'Process' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/Moodboard.webp', cap: 'Moodboard' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/arbeitsprozess.webp', cap: lang === 'de' ? 'Arbeitsprozess' : 'Process' },
             ].map((img, i, arr) => (
               <figure
                 key={i}
@@ -1266,10 +1266,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           <h3>{lang === 'de' ? '🛠 Logo-Evolution & Maskottchen' : '🛠 Logo Evolution & Mascot'}</h3>
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'flex-end' }}>
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_logo.png', cap: lang === 'de' ? 'Vorher' : 'Before' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/logo_skizze.png', cap: lang === 'de' ? 'Skizze' : 'Sketch' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/Logo.png', cap: lang === 'de' ? 'Final' : 'Final' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinti.png', cap: lang === 'de' ? 'Maskottchen „Vinti"' : 'Mascot "Vinti"' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/old_logo.webp', cap: lang === 'de' ? 'Vorher' : 'Before' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/logo_skizze.webp', cap: lang === 'de' ? 'Skizze' : 'Sketch' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/Logo.webp', cap: lang === 'de' ? 'Final' : 'Final' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinti.webp', cap: lang === 'de' ? 'Maskottchen „Vinti"' : 'Mascot "Vinti"' },
             ].map((m, i, arr) => (
               <figure key={i} className="bare" style={{ margin: 0, flex: '1 1 140px', textAlign: 'center' }}>
                 <img src={m.src} alt={m.cap} style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in' }}
@@ -1284,10 +1284,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           <h3>{lang === 'de' ? '🎨 Farbpalette' : '🎨 Colour Palette'}</h3>
           <figure
             style={{ margin: '12px 0 0' }}
-            onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/palette.png', caption: lang === 'de' ? 'Farbpalette' : 'Colour palette' }], 0)}
+            onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/palette.webp', caption: lang === 'de' ? 'Farbpalette' : 'Colour palette' }], 0)}
           >
             <img
-              src="assets/Portfolio_Content/VInted_Rebranding/palette.png"
+              src="assets/Portfolio_Content/VInted_Rebranding/palette.webp"
               alt={lang === 'de' ? 'Farbpalette' : 'Colour palette'}
               style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in', display: 'block' }}
               loading="lazy"
@@ -1330,9 +1330,9 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           </div>
           <div className="sticky-scroll-media">
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_hub.png', cap: 'Vinted Hub' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/repair_concept.png', cap: lang === 'de' ? 'Repair-Konzept' : 'Repair concept', bg: '#032036' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/shipping_box.png', cap: lang === 'de' ? 'Versand-Box' : 'Shipping box' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_hub.webp', cap: 'Vinted Hub' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/repair_concept.webp', cap: lang === 'de' ? 'Repair-Konzept' : 'Repair concept', bg: '#032036' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/shipping_box.webp', cap: lang === 'de' ? 'Versand-Box' : 'Shipping box' },
             ].map((img, i, arr) => (
               <figure
                 key={i}
@@ -1377,10 +1377,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           <figure
             className="bare"
             style={{ margin: '16px 0 0' }}
-            onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/gamification_app.png', caption: lang === 'de' ? 'Gamification in der App' : 'Gamification in the app' }], 0)}
+            onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/gamification_app.webp', caption: lang === 'de' ? 'Gamification in der App' : 'Gamification in the app' }], 0)}
           >
             <img
-              src="assets/Portfolio_Content/VInted_Rebranding/gamification_app.png"
+              src="assets/Portfolio_Content/VInted_Rebranding/gamification_app.webp"
               alt={lang === 'de' ? 'Gamification in der App' : 'Gamification in the app'}
               style={{ width: '100%', borderRadius: 8, cursor: 'zoom-in', display: 'block' }}
               loading="lazy"
@@ -1401,10 +1401,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           </div>
           <div className="sticky-scroll-media">
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_mini_game.png', cap: lang === 'de' ? 'Mini-Game' : 'Mini-game', bare: true },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_rewards.png', cap: 'Rewards', bare: true },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_verlauf.png', cap: lang === 'de' ? 'Verlauf' : 'History', bare: true },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/reward_figur.png', cap: lang === 'de' ? 'Nutzer-Avatar — ab bestimmter Punktzahl' : 'User avatar — unlocked with points' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_mini_game.webp', cap: lang === 'de' ? 'Mini-Game' : 'Mini-game', bare: true },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_rewards.webp', cap: 'Rewards', bare: true },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_verlauf.webp', cap: lang === 'de' ? 'Verlauf' : 'History', bare: true },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/reward_figur.webp', cap: lang === 'de' ? 'Nutzer-Avatar — ab bestimmter Punktzahl' : 'User avatar — unlocked with points' },
             ].map((img, i, arr) => (
               <figure
                 key={i}
@@ -1474,12 +1474,12 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             </p>
           </div>
           <div className="sticky-scroll-media">
-            <figure onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/insta.png', caption: 'Instagram' }], 0)}>
-              <img src="assets/Portfolio_Content/VInted_Rebranding/insta.png" alt="Instagram" loading="lazy" />
+            <figure onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/insta.webp', caption: 'Instagram' }], 0)}>
+              <img src="assets/Portfolio_Content/VInted_Rebranding/insta.webp" alt="Instagram" loading="lazy" />
               <figcaption>Instagram</figcaption>
             </figure>
-            <figure onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.png', caption: lang === 'de' ? 'Creator-Content' : 'Creator content' }], 0)}>
-              <img src="assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.png" alt={lang === 'de' ? 'Creator-Content' : 'Creator content'} loading="lazy" />
+            <figure onClick={() => openLightbox([{ type: 'image', src: 'assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp', caption: lang === 'de' ? 'Creator-Content' : 'Creator content' }], 0)}>
+              <img src="assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp" alt={lang === 'de' ? 'Creator-Content' : 'Creator content'} loading="lazy" />
               <figcaption>{lang === 'de' ? 'Creator-Content' : 'Creator content'}</figcaption>
             </figure>
             <figure style={{ cursor: 'default' }}>
@@ -1503,9 +1503,9 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
           </div>
           <div className="sticky-scroll-media">
             {[
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/werbung_tafel.png', cap: lang === 'de' ? 'Plakat' : 'Billboard' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/magazine2.png', cap: lang === 'de' ? 'Magazin (90er-inspiriert)' : 'Magazine (90s-inspired)' },
-              { src: 'assets/Portfolio_Content/VInted_Rebranding/etiquette.png', cap: lang === 'de' ? 'Etikett (Merch)' : 'Tag (Merch)' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/werbung_tafel.webp', cap: lang === 'de' ? 'Plakat' : 'Billboard' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/magazine2.webp', cap: lang === 'de' ? 'Magazin (90er-inspiriert)' : 'Magazine (90s-inspired)' },
+              { src: 'assets/Portfolio_Content/VInted_Rebranding/etiquette.webp', cap: lang === 'de' ? 'Etikett (Merch)' : 'Tag (Merch)' },
             ].map((m, i, arr) => (
               <figure key={i}
                 onClick={() => openLightbox(arr.map(x => ({ type: 'image', src: x.src, caption: x.cap })), i)}>
