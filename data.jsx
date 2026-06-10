@@ -1102,7 +1102,7 @@ const PROJECTS = [
     emoji: '🏙️',
     color: 'sky',
     status: 'completed',
-    cover: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+    cover: 'assets/Portfolio_Content/Munich_Super_App/munich_entry.webp',
     icon: 'assets/icons/munich.png',
     coverFit: 'cover',
     figmaUrl: 'https://www.figma.com/proto/nhU3ceD19oDSzRyxQPWAMu/Munich-Super-App?node-id=103-253&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=103%3A253',
@@ -1162,7 +1162,7 @@ const PROJECTS = [
       ],
       solutionStatement: 'Nicht noch eine App, sondern eine weniger: Die Munich Super App bündelt Mobilität und Kultur in einem Dashboard — jede Funktion beantwortet direkt einen Pain aus der Recherche.',
       solutionContext: 'Zwei Verticals in einem System — Mobilität (MVG) und Kultur & Freizeit (Tickets · Museen · Schwimmbäder). Gegen App-Wildwuchs: ein Login, ein Dashboard. Gegen verpasste Fristen: proaktive, smarte Erinnerungen. Gegen E-Mail-Chaos: alle Tickets zentral, schnelle Bezahlung mit gespeicherter Methode, zuverlässig auch offline. Personalisierung ab Sekunde eins über ein Interessen-Quiz vor dem Login. Und Barrierefreiheit als Default, nicht als Opt-in — damit die App für alle vier Personas trägt, von Tourist:in bis Seniorin.',
-      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/munich_entry.webp',
       solutionScenarioImages: [
         { src: 'assets/Portfolio_Content/Munich_Super_App/munich_entry.webp', caption: 'Der Einstieg in die Munich Super App — ein zentrales Dashboard statt fünf Einzel-Apps.', scenario: 'Schon vor dem ersten Login macht Flora einen kurzen Interessen-Quiz — ab jetzt sieht sie nur noch, was zu ihr passt. Auf dem smarten Home-Screen warten Live-Infos zu ÖPNV und spontanen Events in der Nähe, ihre Upcoming Events liegen mit QR-Code bereit.' },
         { src: 'assets/Portfolio_Content/Munich_Super_App/munich_pay.webp', caption: 'Müheloser Ticketkauf & schnelle Bezahlung — Warenkorb, gespeicherte Zahlungsmethode, ein Klick.', scenario: 'Sie tippt auf eine Ausstellung und wird direkt zur empfohlenen Route geführt. Ihr MVV-Ticket kauft sie auf der Public-Transport-Leiste; nach einem Swipe fasst der Warenkorb alles zusammen, die Zahlungsmethode ist gespeichert — fertig mit einem einzigen Klick.' },
@@ -1177,7 +1177,7 @@ const PROJECTS = [
         {
           name: 'Hi-Fi Detail-Screen',
           description: 'Beispielhafte Service-Detailansicht aus dem Dashboard — zeigt wie die Service-Design-Prinzipien (Accessibility-First, Progressive Disclosure) auf Screen-Ebene umgesetzt sind. [TODO: präzisere Annotation was konkret auf dem Screen passiert]',
-          image: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png',
+          image: 'assets/Portfolio_Content/Munich_Super_App/munich_pay.webp',
         },
       ],
       resultsImage: 'assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.mp4',
@@ -1230,7 +1230,7 @@ const PROJECTS = [
       wouldChange: [],
       metrics: [{l:'Interviews', v:'6+'},{l:'Personas', v:'4'},{l:'Services integriert', v:'7'}],
       media: [
-          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158730.jpg', caption:'Empathy Map · Personas-Skizze', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/empathy_map.webp', caption:'Empathy Map · Personas-Skizze', width:1200, height:800},
           {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158734.webp', caption:'JTBD-Statement & 4 Personas', width:1200, height:800},
       ],
     },
@@ -1262,7 +1262,7 @@ const PROJECTS = [
       ],
       solutionStatement: 'Not one more app, but one less: the Munich Super App bundles mobility and culture into one dashboard — every feature answers a pain from the research directly.',
       solutionContext: 'Two verticals in one system — mobility (MVG) and culture & leisure (tickets · museums · pools). Against app sprawl: one login, one dashboard. Against missed deadlines: proactive, smart reminders. Against email chaos: all tickets in one place, fast checkout with a saved payment method, reliable even offline. Personalised from second one via an interests quiz before login. And accessibility as default, not opt-in — so the app holds up for all four personas, from tourist to senior.',
-      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150210.png',
+      solutionImage: 'assets/Portfolio_Content/Munich_Super_App/munich_entry.webp',
       solutionScenarioImages: [
         { src: 'assets/Portfolio_Content/Munich_Super_App/munich_entry.webp', caption: 'Entering the Munich Super App — one central dashboard instead of five separate apps.', scenario: 'Before she even logs in, Flora takes a quick interests quiz — from now on she only sees what\'s relevant to her. Her smart home screen greets her with live transit updates and spontaneous events nearby, her upcoming events ready with a QR code.' },
         { src: 'assets/Portfolio_Content/Munich_Super_App/munich_pay.webp', caption: 'Effortless ticket purchase & fast checkout — cart, saved payment method, one click.', scenario: 'She taps an exhibition and gets routed there instantly. She buys her MVV ticket right on the public-transport bar; after one swipe the cart sums everything up, her payment method is saved — done in a single click.' },
@@ -1277,7 +1277,7 @@ const PROJECTS = [
         {
           name: 'Hi-Fi Detail Screen',
           description: 'Example service detail view from the dashboard — shows how the service-design principles (accessibility-first, progressive disclosure) translate to screen level. [TODO: sharper annotation of what specifically happens on this screen]',
-          image: 'assets/Portfolio_Content/Munich_Super_App/Screenshot_20250626_150236.png',
+          image: 'assets/Portfolio_Content/Munich_Super_App/munich_pay.webp',
         },
       ],
       resultsImage: 'assets/Portfolio_Content/Munich_Super_App/Munich_App_Video.mp4',
@@ -1330,7 +1330,7 @@ const PROJECTS = [
       wouldChange: [],
       metrics: [{l:'Interviews', v:'6+'},{l:'Personas', v:'4'},{l:'Services integrated', v:'7'}],
       media: [
-          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158730.jpg', caption:'Empathy map · personas sketch', width:1200, height:800},
+          {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/empathy_map.webp', caption:'Empathy map · personas sketch', width:1200, height:800},
           {type:'image', src:'assets/Portfolio_Content/Munich_Super_App/1000158734.webp', caption:'JTBD statement & 4 personas', width:1200, height:800},
       ],
     },

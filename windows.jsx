@@ -1,6 +1,41 @@
 /* global React, STR, PROJECTS, NURIA, Placeholder, MediaGallery, Tabs */
 const { useState: useStateW } = React;
 
+/* LazyVideo — GIF-style autoplay video that only loads + plays once scrolled
+   into view (preload="none" + IntersectionObserver). Keeps muted/loop/playsInline
+   so it behaves like the old autoPlay videos, but no longer downloads megabytes
+   the moment a project opens. Pauses again when scrolled away. */
+function LazyVideo({ src, poster, controls = false, loop = false, className, style, onClick }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      if (!e) return;
+      if (e.isIntersecting) { const p = el.play(); if (p && p.catch) p.catch(() => {}); }
+      else { el.pause(); }
+    }, { rootMargin: '200px', threshold: 0.1 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      controls={controls}
+      loop={loop}
+      muted
+      playsInline
+      preload="none"
+      className={className}
+      style={style}
+      onClick={onClick}
+    />
+  );
+}
+
 /* ═════════════════════════════════════════════════════════════════════
    TL;DR CARD — 4-cell case-study summary at the top of every project
    ─────────────────────────────────────────────────────────────────────
@@ -1126,13 +1161,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
                   const cap = lang === 'de' ? 'Ergebnis' : 'Outcome';
                   if (/\.mp4$/i.test(d.resultsImage)) {
                     return (
-                      <video
+                      <LazyVideo
                         src={d.resultsImage}
                         className="case-row-img-zoom"
-                        autoPlay
                         loop
-                        muted
-                        playsInline
                         onClick={() => openLightbox([{ type: 'video', src: d.resultsImage, caption: cap }], 0)}
                       />
                     );
@@ -1306,12 +1338,9 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
             style={{ margin: '16px 0 0' }}
             onClick={() => openLightbox([{ type: 'video', src: 'assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4', caption: lang === 'de' ? 'Neue Website' : 'New website' }], 0)}
           >
-            <video
+            <LazyVideo
               src="assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4"
-              autoPlay
               loop
-              muted
-              playsInline
               style={{ width: '100%', maxWidth: 700, margin: '0 auto', borderRadius: 8, cursor: 'zoom-in', display: 'block' }}
             />
             <figcaption className="small" style={{ marginTop: 6 }}>{lang === 'de' ? 'Neue Website' : 'New website'}</figcaption>
@@ -1442,17 +1471,12 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       <div className="tab-content vinted-rewind">
         {/* Intro — TV/Online commercial */}
         <section className="case-section">
-          <video
+          <LazyVideo
+            src="assets/Portfolio_Content/VInted_Rebranding/commercial.mp4"
             controls
             loop
-            autoPlay
-            muted
-            playsInline
-            preload="metadata"
             style={{ width: '100%', maxWidth: 820, margin: '0 auto', display: 'block', borderRadius: 8, border: '2px solid var(--ink, #000)' }}
-          >
-            <source src="assets/Portfolio_Content/VInted_Rebranding/commercial.mp4" type="video/mp4" />
-          </video>
+          />
           <p className="small" style={{ marginTop: 8, textAlign: 'center' }}>
             {lang === 'de' ? 'Vinted-Werbung im Retro-90er-Style' : 'Vinted ad in retro 90s style'}
           </p>

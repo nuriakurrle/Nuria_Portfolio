@@ -1,6 +1,42 @@
 (function(){
 const { NURIA, STR, PROJECTS, PROJECT_TAGS, SKILL_CATALOG, Placeholder, MediaGallery, Tabs } = window;
 const { useState: useStateW } = React;
+function LazyVideo({ src, poster, controls = false, loop = false, className, style, onClick }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver((entries) => {
+      const e = entries[0];
+      if (!e) return;
+      if (e.isIntersecting) {
+        const p = el.play();
+        if (p && p.catch) p.catch(() => {
+        });
+      } else {
+        el.pause();
+      }
+    }, { rootMargin: "200px", threshold: 0.1 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return /* @__PURE__ */ React.createElement(
+    "video",
+    {
+      ref,
+      src,
+      poster,
+      controls,
+      loop,
+      muted: true,
+      playsInline: true,
+      preload: "none",
+      className,
+      style,
+      onClick
+    }
+  );
+}
 function RecruiterContent({ t, lang, openProject, openWindow, closeWindow, onDownloadCV, openLightbox }) {
   const marqueeIds = ["atolls", "echoes", "vinted"];
   const topProjects = marqueeIds.map((id) => PROJECTS.find((p) => p.id === id && p.status === "completed")).filter(Boolean);
@@ -525,14 +561,11 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       const cap = lang === "de" ? "Ergebnis" : "Outcome";
       if (/\.mp4$/i.test(d.resultsImage)) {
         return /* @__PURE__ */ React.createElement(
-          "video",
+          LazyVideo,
           {
             src: d.resultsImage,
             className: "case-row-img-zoom",
-            autoPlay: true,
             loop: true,
-            muted: true,
-            playsInline: true,
             onClick: () => openLightbox([{ type: "video", src: d.resultsImage, caption: cap }], 0)
           }
         );
@@ -630,13 +663,10 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
         onClick: () => openLightbox([{ type: "video", src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4", caption: lang === "de" ? "Neue Website" : "New website" }], 0)
       },
       /* @__PURE__ */ React.createElement(
-        "video",
+        LazyVideo,
         {
           src: "assets/Portfolio_Content/VInted_Rebranding/vinted_website.mp4",
-          autoPlay: true,
           loop: true,
-          muted: true,
-          playsInline: true,
           style: { width: "100%", maxWidth: 700, margin: "0 auto", borderRadius: 8, cursor: "zoom-in", display: "block" }
         }
       ),
@@ -694,17 +724,13 @@ function ProjectContent({ project, t, lang, openLightbox, openWindow, closeWindo
       /* @__PURE__ */ React.createElement("figcaption", null, img.cap)
     )))), project.gamificationFigmaEmbedUrl && /* @__PURE__ */ React.createElement("section", { className: "case-section case-section-figma" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F3AE} Gamification-Prototyp (Figma)" : "\u{1F3AE} Gamification prototype (Figma)"), /* @__PURE__ */ React.createElement("p", { className: "mono", style: { fontSize: 12, opacity: 0.8 } }, t.figma_hint), /* @__PURE__ */ React.createElement("div", { className: "figma-embed" }, /* @__PURE__ */ React.createElement("iframe", { src: project.gamificationFigmaEmbedUrl, title: `${d.title} \u2014 Gamification Figma`, allowFullScreen: true, loading: "lazy" })), project.gamificationFigmaUrl && /* @__PURE__ */ React.createElement("a", { className: "btn-primary", href: project.gamificationFigmaUrl, target: "_blank", rel: "noreferrer" }, "\u2192 ", t.figma_cta)));
     const marketingPanel = /* @__PURE__ */ React.createElement("div", { className: "tab-content vinted-rewind" }, /* @__PURE__ */ React.createElement("section", { className: "case-section" }, /* @__PURE__ */ React.createElement(
-      "video",
+      LazyVideo,
       {
+        src: "assets/Portfolio_Content/VInted_Rebranding/commercial.mp4",
         controls: true,
         loop: true,
-        autoPlay: true,
-        muted: true,
-        playsInline: true,
-        preload: "metadata",
         style: { width: "100%", maxWidth: 820, margin: "0 auto", display: "block", borderRadius: 8, border: "2px solid var(--ink, #000)" }
-      },
-      /* @__PURE__ */ React.createElement("source", { src: "assets/Portfolio_Content/VInted_Rebranding/commercial.mp4", type: "video/mp4" })
+      }
     ), /* @__PURE__ */ React.createElement("p", { className: "small", style: { marginTop: 8, textAlign: "center" } }, lang === "de" ? "Vinted-Werbung im Retro-90er-Style" : "Vinted ad in retro 90s style")), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1F4F1} Social Media" : "\u{1F4F1} Social Media"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Auf Instagram wird die Marke zur Community: Feed-Posts erz\xE4hlen Before/After-Repair-Stories mit Pixel-Art-Overlays, Creator zeigen ihre eigenen reparierten Sch\xE4tze, und kurze Insta-Werbung bringt den Retro-Vibe in die Timeline. Statt erhobenem Zeigefinger entsteht ein Feed, der Lust aufs Reparieren macht \u2014 und Generationen \xFCber gemeinsame Nostalgie zusammenbringt." : "On Instagram the brand becomes a community: feed posts tell before/after repair stories with pixel-art overlays, creators show off their own fixed-up treasures, and short Insta ads bring the retro vibe into the timeline. Instead of wagging a finger, it's a feed that makes you want to repair \u2014 connecting generations through shared nostalgia."), /* @__PURE__ */ React.createElement("p", { className: "small" }, lang === "de" ? "\u{1F3AE} Idee: w\xF6chentliche Mini-Games in der Story halten Follower aktiv im Kontakt mit dem Account. Eine solche Spiel-Story haben wir gebaut \u2014 ansehen kannst du sie im Figma-Embed." : "\u{1F3AE} Idea: weekly mini-games in the story keep followers actively engaged with the account. We built one such game story \u2014 you can view it in the Figma embed.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/insta.webp", caption: "Instagram" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/insta.webp", alt: "Instagram", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, "Instagram")), /* @__PURE__ */ React.createElement("figure", { onClick: () => openLightbox([{ type: "image", src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp", caption: lang === "de" ? "Creator-Content" : "Creator content" }], 0) }, /* @__PURE__ */ React.createElement("img", { src: "assets/Portfolio_Content/VInted_Rebranding/coumba.video 1.webp", alt: lang === "de" ? "Creator-Content" : "Creator content", loading: "lazy" }), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Creator-Content" : "Creator content")), /* @__PURE__ */ React.createElement("figure", { style: { cursor: "default" } }, /* @__PURE__ */ React.createElement("video", { controls: true, muted: true, preload: "metadata", style: { width: "100%", display: "block", border: "2px solid var(--ink, #000)", boxShadow: "4px 4px 0 var(--ink, #000)" } }, /* @__PURE__ */ React.createElement("source", { src: "assets/Portfolio_Content/VInted_Rebranding/insta_werbung.mp4", type: "video/mp4" })), /* @__PURE__ */ React.createElement("figcaption", null, lang === "de" ? "Insta-Werbung" : "Insta ad")))), /* @__PURE__ */ React.createElement("section", { className: "case-section case-sticky-scroll" }, /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-text" }, /* @__PURE__ */ React.createElement("h3", null, lang === "de" ? "\u{1FAA7} Out-of-Home & Print" : "\u{1FAA7} Out-of-Home & Print"), /* @__PURE__ */ React.createElement("p", null, lang === "de" ? "Damit die Marke nicht nur im Screen lebt, haben wir sie in den \xF6ffentlichen Raum geholt: ein von 90er-Magazinen inspiriertes Cover samt Spread, Poster und Plakate \u2014 alle als realit\xE4tsnahe Mockups inszeniert. Der Retro-Look funktioniert auch gro\xDF und gedruckt: Pixel-Logo, knallige Palette und klare Typo bleiben sofort wiedererkennbar, ob am Kiosk oder an der Bushaltestelle." : "To make sure the brand doesn't only live on screen, we took it into public space: a 90s-magazine-inspired cover and spread, posters and billboards \u2014 all staged as realistic mockups. The retro look holds up large and in print: pixel logo, bold palette and clear type stay instantly recognisable, whether at the kiosk or the bus stop.")), /* @__PURE__ */ React.createElement("div", { className: "sticky-scroll-media" }, [
       { src: "assets/Portfolio_Content/VInted_Rebranding/werbung_tafel.webp", cap: lang === "de" ? "Plakat" : "Billboard" },
       { src: "assets/Portfolio_Content/VInted_Rebranding/magazine2.webp", cap: lang === "de" ? "Magazin (90er-inspiriert)" : "Magazine (90s-inspired)" },
